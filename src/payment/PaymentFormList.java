@@ -1,11 +1,5 @@
 package Practice.InsuranceCompany.Design.src.payment;
 
-
-/**
- * @author ����
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:50
- */
 public interface PaymentFormList {
 
 	/**
@@ -28,8 +22,8 @@ public interface PaymentFormList {
 
 	/**
 	 * 
-	 * @param examinationResul
+	 * @param examinationResult
 	 */
-	public boolean updateExaminationResult(boolean examinationResul);
+	public boolean updateExaminationResult(boolean examinationResult);
 
 }

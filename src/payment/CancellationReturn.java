@@ -1,11 +1,5 @@
 package Practice.InsuranceCompany.Design.src.payment;
 
-
-/**
- * @author ����
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:48
- */
 public class CancellationReturn extends Payment {
 
 	private String cancellationReason;
@@ -16,5 +10,20 @@ public class CancellationReturn extends Payment {
 
 	public void finalize() throws Throwable {
 		super.finalize();
+	}
+
+	@Override
+	public boolean setPaymentInfo() {
+		return false;
+	}
+
+	@Override
+	public int calculatePayment() {
+		return 0;
+	}
+
+	@Override
+	public boolean sendPaymentGuide(String customerID) {
+		return false;
 	}
 }//end CancellationReturn
