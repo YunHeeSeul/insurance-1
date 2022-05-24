@@ -3,6 +3,8 @@ package Practice.InsuranceCompany.Design.src.subscription;
 
 import Practice.InsuranceCompany.Design.src.etcEnum.UnderwritingStatus;
 
+import java.util.ArrayList;
+
 /**
  * @author SeoyeonPark
  * @version 1.0
