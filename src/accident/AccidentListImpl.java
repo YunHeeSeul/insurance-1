@@ -39,9 +39,9 @@ public abstract class AccidentListImpl implements AccidentList {
 	 * 
 	 * @param accidentID
 	 */
-	public Accident get(String accidentID){
-		return null;
-	}
+//	public Accident get(String accidentID){
+//		return null;
+//	}
 
 	/**
 	 * 

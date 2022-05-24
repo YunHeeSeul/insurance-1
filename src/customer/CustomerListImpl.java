@@ -1,6 +1,8 @@
 package Practice.InsuranceCompany.Design.src.customer;
 
 
+import java.util.ArrayList;
+
 /**
  * @author macbook
  * @version 1.0
@@ -34,13 +36,23 @@ public class CustomerListImpl implements CustomerList {
 		return false;
 	}
 
+	@Override
+	public Customer getByCustomerId(String customerID) {
+		return null;
+	}
+
+	@Override
+	public Customer getByCustomerName(String customerName) {
+		return null;
+	}
+
 	/**
 	 * 
 	 * @param customerID
 	 */
-	public Customer get(String customerID){
-		return null;
-	}
+//	public Customer get(String customerID){
+//		return null;
+//	}
 
 	/**
 	 * 

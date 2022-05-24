@@ -9,7 +9,7 @@ package Practice.InsuranceCompany.Design.src.etcEnum;
 public enum Department {
 	contractManagement,
 	sales,
-	U/W,
+	UW,
 	development,
 	indemnification
 }
