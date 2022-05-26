@@ -10,5 +10,6 @@ public enum UnderwritingStatus {
 	applied,
 	notApplied,
 	concluded,
-	rejected
+	rejected,
+	completed
 }
