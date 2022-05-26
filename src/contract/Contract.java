@@ -97,7 +97,7 @@ public class Contract {
 	}
 
 	// 매개변수 수정
-	public boolean modifyActivityI(String activityDate){
+	public boolean modifyActivityI(String residentRegistrationNumber){
 		return false;
 	}
 

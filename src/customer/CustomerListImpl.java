@@ -2,6 +2,7 @@ package Practice.InsuranceCompany.Design.src.customer;
 
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * @author macbook
@@ -37,7 +38,7 @@ public class CustomerListImpl implements CustomerList {
 	}
 
 	@Override
-	public Customer getByCustomerId(String customerID) {
+	public Optional<Customer> getByCustomerId(String customerID) {
 		return null;
 	}
 

@@ -1,6 +1,8 @@
 package Practice.InsuranceCompany.Design.src.customer;
 
 
+import java.util.Optional;
+
 /**
  * @author macbook
  * @version 1.0
@@ -21,10 +23,9 @@ public interface CustomerList {
 	public boolean delete(String customerID);
 
 	/**
-	 * 
-	 * @param customerID
-	 */
-	public Customer getByCustomerId(String customerID);
+     * @param customerID
+     */
+	public Optional<Customer> getByCustomerId(String customerID);
 
 	/**
 	 *
