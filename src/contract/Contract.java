@@ -20,6 +20,10 @@ public class Contract {
 
 	}
 
+	public String getContractID(){
+		return contractID;
+	}
+
 	public boolean modifyActivityI(String residentRegistrationNumber){
 		return false;
 	}
