@@ -39,10 +39,6 @@ public class PaymentForm {
 		this.examinationResult = examinationResult;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-
 	/**
 	 *
 	 * @param result

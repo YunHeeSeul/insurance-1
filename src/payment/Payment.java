@@ -1,5 +1,7 @@
 package Practice.InsuranceCompany.Design.src.payment;
 
+import Practice.InsuranceCompany.Design.src.customer.Customer;
+
 public abstract class Payment {
 
 	private long amount;
@@ -8,17 +10,17 @@ public abstract class Payment {
 		this.amount = 0;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-
 	//추가
 	public abstract boolean setPaymentInfo();
 	public abstract int calculatePayment();
 
+	public long getAmount() {
+		return amount;
+	}
+
 	/**
 	 *
-	 * @param customerID
+	 * @param customer
 	 */
-	public abstract boolean sendPaymentGuide(String customerID);
+	public abstract void sendPaymentGuide(Customer customer);
 }//end Payment

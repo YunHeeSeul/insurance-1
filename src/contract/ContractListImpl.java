@@ -2,6 +2,7 @@ package Practice.InsuranceCompany.Design.src.contract;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 
 public class ContractListImpl implements ContractList {
 
@@ -27,6 +28,11 @@ public class ContractListImpl implements ContractList {
 
 	@Override
 	public Contract getByCustomerId(String customerID) {
+		return null;
+	}
+
+	@Override
+	public Optional<Contract> getOptionalContractByCustomerId(String customerID) {
 		return null;
 	}
 

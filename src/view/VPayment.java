@@ -5,8 +5,10 @@ import Practice.InsuranceCompany.Design.src.contract.ContractList;
 import Practice.InsuranceCompany.Design.src.customer.Customer;
 import Practice.InsuranceCompany.Design.src.customer.CustomerList;
 import Practice.InsuranceCompany.Design.src.payment.PaymentForm;
+import Practice.InsuranceCompany.Design.src.payment.PaymentFormList;
 import Practice.InsuranceCompany.Design.src.payment.PaymentType;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -17,12 +19,16 @@ public class VPayment {
 
     ContractList contractList;
 
-    public VPayment(Scanner scn, CustomerList customerList, ContractList contractList) {
+    PaymentFormList paymentFormList;
+
+    public VPayment(Scanner scn, CustomerList customerList, ContractList contractList, PaymentFormList paymentFormList) {
         this.scn = scn;
         this.customerList = customerList;
         this.contractList = contractList;
+        this.paymentFormList = paymentFormList;
     }
 
+    // (1). 지급금 접수받기
     public boolean registerPayment(){
         PaymentForm paymentForm = new PaymentForm();
 
@@ -82,12 +88,83 @@ public class VPayment {
         return paymentForm.getPayment() == null? false : true;
     }
 
+    // (2). 지급금 지급하기
     // 제지급금 지급 실패 : -1 반환
-    public int sendPayment(){
-        return 0;
+    public int sendPayment() {
+        System.out.print("지급금을 지급할 고객을 선택해주세요");
+        System.out.print("=============================================================");
+        System.out.print("고객 ID : ");
+        String customerID = scn.next();
+        Optional<Customer> customer = customerList.getByCustomerId(customerID);
+
+        while (customer.isEmpty()) {
+            System.out.print("해당 고객 ID를 가진 고객이 존재하지 않습니다.");
+            System.out.print("고객 ID를 다시 선택해주세요.");
+            System.out.print("=============================================================");
+            System.out.print("고객 ID : ");
+            customerID = scn.next();
+            customer = customerList.getByCustomerId(customerID);
+        }
+
+        Customer existringCustomer = customer.get();
+
+        Optional<Contract> contract = contractList.getOptionalContractByCustomerId(customerID);
+        if (contract.isEmpty()) {
+            System.out.println("고객 ID가 " + customerID + "인 고객이 소유하고 있는 보험이 존재하지 않습니다.");
+            return -1;
+        } else {
+            String contractId = contract.get().getContractID();
+            PaymentForm paymentForm = this.paymentFormList.get(contractId);
+
+            if (paymentForm == null) {
+                System.out.println("고객 ID가 " + customerID + "인 고객이 계약 ID" + contractId + "에 대해 신청한 지급 신청서가 존재하지 않습니다.");
+                return -1;
+            } else {
+                // 지급 안내서 표출
+                return paymentForm.getPaymentType().getPayment().calculatePayment();
+            }
+        }
     }
 
+    // (3). 지급 안내서 전송하기
     public boolean sendPaymentGuide(){
-        return true;
+
+        System.out.print("지급 안내서를 보낼 고객을 선택해주세요");
+        System.out.print("=============================================================");
+        System.out.print("고객 ID : ");
+        String customerID = scn.next();
+        Optional<Customer> customer= customerList.getByCustomerId(customerID);
+
+        while(customer.isEmpty()){
+            System.out.print("해당 고객 ID를 가진 고객이 존재하지 않습니다.");
+            System.out.print("고객 ID를 다시 선택해주세요.");
+            System.out.print("=============================================================");
+            System.out.print("고객 ID : ");
+            customerID = scn.next();
+            customer= customerList.getByCustomerId(customerID);
+        }
+
+        Customer existringCustomer = customer.get();
+
+        // 지급 안내서를 표출한다.
+        Optional<Contract> contract = contractList.getOptionalContractByCustomerId(customerID);
+        if(contract.isEmpty()){
+            System.out.println("고객 ID가 " + customerID + "인 고객이 소유하고 있는 보험이 존재하지 않습니다.");
+            return false;
+        }
+        else{
+            String contractId = contract.get().getContractID();
+            PaymentForm paymentForm = this.paymentFormList.get(contractId);
+
+            if(paymentForm == null){
+                System.out.println("고객 ID가 " + customerID + "인 고객이 계약 ID" + contractId + "에 대해 신청한 지급 신청서가 존재하지 않습니다.");
+                return false;
+            }
+            else{
+                // 지급 안내서 표출
+                paymentForm.getPaymentType().getPayment().sendPaymentGuide(existringCustomer);
+                return true;
+            }
+        }
     }
 }

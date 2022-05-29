@@ -3,6 +3,7 @@ package Practice.InsuranceCompany.Design.src.contract;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 
 public interface ContractList {
 
@@ -15,6 +16,8 @@ public interface ContractList {
 	Contract getByContractId(String contractID);
 
 	Contract getByCustomerId(String customerID);
+
+	Optional<Contract> getOptionalContractByCustomerId(String customerID);
 
 	boolean updateMDate(String contractID, Date maintenanceDate);
 

@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0e9d00b-9787-45b8-a57a-2cf57f65810e" name="변경" comment="프로젝트 구조 변경" />
+    <list default="true" id="d0e9d00b-9787-45b8-a57a-2cf57f65810e" name="변경" comment="Main - 제지급금 정리">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contract/ContractList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/contract/ContractList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contract/ContractListImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/contract/ContractListImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/customer/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/payment/CancellationReturn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/payment/CancellationReturn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/payment/ClaimsPaid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/payment/ClaimsPaid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/payment/MaturityDividend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/payment/MaturityDividend.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/payment/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/payment/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/payment/PaymentForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/payment/PaymentForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/VPayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VPayment.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev_kimyubi" />
+        <entry key="$PROJECT_DIR$" value="dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,7 +54,8 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm"
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.tabs"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
@@ -62,6 +75,8 @@
       <workItem from="1653530124358" duration="58000" />
       <workItem from="1653530989423" duration="21000" />
       <workItem from="1653531824071" duration="53000" />
+      <workItem from="1653532444252" duration="3960000" />
+      <workItem from="1653792354448" duration="5006000" />
     </task>
     <task id="LOCAL-00001" summary="gitIgnore 수정">
       <created>1653219511543</created>
@@ -84,7 +99,21 @@
       <option name="project" value="LOCAL" />
       <updated>1653296079721</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Main 클래스 위치 변경&#10;out 폴더 내 -&gt; src 폴더 내">
+      <created>1653532782346</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1653532782346</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Main - 제지급금 정리">
+      <created>1653543035052</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1653543035052</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,17 +146,8 @@
     <MESSAGE value="gitIgnore 수정" />
     <MESSAGE value="보험, 계약 패키지 오류 해결" />
     <MESSAGE value="프로젝트 구조 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="프로젝트 구조 변경" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>10</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Main 클래스 위치 변경&#10;out 폴더 내 -&gt; src 폴더 내" />
+    <MESSAGE value="Main - 제지급금 정리" />
+    <option name="LAST_COMMIT_MESSAGE" value="Main - 제지급금 정리" />
   </component>
 </project>

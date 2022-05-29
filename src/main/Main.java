@@ -6,6 +6,8 @@ import Practice.InsuranceCompany.Design.src.contract.ContractList;
 import Practice.InsuranceCompany.Design.src.contract.ContractListImpl;
 import Practice.InsuranceCompany.Design.src.customer.CustomerList;
 import Practice.InsuranceCompany.Design.src.customer.CustomerListImpl;
+import Practice.InsuranceCompany.Design.src.payment.PaymentFormList;
+import Practice.InsuranceCompany.Design.src.payment.PaymentFormListImpl;
 import Practice.InsuranceCompany.Design.src.view.VPayment;
 
 import java.util.Scanner;
@@ -14,6 +16,8 @@ public class Main {
     static Scanner scn;
     static CustomerList customerList = new CustomerListImpl();
     static ContractList contractList = new ContractListImpl();
+
+    static PaymentFormList paymentFormList = new PaymentFormListImpl();
 
     public static void main(String[] args) {
 
@@ -38,7 +42,7 @@ public class Main {
 
             }  else if (input.equals("3")) {
                 while (true) {
-                    VPayment vPayment = new VPayment(scn, customerList, contractList);
+                    VPayment vPayment = new VPayment(scn, customerList, contractList, paymentFormList);
                     System.out.println("---------------------지급 관리-----------------------");
                     System.out.println("(1). 지급금 접수받기 (2). 지급금 지급하기 (3). 지급 안내서 전송하기 (4) 뒤로 가기");
                     int selectPaymentMenu = scn.nextInt();
