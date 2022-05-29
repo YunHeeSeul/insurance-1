@@ -2,6 +2,7 @@ package Practice.InsuranceCompany.Design.src.contract;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 
 public interface ContractList {
 	// list 지움
@@ -21,4 +22,5 @@ public interface ContractList {
 
 	boolean updateMDate(String contractID, String maintenanceDate);
 
+	Optional<Contract> getOptionalContractByCustomerId(String customerID);
 }
