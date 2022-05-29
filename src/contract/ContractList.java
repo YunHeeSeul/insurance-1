@@ -1,14 +1,10 @@
 package Practice.InsuranceCompany.Design.src.contract;
 
-
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Optional;
 
 public interface ContractList {
-
-    ArrayList<Contract> ContractList = new ArrayList<>();
-
+	// list 지움
 	boolean add(Contract contract);
 
 	boolean delete(String contractID);
@@ -17,8 +13,12 @@ public interface ContractList {
 
 	Contract getByCustomerId(String customerID);
 
-	Optional<Contract> getOptionalContractByCustomerId(String customerID);
+	// 추가
+	ArrayList<Contract> getAllList();
 
-	boolean updateMDate(String contractID, Date maintenanceDate);
+	// 추가
+	ArrayList<Contract> getMaintenanceTargetList();
+
+	boolean updateMDate(String contractID, String maintenanceDate);
 
 }
