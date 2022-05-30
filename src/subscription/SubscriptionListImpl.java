@@ -42,7 +42,7 @@ public abstract class SubscriptionListImpl implements SubscriptionList {
 	 * 
 	 * @param custiomerID
 	 */
-	public Subscription get(String custiomerID){
+	public Subscription getByCustomerID(String custiomerID){
 		return null;
 	}
 
@@ -50,7 +50,7 @@ public abstract class SubscriptionListImpl implements SubscriptionList {
 	 * 
 	 * @param subscriptionID
 	 */
-	public Subscription get(String subscriptionID){
+	public Subscription getBySubscriptionID(String subscriptionID){
 		return null;
 	}
 

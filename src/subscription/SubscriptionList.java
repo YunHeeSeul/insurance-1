@@ -26,13 +26,13 @@ public interface SubscriptionList {
 	 * 
 	 * @param customerID
 	 */
-	public Subscription get(String customerID);
+	public Subscription getByCustomerID(String customerID);
 
 	/**
 	 * 
 	 * @param subscriptionID
 	 */
-	public Subscription get(String subscriptionID);
+	public Subscription getBySubscriptionID(String subscriptionID);
 
 	/**
 	 * 
