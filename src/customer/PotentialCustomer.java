@@ -3,6 +3,8 @@ package Practice.InsuranceCompany.Design.src.customer;
 
 import Practice.InsuranceCompany.Design.src.subscription.Subscription;
 
+import java.util.ArrayList;
+
 /**
  * @author macbook
  * @version 1.0
@@ -16,6 +18,8 @@ public class PotentialCustomer extends Customer {
 	public PotentialCustomer(){
 
 	}
+
+	public ArrayList<Subscription> getSubscriptionList(){ return this.subscription; }
 
 	public void finalize() throws Throwable {
 		super.finalize();

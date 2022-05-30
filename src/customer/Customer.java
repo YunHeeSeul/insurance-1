@@ -78,12 +78,37 @@ public class Customer {
 		this.residentRegistrationNumber = residentRegistrationNumber;
 	}
 
+	/*** 아래 정보는 잠재 고객 및 가입자 모두에게 필요 ***/
+	public DiseaseHistory m_DiseaseHistory;
+	public OwnedBuildingInfo m_OwnedBuildingInfo;
+	public OwnedCarInfo m_OwnedCarInfo;
+
+	public DiseaseHistory getDiseaseHistory() {
+		return m_DiseaseHistory;
+	}
+
+	public OwnedBuildingInfo getOwnedBuildingInfo() {
+		return m_OwnedBuildingInfo;
+	}
+
+	public OwnedCarInfo getOwnedCarInfo() {
+		return m_OwnedCarInfo;
+	}
+
 	public Customer(){
 
 	}
 
+	public String getCustomerID(){ return this.customerID; }
 
-    public String getCustomerId() {
-		return this.customerID;
-    }
+	public void printInsuranceDetails(){
+		System.out.println("ID : " + this.customerID);
+		System.out.println("Name : " + this.name);
+		System.out.println("Date of Birth : " + this.dateOfBirth);
+
+	}
+
+	public void finalize() throws Throwable {
+
+	}
 }//end Customer

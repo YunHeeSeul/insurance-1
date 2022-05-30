@@ -3,6 +3,8 @@ package Practice.InsuranceCompany.Design.src.policyholder;
 
 import Practice.InsuranceCompany.Design.src.customer.Customer;
 
+import java.util.ArrayList;
+
 /**
  * @author macbook
  * @version 1.0
@@ -17,7 +19,8 @@ public class Policyholder extends Customer {
 	private boolean paymentState;
 	private int totalPremiumOfMonth;
 	public AccountInfo m_AccountInfo;
-	public DeseaseHistory m_DeseaseHistory;
+	/*** 아래 정보는 잠재 고객 및 가입자 모두에게 필요 ***/
+	public DiseaseHistory m_DiseaseHistory;
 	public OwnedBuildingInfo m_OwnedBuildingInfo;
 	public OwnedCarInfo m_OwnedCarInfo;
 
@@ -32,15 +35,17 @@ public class Policyholder extends Customer {
 	 * 
 	 * @param paymentState
 	 */
-	public void changePaymentState(boolean paymentState){
-
-	}
+	public void changePaymentState(boolean paymentState){ this.paymentState = paymentState; }
 
 	public boolean getPaymentState(){
-		return false;
+		return this.paymentState;
+	}
+	public int getTotalPremiumOfMonth(){
+		return this.totalPremiumOfMonth;
 	}
 
-	public int getTotalPremiumOfMonth(){
-		return 0;
+	public void setTotalPremiumOfMonth(int totalPremiumOfMonth) {
+		this.totalPremiumOfMonth = totalPremiumOfMonth;
 	}
+
 }//end Policyholder

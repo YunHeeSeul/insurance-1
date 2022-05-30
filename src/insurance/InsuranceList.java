@@ -8,4 +8,6 @@ public interface InsuranceList {
 
 	Insurance get(String insuranceID);
 
+	boolean update(String insuranceID);
+
 }
