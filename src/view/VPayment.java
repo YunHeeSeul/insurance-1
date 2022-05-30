@@ -28,6 +28,46 @@ public class VPayment {
         this.paymentFormList = paymentFormList;
     }
 
+    public void run(){
+        while (true) {
+//            VPayment vPayment = new VPayment(scn, customerList, contractList, paymentFormList);
+            System.out.println("---------------------지급 관리-----------------------");
+            System.out.println("(1). 지급금 접수받기 (2). 지급금 지급하기 (3). 지급 안내서 전송하기 (4) 뒤로 가기");
+            int selectPaymentMenu = scn.nextInt();
+
+            switch (selectPaymentMenu) {
+
+                case 1:
+                    boolean registerPaymentResult = this.registerPayment();
+
+                    if (registerPaymentResult) System.out.println("제지급금 접수에 성공하였습니다.");
+                    else System.out.println("제지급금 접수에 실패하였습니다.");
+                    return;
+
+                case 2:
+                    int sendPaymentResult = this.sendPayment();
+
+                    if (sendPaymentResult == -1) System.out.println("제지급금 지급에 실패하였습니다.");
+                    else System.out.println(sendPaymentResult + "원의 제지급금이 지급되었습니다.");
+                    return;
+
+                case 3:
+                    boolean sendPaymentGuideResult = this.sendPaymentGuide();
+                    if (sendPaymentGuideResult) System.out.println("지급 안내서가 전송 되었습니다.");
+                    else System.out.println("지급 안내서 전송에 실패하였습니다.");
+                    return;
+
+                case 4:
+                    return;
+
+                default:
+                    System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
+                    return;
+            }
+        } // 제지급금 끝
+    }
+
+
     // (1). 지급금 접수받기
     public boolean registerPayment(){
         PaymentForm paymentForm = new PaymentForm();

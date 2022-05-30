@@ -21,7 +21,7 @@ import java.util.Date;
 public class Subscription {
 
 	private String customerID;
-	private Date dateCreated;
+	private String dateCreated;
 	private String insuranceAgentID;
 	private String insuranceID;
 	private int insurancePeriod;

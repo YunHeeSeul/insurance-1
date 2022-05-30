@@ -3,6 +3,9 @@ package Practice.InsuranceCompany.Design.src.customer;
 
 import Practice.InsuranceCompany.Design.src.etcEnum.Gender;
 import Practice.InsuranceCompany.Design.src.contract.Contract;
+import Practice.InsuranceCompany.Design.src.policyholder.DiseaseHistory;
+import Practice.InsuranceCompany.Design.src.policyholder.OwnedBuildingInfo;
+import Practice.InsuranceCompany.Design.src.policyholder.OwnedCarInfo;
 
 /**
  * @author macbook
@@ -10,6 +13,8 @@ import Practice.InsuranceCompany.Design.src.contract.Contract;
  * @created 21-5-2022 ���� 11:03:48
  */
 public class Customer {
+
+	// cs1
 
 	private String address;
 	private String customerID;
@@ -21,6 +26,9 @@ public class Customer {
 	private String phoneNumber;
 	private String residentRegistrationNumber;
 	public Contract m_Contract;
+
+	public Customer(){
+	}
 
 	public String getAddress() {
 		return address;
@@ -95,9 +103,7 @@ public class Customer {
 		return m_OwnedCarInfo;
 	}
 
-	public Customer(){
 
-	}
 
 	public String getCustomerID(){ return this.customerID; }
 
