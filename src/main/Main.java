@@ -40,7 +40,7 @@ public class Main {
                 }
             } else if (input.equals("2")) {
 
-            }  else if (input.equals("3")) {
+            } else if (input.equals("3")) {
                 while (true) {
                     VPayment vPayment = new VPayment(scn, customerList, contractList, paymentFormList);
                     System.out.println("---------------------지급 관리-----------------------");
