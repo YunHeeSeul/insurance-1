@@ -1,11 +1,5 @@
 package Practice.InsuranceCompany.Design.src.payment;
 
-
-/**
- * @author ����
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:50
- */
 public class PaymentFormListImpl implements PaymentFormList {
 
 	public PaymentForm m_PaymentForm;

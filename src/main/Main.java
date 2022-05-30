@@ -1,13 +1,23 @@
 package Practice.InsuranceCompany.Design.src.main;
 
+
+
+import Practice.InsuranceCompany.Design.src.contract.ContractList;
 import Practice.InsuranceCompany.Design.src.contract.ContractListImpl;
+import Practice.InsuranceCompany.Design.src.customer.CustomerList;
 import Practice.InsuranceCompany.Design.src.customer.CustomerListImpl;
+import Practice.InsuranceCompany.Design.src.payment.PaymentFormList;
+import Practice.InsuranceCompany.Design.src.payment.PaymentFormListImpl;
 import Practice.InsuranceCompany.Design.src.view.VPayment;
 
 import java.util.Scanner;
 
 public class Main {
     static Scanner scn;
+    static CustomerList customerList = new CustomerListImpl();
+    static ContractList contractList = new ContractListImpl();
+
+    static PaymentFormList paymentFormList = new PaymentFormListImpl();
 
     public static void main(String[] args) {
 
@@ -30,8 +40,43 @@ public class Main {
                 }
             } else if (input.equals("2")) {
 
-            } else if (input.equals("3")) {
+            }  else if (input.equals("3")) {
+                while (true) {
+                    VPayment vPayment = new VPayment(scn, customerList, contractList, paymentFormList);
+                    System.out.println("---------------------지급 관리-----------------------");
+                    System.out.println("(1). 지급금 접수받기 (2). 지급금 지급하기 (3). 지급 안내서 전송하기 (4) 뒤로 가기");
+                    int selectPaymentMenu = scn.nextInt();
 
+                    switch (selectPaymentMenu) {
+
+                        case 1:
+                            boolean registerPaymentResult = vPayment.registerPayment();
+
+                            if (registerPaymentResult) System.out.println("제지급금 접수에 성공하였습니다.");
+                            else System.out.println("제지급금 접수에 실패하였습니다.");
+                            return;
+
+                        case 2:
+                            int sendPaymentResult = vPayment.sendPayment();
+
+                            if (sendPaymentResult == -1) System.out.println("제지급금 지급에 실패하였습니다.");
+                            else System.out.println(sendPaymentResult + "원의 제지급금이 지급되었습니다.");
+                            return;
+
+                        case 3:
+                            boolean sendPaymentGuideResult = vPayment.sendPaymentGuide();
+                            if (sendPaymentGuideResult) System.out.println("지급 안내서가 전송 되었습니다.");
+                            else System.out.println("지급 안내서 전송에 실패하였습니다.");
+                            return;
+
+                        case 4:
+                            return;
+
+                        default:
+                            System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
+                            return;
+                    }
+                } // 제지급금 끝
             } else if (input.equals("4")) {
 
             } else if (input.equals("5")) {
@@ -46,35 +91,6 @@ public class Main {
 
     }
 
-    public void vPayment(){
-        CustomerListImpl customerList = new CustomerListImpl();
-        ContractListImpl contractList = new ContractListImpl();
 
-        while (true) {
-            System.out.println("----------------제지급금 업무----------------");
-            System.out.println("(1)제지급금 접수 (2)제지급금 지급 (3) 제지급금 심사 (4) 제지급금 산출 (5)종료");
-
-            String input = scn.next();
-
-            VPayment vPayment = new VPayment();
-
-            if (input.equals("1")) {
-                vPayment.signUp();
-
-            } else if (input.equals("2")) {
-                int resultMuoney = vPayment.sendMoney();
-                System.out.println("지급금은 " + resultMuoney + "원 입니다.");
-
-            } else if (input.equals("3")) {
-                boolean result = vPayment.simsa();
-
-            } else if (input.equals("4")) {
-            } else if (input.equals("5")) {
-                return;
-            } else
-                System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
-
-        }
-    }
 
 }

@@ -1,31 +1,26 @@
 package Practice.InsuranceCompany.Design.src.payment;
 
+import Practice.InsuranceCompany.Design.src.customer.Customer;
 
-/**
- * @author SeoyeonPark
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:49
- */
-public class Payment {
+public abstract class Payment {
 
 	private long amount;
 
 	public Payment(){
-
+		this.amount = 0;
 	}
 
-	public void finalize() throws Throwable {
+	//추가
+	public abstract boolean setPaymentInfo();
+	public abstract int calculatePayment();
 
-	}
-	public int calculatePayment(){
-		return 0;
+	public long getAmount() {
+		return amount;
 	}
 
 	/**
-	 * 
-	 * @param customerID
+	 *
+	 * @param customer
 	 */
-	public boolean sendPaymentGuide(String customerID){
-		return false;
-	}
+	public abstract void sendPaymentGuide(Customer customer);
 }//end Payment

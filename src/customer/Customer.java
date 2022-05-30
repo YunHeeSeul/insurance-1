@@ -3,9 +3,6 @@ package Practice.InsuranceCompany.Design.src.customer;
 
 import Practice.InsuranceCompany.Design.src.etcEnum.Gender;
 import Practice.InsuranceCompany.Design.src.contract.Contract;
-import Practice.InsuranceCompany.Design.src.policyholder.DiseaseHistory;
-import Practice.InsuranceCompany.Design.src.policyholder.OwnedBuildingInfo;
-import Practice.InsuranceCompany.Design.src.policyholder.OwnedCarInfo;
 
 /**
  * @author macbook
@@ -24,6 +21,62 @@ public class Customer {
 	private String phoneNumber;
 	private String residentRegistrationNumber;
 	public Contract m_Contract;
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getResidentRegistrationNumber() {
+		return residentRegistrationNumber;
+	}
+
+	public void setResidentRegistrationNumber(String residentRegistrationNumber) {
+		this.residentRegistrationNumber = residentRegistrationNumber;
+	}
 
 	/*** 아래 정보는 잠재 고객 및 가입자 모두에게 필요 ***/
 	public DiseaseHistory m_DiseaseHistory;
@@ -47,8 +100,7 @@ public class Customer {
 	}
 
 	public String getCustomerID(){ return this.customerID; }
-	public String getName(){ return this.name; }
-	
+
 	public void printInsuranceDetails(){
 		System.out.println("ID : " + this.customerID);
 		System.out.println("Name : " + this.name);

@@ -1,33 +1,50 @@
 package Practice.InsuranceCompany.Design.src.payment;
 
-
-/**
- * @author ����
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:49
- */
 public class PaymentForm {
 
+	private String paymentFormID;  // 오타 수정
 	private String contractID;
-	private boolean ExaminationResult;
-	private Payment payment;
-	private String paymentFormId;
 	private PaymentType paymentType;
-	public Payment m_Payment;
+	private Payment payment;
+	// 수정
+	private boolean examinationResult;
+//	private Payment m_Payment;  // 왜 또 있지...?
 
 	public PaymentForm(){
-
+		this.paymentFormID="1";
+		this.examinationResult=false;
 	}
 
-	public void finalize() throws Throwable {
-
+	public PaymentType getPaymentType() {
+		return paymentType;
 	}
+
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setContractID(String contractID) {
+		this.contractID = contractID;
+	}
+
+	public void setPaymentType(PaymentType paymentType) {
+		this.paymentType = paymentType;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
+	public void setExaminationResult(boolean examinationResult) {
+		this.examinationResult = examinationResult;
+	}
+
 	/**
-	 * 
-	 * @param ����
+	 *
+	 * @param result
 	 */
-//	public void saveExamiationResult(boolean ����){
-//		깨진 글자 원래 내용은 '여부'임
-//
-//	}
+	// 한글&오타 수정
+	public boolean saveExaminationResult(boolean result){
+		return false;
+	}
 }//end PaymentForm
