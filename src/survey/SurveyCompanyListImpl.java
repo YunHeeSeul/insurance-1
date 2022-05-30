@@ -36,19 +36,8 @@ public class SurveyCompanyListImpl implements SurveyCompanyList {
 		return false;
 	}
 
-	/**
-	 * 
-	 * @param surveyCompanyID
-	 */
-	public SurveyCompany get(String surveyCompanyID){
-		return null;
-	}
 
-	/**
-	 * 
-	 * @param name
-	 */
-	public SurveyCompany get(String name){
+	public SurveyCompany getName(String name){
 		return null;
 	}
 
