@@ -13,11 +13,6 @@ import Practice.InsuranceCompany.Design.src.policyholder.OwnedCarInfo;
 
 import java.util.Date;
 
-/**
- * @author macbook
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:50
- */
 public class Subscription {
 
 	private String customerID;

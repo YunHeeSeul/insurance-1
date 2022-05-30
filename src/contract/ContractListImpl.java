@@ -1,6 +1,7 @@
 package Practice.InsuranceCompany.Design.src.contract;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class ContractListImpl implements ContractList {
 
@@ -64,5 +65,10 @@ public class ContractListImpl implements ContractList {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public Optional<Contract> getOptionalContractByCustomerId(String customerID) {
+		return Optional.empty();
 	}
 }//end ContractListImpl

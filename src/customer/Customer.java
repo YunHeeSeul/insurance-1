@@ -114,7 +114,4 @@ public class Customer {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
 }//end Customer
