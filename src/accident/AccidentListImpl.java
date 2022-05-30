@@ -3,78 +3,89 @@ package Practice.InsuranceCompany.Design.src.accident;
 
 import Practice.InsuranceCompany.Design.src.etcEnum.Level;
 
-/**
- * @author SeoyeonPark
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:47
- */
+import java.util.ArrayList;
+import java.util.Optional;
+
 public abstract class AccidentListImpl implements AccidentList {
 
-	public Accident m_Accident;
+	public ArrayList<Accident> accidentList;
 
 	public AccidentListImpl(){
-
+		this.accidentList = new ArrayList<>();
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	/**
-	 * 
-	 * @param Accident
-	 */
-	public boolean add(Accident Accident){
-		return false;
+	@Override
+	public boolean add(Accident accident){
+		this.accidentList.add(accident);
+		return true;
 	}
 
-	/**
-	 * 
-	 * @param accidentID
-	 */
+	@Override
 	public boolean delete(String accidentID){
+		for(Accident accident : this.accidentList) {
+			if (accident.getAccidentID().equals(accidentID))
+				return this.accidentList.remove(accident);
+		}
 		return false;
 	}
 
-	/**
-	 * 
-	 * @param accidentID
-	 */
-//	public Accident get(String accidentID){
-//		return null;
-//	}
-
-	/**
-	 * 
-	 * @param customerID
-	 */
-	public Accident get(String customerID){
+	@Override
+	public Accident getByAccidentId(String accidentID){
+		for(Accident accident : this.accidentList) {
+			if (accident.getAccidentID().equals(accidentID))
+				return accident;
+		}
+		return null;
+	}
+	@Override
+	public Accident getByCustomerId(String customerID){
+		for(Accident accident : this.accidentList) {
+			if (accident.getCustomerID().equals(customerID))
+				return accident;
+		}
 		return null;
 	}
 
-	/**
-	 * 
-	 * @param accidentID
-	 * @param accidentScale
-	 */
+	@Override
 	public boolean updateAccidentScale(String accidentID, Level accidentScale){
+		for(Accident accident : this.accidentList) {
+			if (accident.getAccidentID().equals(accidentID)){
+				accident.setAccidentScale(accidentScale);
+				return true;
+			}
+		}
 		return false;
 	}
 
-	/**
-	 * 
-	 * @param accidentID
-	 * @param doingHarm
-	 */
+	@Override
 	public boolean updateDoingHarm(String accidentID, boolean doingHarm){
+		for(Accident accident : this.accidentList) {
+			if (accident.getAccidentID().equals(accidentID)){
+				accident.setDoingHarm(doingHarm);
+				return true;
+			}
+		}
 		return false;
 	}
 
-	/**
-	 * 
-	 * @param accidentID
-	 * @param ExemptionInfo
-	 */
-	public boolean updateExemptionInfo(String accidentID, ExemptionInfo ExemptionInfo){
+	@Override
+	public boolean updateExemptionInfo(String accidentID, ExemptionInfo exemptionInfo){
+		for(Accident accident : this.accidentList) {
+			if (accident.getAccidentID().equals(accidentID)){
+				accident.setExemptionInfo(exemptionInfo);
+				return true;
+			}
+		}
 		return false;
+	}
+
+	@Override
+	public ArrayList<Accident> getAllList() {
+		return this.accidentList;
+	}
+
+	@Override
+	public Optional<Accident> getOptionalAccidentByCustomerId(String customerID) {
+		return Optional.empty();
 	}
 }//end AccidentListImpl
