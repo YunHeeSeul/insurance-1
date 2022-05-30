@@ -3,6 +3,9 @@ package Practice.InsuranceCompany.Design.src.customer;
 
 import Practice.InsuranceCompany.Design.src.etcEnum.Gender;
 import Practice.InsuranceCompany.Design.src.contract.Contract;
+import Practice.InsuranceCompany.Design.src.policyholder.DiseaseHistory;
+import Practice.InsuranceCompany.Design.src.policyholder.OwnedBuildingInfo;
+import Practice.InsuranceCompany.Design.src.policyholder.OwnedCarInfo;
 
 /**
  * @author macbook
@@ -108,7 +111,4 @@ public class Customer {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
 }//end Customer
