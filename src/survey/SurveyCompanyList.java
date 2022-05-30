@@ -8,35 +8,19 @@ package Practice.InsuranceCompany.Design.src.survey;
  */
 public interface SurveyCompanyList {
 
-	/**
-	 * 
-	 * @param surveyCompany
-	 */
-	public boolean add(SurveyCompany surveyCompany);
 
-	/**
-	 * 
-	 * @param surveyCompanyID
-	 */
-	public boolean delete(String surveyCompanyID);
+	boolean add(SurveyCompany surveyCompany);
 
-	/**
-	 * 
-	 * @param surveyCompanyID
-	 */
-	public SurveyCompany get(String surveyCompanyID);
 
-	/**
-	 * 
-	 * @param name
-	 */
-	public SurveyCompany get(String name);
+	boolean delete(String surveyCompanyID);
 
-	/**
-	 * 
-	 * @param surveyCompanyID
-	 * @param surveyAbility
-	 */
-	public boolean update(String surveyCompanyID, boolean surveyAbility);
 
-}
+	SurveyCompany getID(String surveyCompanyID);
+
+
+	SurveyCompany getName(String name);
+
+
+	boolean update(String surveyCompanyID, boolean surveyAbility);
+
+}}
