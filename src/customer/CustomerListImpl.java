@@ -1,6 +1,8 @@
 package Practice.InsuranceCompany.Design.src.customer;
 
 
+import Practice.InsuranceCompany.Design.src.insurance.Insurance;
+
 import java.util.ArrayList;
 
 /**
@@ -68,5 +70,27 @@ public class CustomerListImpl implements CustomerList {
 	 */
 	public Customer get(String customerName){
 		return null;
+	}
+
+	public ArrayList<Customer> getCustomerList(){ return this.customerList; }
+
+	public boolean checkValidationID(String inputID) {
+		if(this.customerList != null) {
+			for (Customer customer : this.customerList)
+				if (inputID.equals(customer.getCustomerID())) { return true; }
+		}
+		return false;
+	}
+
+	public void printAllCustomerInfo(){
+		if(this.customerList != null) {
+			for (Customer customer : this.customerList) {
+				customer.printInsuranceDetails();
+				System.out.println("\n");
+			}
+		} else {
+			System.out.println("가입자 목록이 비어있습니다.-");
+			return;
+		}
 	}
 }//end CustomerListImpl

@@ -2,6 +2,7 @@ package Practice.InsuranceCompany.Design.src.contract;
 
 
 import Practice.InsuranceCompany.Design.src.customer.CustomerListImpl;
+import Practice.InsuranceCompany.Design.src.insurance.Insurance;
 
 import java.util.Date;
 
@@ -27,4 +28,6 @@ public class Contract {
 	public CustomerListImpl searchActivityT(){
 		return null;
 	}
+
+	public String getInsuranceIDOfContract(){ return this.insuranceID; }
 }//end Contract
