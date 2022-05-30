@@ -10,11 +10,11 @@ public class Contract {
 	private String contractID;
 	private String customerID;
 	private String insuranceID;
-	private int contractPeriod;
-	private String insuranceAgentID;
 	private String joinDate;
+	private int contractPeriod;
+	private int premium;
 	private String activityDate;
-	private int monthlyPremium;
+	private String insuranceAgentID;
 
 	public String getContractID() {
 		return contractID;
@@ -58,14 +58,18 @@ public class Contract {
 	public void setActivityDate(String activityDate) {
 		this.activityDate = activityDate;
 	}
-	public int getMonthlyPremium() {
-		return monthlyPremium;
+	public int getPremium() {
+		return premium;
 	}
-	public void setMonthlyPremium(int monthlyPremium) {
-		this.monthlyPremium = monthlyPremium;
+	public void setPremium(int premium) {
+		this.premium = premium;
 	}
 
-	public Contract(String customerID, String insuranceID, int contractPeriod, int monthlyPremium, String insuranceAgentID) {
+	public Contract(){
+
+	}
+
+	public Contract(String customerID, String insuranceID, int contractPeriod, int premium, String insuranceAgentID) {
 		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
 		Date today=new Date();
 		String todayS=format.format(today);
@@ -74,14 +78,14 @@ public class Contract {
 		this.insuranceID = insuranceID;
 		this.contractPeriod = contractPeriod;
 		this.joinDate = todayS;
-		this.monthlyPremium = monthlyPremium;
+		this.premium = premium;
 		this.activityDate = todayS;
 		this.insuranceAgentID = insuranceAgentID;
 	}
 
 	// 추가
 	public String getContractInfo(){
-		return contractID+" "+customerID+" "+insuranceID+" "+monthlyPremium+" "+joinDate+" "+ contractPeriod +" "+ activityDate;
+		return contractID+" "+customerID+" "+insuranceID+" "+ premium +" "+joinDate+" "+ contractPeriod +" "+ activityDate;
 	}
 
 	// 추가

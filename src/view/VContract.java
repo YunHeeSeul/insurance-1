@@ -95,7 +95,7 @@ public class VContract {
     }
 
     private void announceContractStatus() {
-        System.out.println("------------계약 체결 결과 전송------------");
+        System.out.println("------------계약체결 결과 전송------------");
         System.out.println("계약 체결 결과를 전송하시겠습니까? (y)");
         String send = scn.next();
         if (send.equals("y")) System.out.println("보험 관심자에게 성공적으로 전송되었습니다.");
@@ -103,13 +103,13 @@ public class VContract {
     }
 
     private boolean inquireMaintenanceContract(){
-        System.out.println("------------------------계약 유지 활동 대상 목록------------------------");
+        System.out.println("------------------------계약유지활동 대상 목록------------------------");
         System.out.println("(계약ID) (보험명) (고객명) (생년월일) (가입일자) (가입기간) (계약유지활동일자)");
         for(Contract contract : this.contractList.getMaintenanceTargetList()){
             Customer customer = this.customerList.getByCustomerId(contract.getCustomerID());
             String insuranceID =contract.getInsuranceID();
             String insuranceName = this.insuranceList.get(insuranceID).getInsuranceName();
-            String cusName = customer.getCustomerName();
+            String cusName = customer.getName();
             String birth = customer.getDateOfBirth();
             String joinDate = contract.getJoinDate();
             int period = contract.getContractPeriod();
@@ -122,16 +122,16 @@ public class VContract {
     private void setMaintenanceActivityDate() {
         while (true) {
             inquireMaintenanceContract();
-            System.out.println("------------계약 유지 활동 일자 수정------------");
+            System.out.println("------------계약유지활동 일자 수정------------");
             System.out.print("계약 ID : ");
             String contractID = scn.next();
             Contract contract = this.contractList.getByContractId(contractID);
             while (true) {
                 System.out.println("(c)나가기");
-                System.out.print("계약 유지 활동 일자 :");
+                System.out.print("계약유지활동 일자 :");
                 String activityDate = scn.next();
                 if (activityDate.equals("c")) {
-                    System.out.println("변경사항이 저장되지 않았습니다. 입력을 취소하시겠습니까?");
+                    System.out.println("계약유지활동 일자가 변경되지 않았습니다. 입력을 취소하시겠습니까?");
                     System.out.println("(y)예 (n)아니오");
                     String response = scn.next();
                     if (response.equals("y")) break;
