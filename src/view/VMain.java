@@ -1,21 +1,8 @@
 package Practice.InsuranceCompany.Design.src.view;
 
-import Practice.InsuranceCompany.Design.src.contract.ContractList;
-import Practice.InsuranceCompany.Design.src.contract.ContractListImpl;
-import Practice.InsuranceCompany.Design.src.customer.CustomerList;
-import Practice.InsuranceCompany.Design.src.customer.CustomerListImpl;
-import Practice.InsuranceCompany.Design.src.payment.PaymentFormList;
-import Practice.InsuranceCompany.Design.src.payment.PaymentFormListImpl;
-import Practice.InsuranceCompany.Design.src.subscription.SubscriptionListImpl;
-
 import java.util.Scanner;
 
 public class VMain {
-    CustomerList customerList = new CustomerListImpl();
-    ContractList contractList = new ContractListImpl();
-
-    PaymentFormList paymentFormList = new PaymentFormListImpl();
-
     private VInsurance vInsurance;
     private VContract vContract;
     private VUnderwriting vUnderwriting;
@@ -47,7 +34,7 @@ public class VMain {
 ////                    System.out.println(input1 + " 선택");
 //                }
             } else if (input.equals("2")) {
-                    this.vContract = new VContract(scn, contractList, ); //
+                    this.vContract = new VContract(scn);
                     this.vContract.run();
 
             } else if (input.equals("3")) {
@@ -68,10 +55,5 @@ public class VMain {
                 System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
 
         }
-    }
-
-    public static boolean makeError(){
-        int result=(int)(Math.random()*10);
-        return result > 0.2;
     }
 }
