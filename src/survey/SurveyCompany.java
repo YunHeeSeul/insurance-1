@@ -3,34 +3,42 @@ package Practice.InsuranceCompany.Design.src.survey;
 public class SurveyCompany {
 
 	private String surveyCompanyID;
-	private String surveyCompanyname;
+	private String surveyCompanyName;
 	private String address;
 	private String phoneNum;
 	private boolean surveyAbility;
 
-	public SurveyCompany(String surveyCompanyID, String surveyCompanyname, String address, String phoneNum, boolean surveyAbility){
+	public SurveyCompany(){}
+	public SurveyCompany(String surveyCompanyID, String surveyCompanyName, String address, String phoneNum, boolean surveyAbility){
 		this.surveyCompanyID=surveyCompanyID;
-		this.surveyCompanyname=surveyCompanyname;
+		this.surveyCompanyName=surveyCompanyName;
 		this.address=address;
 		this.phoneNum=phoneNum;
 		this.surveyAbility=surveyAbility;
 
 	}
 
-	public String getAdress() {
+	public String getSurveyCompanyID() {
+		return surveyCompanyID;
+	}
+
+	public void setSurveyCompanyID(String surveyCompanyID) {
+		this.surveyCompanyID = surveyCompanyID;
+	}
+
+	public String getSurveyCompanyName() {
+		return surveyCompanyName;
+	}
+	public void setSurveyCompanyName(String surveyCompanyName) {
+		this.surveyCompanyName = surveyCompanyName;
+	}
+
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.address = adress;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getPhoneNum() {
@@ -49,13 +57,7 @@ public class SurveyCompany {
 		this.surveyAbility = surveyAbility;
 	}
 
-	public String getSurveyCompanyID() {
-		return surveyCompanyID;
+	public String getSurveyCompanyInfo(){
+		return surveyCompanyID+" "+surveyCompanyName+" "+address+" "+phoneNum+" "+surveyAbility;
 	}
-
-	public void setSurveyCompanyId(String surveyCompanyID) {
-		this.surveyCompanyID = surveyCompanyID;
-	}
-
-
 }//end SurveyCompany

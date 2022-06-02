@@ -6,7 +6,7 @@ import Practice.InsuranceCompany.Design.src.etcEnum.Level;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public abstract class AccidentListImpl implements AccidentList {
+public class AccidentListImpl implements AccidentList {
 
 	public ArrayList<Accident> accidentList;
 
@@ -30,7 +30,7 @@ public abstract class AccidentListImpl implements AccidentList {
 	}
 
 	@Override
-	public Accident getByAccidentId(String accidentID){
+	public Accident getAccidentID(String accidentID){
 		for(Accident accident : this.accidentList) {
 			if (accident.getAccidentID().equals(accidentID))
 				return accident;
@@ -38,7 +38,7 @@ public abstract class AccidentListImpl implements AccidentList {
 		return null;
 	}
 	@Override
-	public Accident getByCustomerId(String customerID){
+	public Accident getCustomerID(String customerID){
 		for(Accident accident : this.accidentList) {
 			if (accident.getCustomerID().equals(customerID))
 				return accident;
@@ -46,6 +46,11 @@ public abstract class AccidentListImpl implements AccidentList {
 		return null;
 	}
 
+	public void printAllList(){
+		for(Accident accident:this.accidentList){
+			System.out.println(accident.getAccidentInfo());
+		}
+	}
 	@Override
 	public boolean updateAccidentScale(String accidentID, Level accidentScale){
 		for(Accident accident : this.accidentList) {
@@ -69,10 +74,10 @@ public abstract class AccidentListImpl implements AccidentList {
 	}
 
 	@Override
-	public boolean updateExemptionInfo(String accidentID, ExemptionInfo exemptionInfo){
+	public boolean updateExemptionInfo(String exemptionInfoID, ArrayList exemptionContent){
 		for(Accident accident : this.accidentList) {
-			if (accident.getAccidentID().equals(accidentID)){
-				accident.setExemptionInfo(exemptionInfo);
+			if (accident.getExemptionInfoID().equals(exemptionInfoID)){
+				accident.setExemptionContent(exemptionContent);
 				return true;
 			}
 		}

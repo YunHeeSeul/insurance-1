@@ -24,35 +24,36 @@ public class Dao {
         }
     }
 
-    public void create(String query){
+    public boolean create(String query){
         try {
             statement = connect.createStatement();
-            if(!statement.execute(query)) System.out.println("insert OK!");
+            return !statement.execute(query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void create(PreparedStatement pstmt){
+    public boolean create(PreparedStatement pstmt){
         try {
-            if(pstmt.executeUpdate()!=0) System.out.println("insert OK!");
+            return pstmt.executeUpdate()!=0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
     }
 
-    public void delete(String query) {
+    public boolean delete(String query) {
         try {
             statement = connect.createStatement();
-            if (!statement.execute(query)) System.out.println("delete OK!");
+            return !statement.execute(query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    public void update(String query) {
+    public boolean update(String query) {
         try {
             statement = connect.createStatement();
-            if (!statement.execute(query)) System.out.println("update OK!");
+            return !statement.execute(query);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
