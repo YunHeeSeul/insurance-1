@@ -108,7 +108,7 @@ public class Subscription {
 
 	private boolean checkAvailabilityOfHealthInsurance(Insurance insurance, DiseaseHistory diseaseHistory) {
 		// 중증도, 투병기간
-		DiseaseHistory availableDiseaseHistory = insurance.getAcquisitionPolicy().getDeseaseInfoPolicy();
+		DiseaseHistory availableDiseaseHistory = insurance.getAcquisitionPolicy().getDiseaseInfoPolicy();
 		if(diseaseHistory.getSeverity().getLevelNum() <= availableDiseaseHistory.getSeverity().getLevelNum()
 			&& diseaseHistory.getStrugglePeriod() <= availableDiseaseHistory.getStrugglePeriod()){
 			System.out.println("인수 허가가 가능한 고객입니다.");

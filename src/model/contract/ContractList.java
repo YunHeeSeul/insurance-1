@@ -17,9 +17,6 @@ public interface ContractList {
 	ArrayList<Contract> getAllList();
 
 	// 추가
-	void printAllList();
-
-	// 추가
 //	ArrayList<Contract> getMaintenanceTargetList();
 
 	boolean updateMDate(String contractID, String maintenanceDate);

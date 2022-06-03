@@ -27,12 +27,15 @@ public class CContract {
         return this.contractDao.update(contractID,activityDate);
     }
 
-
     public boolean deleteContractById(String contractID) {
         return this.contractDao.delete(contractID);
     }
 
     public ContractListImpl getMaintenanceTargetList(){
         return this.contractDao.retrieveMaintenanceTargetList();
+    }
+
+    public int getMaxID() {
+        return this.contractDao.retrieveMaxID();
     }
 }

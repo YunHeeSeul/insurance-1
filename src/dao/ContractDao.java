@@ -19,18 +19,27 @@ public class ContractDao extends Dao{
 
     public boolean create(Contract contract){
         try {
-            PreparedStatement pstmt = null;
-            String query = "insert into contract values (?,?,?,?,?,?,?,?)";
-            pstmt = connectPrepareStatement(query);
-            pstmt.setString(1, contract.getContractID());
-            pstmt.setString(2, contract.getCustomerID());
-            pstmt.setString(3, contract.getInsuranceID());
-            pstmt.setString(4, contract.getJoinDate());
-            pstmt.setInt(5, contract.getContractPeriod());
-            pstmt.setInt(6, contract.getPremium());
-            pstmt.setString(7, contract.getActivityDate());
-            pstmt.setString(8, contract.getInsuranceAgentID());
-            return super.create(pstmt);
+//            PreparedStatement pstmt = null;
+//            String query = "insert into contract values (?,?,?,?,?,?,?,?)";
+//            pstmt = connectPrepareStatement(query);
+//            pstmt.setString(1, contract.getContractID());
+//            pstmt.setString(2, contract.getCustomerID());
+//            pstmt.setString(3, contract.getInsuranceID());
+//            pstmt.setString(4, contract.getJoinDate());
+//            pstmt.setInt(5, contract.getContractPeriod());
+//            pstmt.setInt(6, contract.getPremium());
+//            pstmt.setString(7, contract.getActivityDate());
+//            pstmt.setString(8, contract.getInsuranceAgentID());
+            String query = "insert into contract values ('"
+                    +contract.getContractID()+"','"
+                    +contract.getCustomerID()+"','"
+                    +contract.getInsuranceID()+"','"
+                    +contract.getJoinDate()+"',"
+                    +contract.getContractPeriod()+","
+                    +contract.getPremium()+",'"
+                    +contract.getActivityDate()+"','"
+                    +contract.getInsuranceAgentID()+"';";
+            return super.create(query);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,6 +109,20 @@ public class ContractDao extends Dao{
                 contractList.add(getFromResultSet(rs));
             }
             return contractList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int retrieveMaxID() {
+        try {
+            String query = "select max(contractID) as ID from contract;";
+            ResultSet rs = super.retrieve(query);
+            if(rs.next()) {
+                String id=rs.getString("ID");
+                return Integer.parseInt(id.substring(2));
+            }
+            else return 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

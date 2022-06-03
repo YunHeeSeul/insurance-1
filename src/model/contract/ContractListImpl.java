@@ -47,12 +47,6 @@ public class ContractListImpl implements ContractList {
 		return this.ContractList;
 	}
 
-	@Override
-	public void printAllList() {
-		for(Contract contract:this.ContractList)
-			System.out.println(contract.getContractInfo());
-	}
-
 //	@Override
 //	public ArrayList<Contract> getMaintenanceTargetList() {
 //		ArrayList<Contract> maintenanceTargetList = new ArrayList<>();

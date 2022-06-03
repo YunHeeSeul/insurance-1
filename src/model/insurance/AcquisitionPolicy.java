@@ -20,7 +20,7 @@ public class AcquisitionPolicy {
 
 	public OwnedBuildingInfo getBuildingInfoPolicy(){ return this.buildingInfoPolicy; }
 	public OwnedCarInfo getCarInfoPolicy(){ return this.carInfoPolicy; }
-	public DiseaseHistory getDeseaseInfoPolicy(){ return this.diseaseInfoPolicy; }
+	public DiseaseHistory getDiseaseInfoPolicy(){ return this.diseaseInfoPolicy; }
 
 	public boolean registerBInfoPolicy(OwnedBuildingInfo buildingInfo){
 		// 건물 정보 정책 등록하기

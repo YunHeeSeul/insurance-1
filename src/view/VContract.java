@@ -62,7 +62,8 @@ public class VContract {
         if(contractList.getAllList().size()==0){ System.out.println("계약이 없습니다."); return false;}
         System.out.println("----------------------------계약 전체 목록----------------------------");
         System.out.println("(계약ID) (고객ID) (보험ID) (월보험료) (가입일자) (가입기간) (계약유지활동일자)");
-        contractList.printAllList();
+        for(Contract contract:contractList.getAllList())
+            System.out.println(contract.getContractInfo());
         return true;
     }
 
@@ -97,7 +98,8 @@ public class VContract {
             case "1" :
                 int period=subscription.getInsurancePeriod();
                 int premium=subscription.getPremium();
-                Contract contract=new Contract(cusID,insuranceID,period,premium,insuranceAgentID);
+                String contractID="CT"+this.cContract.getMaxID()+1;
+                Contract contract=new Contract(contractID,cusID,insuranceID,period,premium,insuranceAgentID);
                 if(!this.cContract.addContract(contract)) { System.out.println("DB 오류입니다."); return; }
                 if(!this.cSubscription.updateUnderwritingStatus(subscription.getSubscriptionID(),UnderwritingStatus.completed)){
                     System.out.println("DB 오류입니다."); return;
@@ -151,6 +153,7 @@ public class VContract {
             System.out.print("계약 ID : ");
             String contractID = scn.next();
             Contract contract = this.cContract.getContractById(contractID);
+            if(contract==null) {System.out.println("잘못된 계약ID 입니다."); return; }
             while (true) {
                 System.out.println("(c)나가기");
                 System.out.print("계약유지활동 일자 :");
