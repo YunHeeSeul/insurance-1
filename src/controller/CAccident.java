@@ -1,6 +1,8 @@
-package Practice.InsuranceCompany.Design.src.accident;
+package Practice.InsuranceCompany.Design.src.controller;
 
 import Practice.InsuranceCompany.Design.src.dao.AccidentDao;
+import Practice.InsuranceCompany.Design.src.model.accident.Accident;
+import Practice.InsuranceCompany.Design.src.model.accident.AccidentListImpl;
 
 public class CAccident {
     private AccidentDao accidentDao;
@@ -13,7 +15,7 @@ public class CAccident {
         return this.accidentDao.retrieveAll();
     }
 
-    public Accident getAccidentById(String accidentID) {
+    public Accident getByAccidentID (String accidentID) {
         return this.accidentDao.retrieveById(accidentID);
     }
 
@@ -28,11 +30,7 @@ public class CAccident {
     public boolean deleteAccidentById(String accidentID) {
         return this.accidentDao.delete(accidentID);
     }
-/*
-    public AccidentListImpl getMaintenanceTargetList(){
-        return this.contractDao.retrieveMaintenanceTargetList();
-    }
- */
+
+    public int getMaxID() { return this.accidentDao.retrieveMaxID(); }
 
 }
-

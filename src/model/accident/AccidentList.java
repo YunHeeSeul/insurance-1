@@ -1,4 +1,4 @@
-package Practice.InsuranceCompany.Design.src.accident;
+package Practice.InsuranceCompany.Design.src.model.accident;
 
 
 import Practice.InsuranceCompany.Design.src.etcEnum.Level;

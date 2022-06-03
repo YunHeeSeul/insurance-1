@@ -1,4 +1,4 @@
-package Practice.InsuranceCompany.Design.src.survey;
+package Practice.InsuranceCompany.Design.src.model.survey;
 
 import java.util.ArrayList;
 

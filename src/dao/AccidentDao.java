@@ -1,10 +1,10 @@
 package Practice.InsuranceCompany.Design.src.dao;
 
-import Practice.InsuranceCompany.Design.src.accident.Accident;
-import Practice.InsuranceCompany.Design.src.accident.AccidentListImpl;
-import Practice.InsuranceCompany.Design.src.accident.AccidentType;
 import Practice.InsuranceCompany.Design.src.etcEnum.Level;
-import Practice.InsuranceCompany.Design.src.survey.SurveyCompany;
+import Practice.InsuranceCompany.Design.src.model.accident.Accident;
+import Practice.InsuranceCompany.Design.src.model.accident.AccidentListImpl;
+import Practice.InsuranceCompany.Design.src.model.accident.AccidentType;
+import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +18,7 @@ public class AccidentDao extends Dao{
     public boolean create(Accident accident){
         try {
             PreparedStatement pstmt = null;
-            String query = "insert into accident values (?,?,?,?,?,?,?,?,?,?,?,?)";
+        /*    String query = "insert into accident values (?,?,?,?,?,?,?,?,?,?,?,?)";
 
             pstmt = connectPrepareStatement(query);
             pstmt.setString(1, accident.getAccidentID());
@@ -33,7 +33,22 @@ public class AccidentDao extends Dao{
             pstmt.setObject(10, accident.getExemptionInfoID());
             pstmt.setBoolean(11, accident.isOnsite());
             super.create(pstmt);
-            return super.create(pstmt);
+
+         */
+            String query = "insert into accident values ('"
+                    +accident.getAccidentID()+"','"
+                    +accident.getCustomerID()+"','"
+                    +accident.getAccidentType()+"','"
+                    +accident.getAccidentDate()+"',"
+                    +accident.getAccidentLocation()+"',"
+                    +accident.getAccidentScale()+"',"
+                    +accident.getAccidentContent()+"',"
+                    +accident.isDoingHarm()+"',"
+                    +accident.getRepSurveyCompany()+"',"
+                    +accident.getExemptionInfoID()+"',"
+                    +accident.isOnsite()+"';";
+            return super.create(query);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -93,6 +108,20 @@ public class AccidentDao extends Dao{
             accident.setExemptionInfoID(rs.getString("exemptionInfo"));
             accident.setOnsite(rs.getBoolean("onSite"));
             return accident;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int retrieveMaxID() {
+        try {
+            String query = "select max(accidentID) as ID from accident;";
+            ResultSet rs = super.retrieve(query);
+            if(rs.next()) {
+                String id=rs.getString("ID");
+                return Integer.parseInt(id.substring(2));
+            }
+            else return 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

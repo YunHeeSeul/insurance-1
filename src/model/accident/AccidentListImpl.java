@@ -1,7 +1,8 @@
-package Practice.InsuranceCompany.Design.src.accident;
+package Practice.InsuranceCompany.Design.src.model.accident;
 
 
 import Practice.InsuranceCompany.Design.src.etcEnum.Level;
+import Practice.InsuranceCompany.Design.src.model.accident.Accident;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -46,11 +47,14 @@ public class AccidentListImpl implements AccidentList {
 		return null;
 	}
 
-	public void printAllList(){
-		for(Accident accident:this.accidentList){
-			System.out.println(accident.getAccidentInfo());
-		}
-	}
+//	public void printAllList(){
+//		for(Accident accident:this.accidentList){
+//			System.out.println(accident.getAccidentInfo());
+//		}
+//	}
+
+
+
 	@Override
 	public boolean updateAccidentScale(String accidentID, Level accidentScale){
 		for(Accident accident : this.accidentList) {
@@ -91,6 +95,12 @@ public class AccidentListImpl implements AccidentList {
 
 	@Override
 	public Optional<Accident> getOptionalAccidentByCustomerId(String customerID) {
+
+		return Optional.empty();
+	}
+
+	@Override
+	public Optional<Accident> getOptionalAccidentByAccidentId(String accidentID) {
 		return Optional.empty();
 	}
 }//end AccidentListImpl

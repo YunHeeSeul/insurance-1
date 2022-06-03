@@ -1,5 +1,7 @@
-package Practice.InsuranceCompany.Design.src.survey;
+package Practice.InsuranceCompany.Design.src.model.survey;
 
+
+import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,15 +1,15 @@
-package Practice.InsuranceCompany.Design.src.accident;
+package Practice.InsuranceCompany.Design.src.model.accident;
 
 
 import Practice.InsuranceCompany.Design.src.etcEnum.Level;
 import Practice.InsuranceCompany.Design.src.etcEnum.Responsibility;
-import Practice.InsuranceCompany.Design.src.survey.SurveyCompany;
+import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Accident {
-	private static int IDnum=0;
+	//	private static int IDnum=0;
 	Scanner scn;
 	private String accidentID;
 	private String customerID;
@@ -25,14 +25,14 @@ public class Accident {
 	private boolean permission;
 
 	public Accident(){
-		this.accidentID = Integer.toString(IDnum + 1);
+//		this.accidentID = Integer.toString(IDnum + 1);
 		this.permission = true;
 	}
 	private ArrayList<ExemptionInfo> exemptionContent;
 
 	public Accident(Scanner scn, String accidentID, String customerID, AccidentType accidentType, String accidentDate, String accidentLocation, Level accidentScale, String accidentContent, boolean doingHarm, SurveyCompany repSurveyCompany, String exemptionInfoID, boolean onSite){
 		this.scn = scn;
-		this.accidentID = "acc1";
+		this.accidentID = accidentID;
 		this.customerID = customerID;
 		this.accidentType = accidentType;
 		this.accidentDate = accidentDate;
@@ -139,18 +139,6 @@ public class Accident {
 //		return false;
 //	}
 
-	public boolean dispatchOnsite(boolean permission){
-		if(repSurveyCompany.isSurveyAbility()==true) {
-			this.permission = permission;
-			return true;
-		}else
-			return false;
-	}
-	//VAccident에 사고 정보를 보여주는 기능이 있어서 없어도 될 것 같은 기능
-/*	public Accident getAccidentReception(){
-		return null;
-	}
-*/
 	public void printAccidentDetails(){
 		System.out.println("사고 ID : " + this.accidentID);
 		System.out.println("고객 ID : " + this.customerID);
@@ -173,6 +161,19 @@ public class Accident {
 		else
 			System.out.println("현장 조사 여부 : 조사하지 않음");
 	}
+
+	public boolean dispatchOnsite(boolean permission){
+		if(repSurveyCompany.isSurveyAbility()==true) {
+			this.permission = permission;
+			return true;
+		}else
+			return false;
+	}
+	//VAccident에 사고 정보를 보여주는 기능이 있어서 없어도 될 것 같은 기능
+/*	public Accident getAccidentReception(){
+		return null;
+	}
+*/
 
 	public void registerExemptionInfo(String accidentID){
 		ExemptionInfo exemptionInfo=new ExemptionInfo();
