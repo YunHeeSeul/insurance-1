@@ -5,8 +5,7 @@ import Practice.InsuranceCompany.Design.src.etcEnum.Responsibility;
 import java.util.ArrayList;
 
 public class ExemptionInfo {
-//판단 자료 없앰
-//	private String judgementData;
+
 
 	//	private static int IDnum=0;
 	private String exemptionInfoID;
@@ -17,14 +16,7 @@ public class ExemptionInfo {
 
 
 	public ArrayList<ExemptionInfo> exemptionInfoList;
-	/*
-	public ExemptionInfo(String exemptionInfoID, String judgementReason, double paymentRatio, Responsibility responsibility){
-		this.exemptionInfoID=exemptionInfoID;
-		this.judgementReason=judgementReason;
-		this.paymentRatio=paymentRatio;
-		this.responsibility=responsibility;
-	}
-	 */
+	
 	public ExemptionInfo(){
 		this.exemptionInfoList = new ArrayList<>();
 		//	this.exemptionInfoID = Integer.toString(IDnum + 1);

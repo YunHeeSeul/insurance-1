@@ -2,8 +2,6 @@ package Practice.InsuranceCompany.Design.src.dao;
 
 import Practice.InsuranceCompany.Design.src.etcEnum.Responsibility;
 import Practice.InsuranceCompany.Design.src.model.accident.ExemptionInfo;
-import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
-import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompanyListImpl;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +15,7 @@ public class ExemptionInfoDao extends Dao{
     public boolean create(ExemptionInfo exemptionInfo){
         try {
             PreparedStatement pstmt = null;
-        /*    String query = "insert into surveyCompany values (?,?,?,?,?)";
+        /*  String query = "insert into surveyCompany values (?,?,?,?,?)";
 
             pstmt = connectPrepareStatement(query);
             pstmt.setString(1, exemptionInfo.getExemptionInfoID());

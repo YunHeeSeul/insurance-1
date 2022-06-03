@@ -18,7 +18,7 @@ public class AccidentDao extends Dao{
     public boolean create(Accident accident){
         try {
             PreparedStatement pstmt = null;
-        /*    String query = "insert into accident values (?,?,?,?,?,?,?,?,?,?,?,?)";
+        /*  String query = "insert into accident values (?,?,?,?,?,?,?,?,?,?,?,?)";
 
             pstmt = connectPrepareStatement(query);
             pstmt.setString(1, accident.getAccidentID());

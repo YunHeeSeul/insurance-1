@@ -134,11 +134,6 @@ public class Accident {
 		this.onSite = onsite;
 	}
 
-//삭제
-//	public boolean addAccidentSurvey(SurveyCompany surveyCompany, String accidentDate, String accidentLocation, AccidentType accidentType, boolean doingHarm, String accidentContent){
-//		return false;
-//	}
-
 	public void printAccidentDetails(){
 		System.out.println("사고 ID : " + this.accidentID);
 		System.out.println("고객 ID : " + this.customerID);

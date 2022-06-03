@@ -1,6 +1,7 @@
 package Practice.InsuranceCompany.Design.src.view;
 
 import Practice.InsuranceCompany.Design.src.controller.CCustomer;
+import Practice.InsuranceCompany.Design.src.controller.CSurveyCompany;
 import Practice.InsuranceCompany.Design.src.model.accident.Accident;
 import Practice.InsuranceCompany.Design.src.model.accident.AccidentListImpl;
 import Practice.InsuranceCompany.Design.src.model.accident.AccidentType;
@@ -8,13 +9,18 @@ import Practice.InsuranceCompany.Design.src.controller.CAccident;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
 import Practice.InsuranceCompany.Design.src.etcEnum.Level;
+import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
+import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompanyListImpl;
 
 import java.util.Scanner;
 
 public class VAccident {
     Scanner scn;
     private Accident accident;
+    private SurveyCompany surveyCompany;
+
     private CAccident cAccident;
+    private CSurveyCompany cSurveyCompany;
     private CCustomer cCustomer;
 
     private AccidentListImpl accidentList;
@@ -23,6 +29,7 @@ public class VAccident {
     public VAccident(Scanner scn) {
         this.scn = scn;
         this.cAccident = new CAccident();
+        this.cSurveyCompany = new CSurveyCompany();
         this.cCustomer = new CCustomer();
     }
 //    public VAccident(Scanner scn, AccidentListImpl accidentList, CustomerListImpl customerList) {
@@ -58,6 +65,19 @@ public class VAccident {
         System.out.println("----------------------------사고 전체 목록----------------------------");
         //      System.out.println("(사고ID)  (고객ID)  (사고 종류)  (사고 일시)  (사고 장소)  (사고 규모)  (사고 내용)  (가해 여부)  (담당 손해사정업체)  (면부책 여부)  (현장 출동 여부)");
         accident.printAccidentDetails();
+
+        return true;
+    }
+
+    private boolean showSurveyCompany() {
+        SurveyCompanyListImpl surveyCompanyList = this.cSurveyCompany.getAllSurveyCompany();
+        if(surveyCompanyList.getAllList().size()==0){
+            System.out.println("등록되어 있는 손해사정업체가 존재하지 않습니다.");
+            return false;
+        }
+        System.out.println("----------------------------손해사정업체 목록----------------------------");
+        System.out.println("(손해사정업체ID)  (손해사정업체명)  (업체 주소)  (업체 번호)  (현장조사 가능 여부)");
+        surveyCompanyList.printAllList();
 
         return true;
     }
@@ -151,7 +171,11 @@ public class VAccident {
                 System.out.println("(y)예 (n)아니오");
                 String response = scn.next();
                 if (response.equals("y")) {
-                    accident.setOnsite(true);
+                    System.out.println("현장 출동을 지시할 손해사정업체ID를 입력하세요.");
+                    showSurveyCompany();
+                    String scID = scn.next();
+                    SurveyCompany surveyCompany1 = cSurveyCompany.getBySurveyCompanyID(scID);
+                    accident.setRepSurveyCompany(surveyCompany1);
 
                     System.out.println("가해 여부를 입력해주세요");
                     System.out.println("(y)예 (n)아니오");

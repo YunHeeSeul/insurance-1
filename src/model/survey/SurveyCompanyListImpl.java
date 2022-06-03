@@ -1,8 +1,6 @@
 package Practice.InsuranceCompany.Design.src.model.survey;
 
 
-import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,7 +8,6 @@ import java.util.Scanner;
 public class SurveyCompanyListImpl implements SurveyCompanyList {
 
 	private ArrayList<SurveyCompany> surveyCompanyList;
-
 	public SurveyCompanyListImpl(){
 		this.surveyCompanyList = new ArrayList<>();
 	}

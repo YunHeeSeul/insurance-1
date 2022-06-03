@@ -16,7 +16,6 @@ public interface AccidentList {
 
 	Accident getCustomerID(String customerID);
 
-	// 추가
 	ArrayList<Accident> getAllList();
 
 	boolean updateAccidentScale(String accidentID, Level accidentScale);

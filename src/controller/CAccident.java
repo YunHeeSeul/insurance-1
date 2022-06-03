@@ -27,9 +27,9 @@ public class CAccident {
         return this.accidentDao.update(accidentID,doingHarm,exemptionInfo,accidentScale);
     }
 
-    public boolean deleteAccidentById(String accidentID) {
-        return this.accidentDao.delete(accidentID);
-    }
+//  public boolean deleteAccidentById(String accidentID) {
+ //       return this.accidentDao.delete(accidentID);
+ //   }
 
     public int getMaxID() { return this.accidentDao.retrieveMaxID(); }
 

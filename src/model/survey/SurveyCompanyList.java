@@ -7,7 +7,6 @@ public interface SurveyCompanyList {
 
 	boolean add(SurveyCompany surveyCompany);
 
-
 	boolean delete(String surveyCompanyID);
 
 	SurveyCompany get(String surveyCompanyID);

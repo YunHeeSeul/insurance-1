@@ -1,9 +1,5 @@
 package Practice.InsuranceCompany.Design.src.dao;
 
-import Practice.InsuranceCompany.Design.src.etcEnum.Level;
-import Practice.InsuranceCompany.Design.src.model.accident.Accident;
-import Practice.InsuranceCompany.Design.src.model.accident.AccidentListImpl;
-import Practice.InsuranceCompany.Design.src.model.accident.AccidentType;
 import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
 import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompanyListImpl;
 
@@ -19,7 +15,7 @@ public class SurveyCompanyDao extends Dao{
     public boolean create(SurveyCompany surveyCompany){
         try {
             PreparedStatement pstmt = null;
-         /*   String query = "insert into surveyCompany values (?,?,?,?,?)";
+         /* String query = "insert into surveyCompany values (?,?,?,?,?)";
 
             pstmt = connectPrepareStatement(query);
             pstmt.setString(1, surveyCompany.getSurveyCompanyID());

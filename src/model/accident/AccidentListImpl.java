@@ -2,7 +2,6 @@ package Practice.InsuranceCompany.Design.src.model.accident;
 
 
 import Practice.InsuranceCompany.Design.src.etcEnum.Level;
-import Practice.InsuranceCompany.Design.src.model.accident.Accident;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -46,12 +45,6 @@ public class AccidentListImpl implements AccidentList {
 		}
 		return null;
 	}
-
-//	public void printAllList(){
-//		for(Accident accident:this.accidentList){
-//			System.out.println(accident.getAccidentInfo());
-//		}
-//	}
 
 
 
