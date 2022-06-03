@@ -69,11 +69,11 @@ public class Contract {
 
 	}
 
-	public Contract(String customerID, String insuranceID, int contractPeriod, int premium, String insuranceAgentID) {
+	public Contract(String contractID, String customerID, String insuranceID, int contractPeriod, int premium, String insuranceAgentID) {
 		DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
 		Date today=new Date();
 		String todayS=format.format(today);
-		this.contractID = "ct1";
+		this.contractID = contractID;
 		this.customerID = customerID;
 		this.insuranceID = insuranceID;
 		this.contractPeriod = contractPeriod;
@@ -89,14 +89,14 @@ public class Contract {
 	}
 
 	// 추가
-	public boolean isMaintenanceTarget(){
-		try {
-			DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
-			Date today=new Date();
-			Date date=format.parse(joinDate);
-			return date.compareTo(today) <= 31;
-		} catch (ParseException e) {
-			throw new RuntimeException(e);
-		}
-	}
+//	public boolean isMaintenanceTarget(){
+//		try {
+//			DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+//			Date today=new Date();
+//			Date date=format.parse(joinDate);
+//			return date.compareTo(today) <= 31;
+//		} catch (ParseException e) {
+//			throw new RuntimeException(e);
+//		}
+//	}
 }//end Contract
