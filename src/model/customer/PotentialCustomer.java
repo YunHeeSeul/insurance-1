@@ -12,14 +12,14 @@ import java.util.ArrayList;
  */
 public class PotentialCustomer extends Customer {
 
-	private ArrayList<Subscription> subscription;
+//	private ArrayList<Subscription> subscription;
 	public Subscription m_Subscription;
 
 	public PotentialCustomer(){
 
 	}
 
-	public ArrayList<Subscription> getSubscriptionList(){ return this.subscription; }
+//	public ArrayList<Subscription> getSubscriptionList(){ return this.subscription; }
 
 	public void finalize() throws Throwable {
 		super.finalize();

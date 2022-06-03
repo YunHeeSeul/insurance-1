@@ -12,18 +12,39 @@ import java.util.Scanner;
  */
 public class DiseaseHistory {
 
+	private static int IDNum = 0;
+
+	private String id;
 	private String name;
 	private Level severity;
 	private int strugglePeriod;
 
 	public DiseaseHistory(){
-
+		this.id = "DH" + Integer.toString(IDNum++);
 	}
 
+	public String getId(){ return this.id; }
+	public String getName() { return this.name;}
 	public Level getSeverity(){ return this.severity; }
 	public int getStrugglePeriod(){ return this.strugglePeriod; }
 
-	public void setDiseaseHistoryForAcquisitionPolicy(Scanner scanner){
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setSeverity(Level severity) {
+		this.severity = severity;
+	}
+
+	public void setStrugglePeriod(int strugglePeriod) {
+		this.strugglePeriod = strugglePeriod;
+	}
+
+	public void inputDiseaseHistory(Scanner scanner){
 		System.out.println("질환명 : ");
 		this.name = scanner.next();
 
@@ -41,4 +62,5 @@ public class DiseaseHistory {
 	public void finalize() throws Throwable {
 
 	}
+
 }//end DeseaseHistory

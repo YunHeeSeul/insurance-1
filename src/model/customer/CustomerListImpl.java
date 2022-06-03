@@ -1,6 +1,8 @@
 package Practice.InsuranceCompany.Design.src.model.customer;
 
 
+import Practice.InsuranceCompany.Design.src.model.insurance.Insurance;
+
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -14,9 +16,7 @@ public class CustomerListImpl implements CustomerList {
 	private ArrayList<Customer> customerList;
 	public Customer m_Customer;
 
-	public CustomerListImpl(){
-
-	}
+	public CustomerListImpl(){ this.customerList = new ArrayList<>(); }
 
 	public void finalize() throws Throwable {
 
@@ -26,6 +26,10 @@ public class CustomerListImpl implements CustomerList {
 	 * @param customer
 	 */
 	public boolean add(Customer customer){
+		if(this.customerList != null) {
+			this.customerList.add(customer);
+			return true;
+		}
 		return false;
 	}
 
@@ -37,13 +41,16 @@ public class CustomerListImpl implements CustomerList {
 		return false;
 	}
 
-	@Override
-	public Optional<Customer> getByOptionalCustomerId(String customerID) {
-		return null;
-	}
+//	public Customer get(String customerID){
+//		if(this.customerList != null) {
+//			for (Customer customer : this.customerList)
+//				if (customerID.equals(customer.getCustomerID())) return customer;
+//		}
+//		return null;
+//	}
 
 	@Override
-	public Customer getByCustomerId(String customerID) {
+	public Optional<Customer> getByCustomerId(String customerID) {
 		return null;
 	}
 
@@ -61,7 +68,7 @@ public class CustomerListImpl implements CustomerList {
 //	}
 
 	/**
-	 * 
+	 *
 	 * @param customerType
 	 */
 	public Customer get(CustomerType customerType){
@@ -69,7 +76,7 @@ public class CustomerListImpl implements CustomerList {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param customerName
 	 */
 	public Customer get(String customerName){

@@ -22,12 +22,11 @@ public interface CustomerList {
 	 */
 	public boolean delete(String customerID);
 
-	Optional<Customer> getByOptionalCustomerId(String customerID);
-
 	/**
      * @param customerID
      */
-	public Customer getByCustomerId(String customerID);
+	public Optional<Customer> getByCustomerId(String customerID);
+
 	/**
 	 *
 	 * @param customerName

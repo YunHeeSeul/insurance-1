@@ -3,9 +3,11 @@ package Practice.InsuranceCompany.Design.src.dao;
 import java.sql.*;
 
 public class Dao {
-    private Connection connect=null;
-    private Statement statement=null;
-    private ResultSet resultSet=null;
+
+    protected static String dq = "\"";
+    protected Connection connect=null;
+    protected Statement statement=null;
+    protected ResultSet resultSet=null;
 
     public void connect(){
         try {
