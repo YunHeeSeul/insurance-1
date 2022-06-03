@@ -1,24 +1,22 @@
 package Practice.InsuranceCompany.Design.src.model.payment;
+import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 
-import Practice.InsuranceCompany.Design.src.customer.Customer;
+import java.util.Scanner;
 
+// 해약 환급금
 public class CancellationReturn extends Payment {
 
-	private String cancellationReason;
-
-	public String getCancellationReason() {
-		return cancellationReason;
-	}
-
-	// 해약 환급금
-	public CancellationReturn(){
-
-
-	}
-
 	@Override
-	public boolean setPaymentInfo() {
-		return false;
+	public void setPaymentInfo(Scanner scn) {
+		System.out.println("해약 사유를 입력하세요.");
+		String cancellationReason = scn.nextLine();
+
+		while (cancellationReason.isEmpty()){
+			System.out.println("해약 사유를 다시 입력하세요.");
+			cancellationReason = scn.nextLine();
+		}
+
+		this.cancellationReason = cancellationReason;
 	}
 
 	@Override
@@ -71,4 +69,4 @@ public class CancellationReturn extends Payment {
 		System.out.println("--------------------------------------------------");
 
 	}
-}//end CancellationReturn
+}

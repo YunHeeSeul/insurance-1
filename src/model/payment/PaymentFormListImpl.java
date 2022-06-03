@@ -1,45 +1,25 @@
 package Practice.InsuranceCompany.Design.src.model.payment;
+import java.util.ArrayList;
 
 public class PaymentFormListImpl implements PaymentFormList {
 
-	public PaymentForm m_PaymentForm;
+	private ArrayList<PaymentForm> paymentFormList;
 
 	public PaymentFormListImpl(){
-
+		this.paymentFormList=new ArrayList<>();
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	/**
-	 * 
-	 * @param paymentForm
-	 */
 	public boolean add(PaymentForm paymentForm){
+		this.paymentFormList.add(paymentForm);
+		return true;
+	}
+
+	public boolean delete(String paymentFormId){
+		for(PaymentForm paymentForm : this.paymentFormList) {
+			if (paymentForm.getPaymentFormId().equals(paymentFormId))
+				return this.paymentFormList.remove(paymentForm);
+		}
 		return false;
 	}
 
-	/**
-	 * 
-	 * @param paymentFormID
-	 */
-	public boolean delete(String paymentFormID){
-		return false;
-	}
-
-	/**
-	 * 
-	 * @param contractID
-	 */
-	public PaymentForm get(String contractID){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param examinationResult
-	 */
-	public boolean updateExaminationResult(boolean examinationResult){
-		return false;
-	}
 }//end PaymentFormListImpl

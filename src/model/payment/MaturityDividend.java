@@ -1,20 +1,22 @@
 package Practice.InsuranceCompany.Design.src.model.payment;
 
+import Practice.InsuranceCompany.Design.src.model.customer.Customer;
+import java.util.Scanner;
 
-import Practice.InsuranceCompany.Design.src.customer.Customer;
-
+// 만기 보험금
 public class MaturityDividend extends Payment {
 
-	private String dateOfExpiry;
-
-	// 만기 보험금
-	public MaturityDividend(){
-
-	}
-
 	@Override
-	public boolean setPaymentInfo() {
-		return false;
+	public void setPaymentInfo(Scanner scn) {
+		System.out.println("만기 일을 입력하세요.");
+		String dateOfExpiry = scn.nextLine();
+		
+		while(dateOfExpiry.isEmpty()){
+			System.out.println("만기 일을 다시 입력하세요.");
+			dateOfExpiry = scn.nextLine();
+		}
+
+		this.dateOfExpiry = dateOfExpiry;
 	}
 
 	@Override
@@ -69,8 +71,6 @@ public class MaturityDividend extends Payment {
 			System.out.println(this.calculatePayment() + "원 지급 예정입니다.");
 		}
 		System.out.println("--------------------------------------------------");
-
-		
 		
 	}
-}//end MaturityDividend
+}

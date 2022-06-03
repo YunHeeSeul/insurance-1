@@ -1,77 +1,106 @@
 package Practice.InsuranceCompany.Design.src.model.payment;
 
-
-import Practice.InsuranceCompany.Design.src.customer.Customer;
 import Practice.InsuranceCompany.Design.src.etcEnum.ClaimType;
 import Practice.InsuranceCompany.Design.src.model.accident.AccidentType;
+import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 
+import java.util.Scanner;
+
+// 보험금
 public class ClaimsPaid extends Payment {
 
-	private String accidentCircumstance;
-	private String accidentDateTime;
-	private String accidentPlace;
-	private AccidentType accidentType;
-	private ClaimType claimReason;
-	private String diseaseName;
-
-	// 보험금
-	public ClaimsPaid(){
-
-	}
-
-	public String getAccidentDateTime() {
-		return accidentDateTime;
-	}
-
-	public void setAccidentDateTime(String accidentDateTime) {
-		this.accidentDateTime = accidentDateTime;
-	}
-
-	public String getAccidentPlace() {
-		return accidentPlace;
-	}
-
-	public void setAccidentPlace(String accidentPlace) {
-		this.accidentPlace = accidentPlace;
-	}
-
-	public AccidentType getAccidentType() {
-		return accidentType;
-	}
-
-	public void setAccidentType(AccidentType accidentType) {
-		this.accidentType = accidentType;
-	}
-
-	public ClaimType getClaimReason() {
-		return claimReason;
-	}
-
-	public void setClaimReason(ClaimType claimReason) {
-		this.claimReason = claimReason;
-	}
-
-	public String getDiseaseName() {
-		return diseaseName;
-	}
-
-	public void setDiseaseName(String diseaseName) {
-		this.diseaseName = diseaseName;
-	}
-
-	public String getAccidentCircumstance() {
-		return accidentCircumstance;
-	}
-
-	public void setAccidentCircumstance(String accidentCircumstance) {
-		this.accidentCircumstance = accidentCircumstance;
-	}
-
 	@Override
-	public boolean setPaymentInfo() {
-		System.out.println("사고 일시 : ");
-		return false;
+	public void setPaymentInfo(Scanner scn) {
+
+		System.out.println("사고 일시를 입력하세요 : ");
+		String accidentDateTime = scn.nextLine();
+
+		while(accidentDateTime.isEmpty()){
+			System.out.println("사고 일시를 다시 입력하세요 : ");
+		}
+
+		this.accidentDateTime = accidentDateTime;
+
+		///////////////////////////////////////////////////////
+
+		System.out.println("사고 상황을 입력하세요 : ");
+		String accidentCircumstance = scn.nextLine();
+
+		while(accidentCircumstance.isEmpty()){
+			System.out.println("사고 상황을 다시 입력하세요 : ");
+		}
+
+		this.accidentCircumstance = accidentCircumstance;
+
+		///////////////////////////////////////////////////////
+		System.out.println("사고 타입을 선택하세요 : ");
+		System.out.println("(1) 자동차 사고 (2) 화재 사고 (3) 질병 사고");
+		int select = scn.nextInt();
+
+		while(select == 0){
+			System.out.println("사고 타입을 다시 선택하세요 : ");
+		}
+
+		switch (select){
+			case 1:
+				this.accidentType = AccidentType.car;
+				break;
+			case 2:
+				this.accidentType = AccidentType.fire;
+				break;
+			case 3:
+				this.accidentType = AccidentType.health;
+
+		}
+
+		//////////////////////////////////////////////////
+
+		System.out.println("사고 장소를 입력하세요 : ");
+		String accidentPlace = scn.nextLine();
+
+		while(accidentPlace.isEmpty()){
+			System.out.println("사고 장소를 다시 입력하세요 : ");
+		}
+
+		this.accidentPlace = accidentPlace;
+
+		////////////////////////////////////////////////////
+
+		System.out.println("상해 혹은 질병명을 입력하세요 : ");
+		String diseaseName = scn.nextLine();
+
+		while(diseaseName.isEmpty()){
+			System.out.println("상해 혹은 질병명을 다시 입력하세요 : ");
+		}
+
+		this.diseaseName = diseaseName;
+
+		//////////////////////////////////////////////////////
+
+		System.out.println("청구 사유를 선택하세요 : ");
+		System.out.println("(1) 사망 (2) 입원 (3) 수리 (4) 검진 / 진료");
+		int selectClaimReason = scn.nextInt();
+
+		while(selectClaimReason == 0){
+			System.out.println("청구 사유를 다시 선택하세요 : ");
+		}
+
+		switch (selectClaimReason){
+			case 1:
+				this.claimReason = ClaimType.dead;
+				break;
+			case 2:
+				this.claimReason = ClaimType.hospitalization;
+				break;
+			case 3:
+				this.claimReason = ClaimType.repair;
+				break;
+			case 4:
+				this.claimReason = ClaimType.visitHospital;
+				break;
+		}
 	}
+
 
 	@Override
 	public int calculatePayment() {
@@ -134,4 +163,8 @@ public class ClaimsPaid extends Payment {
 		}
 		System.out.println("--------------------------------------------------");
 	}
-}//end ClaimsPaid
+
+
+
+
+}
