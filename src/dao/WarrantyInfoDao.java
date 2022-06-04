@@ -12,13 +12,12 @@ public class WarrantyInfoDao extends Dao {
 
     public boolean create(WarrantyInfo warrantyInfo, String insuranceID){
         String query = "insert into warrantyInfo value(";
-            query += dq + warrantyInfo.getContractType().getDetail() + dq + ", "
+            query += dq + insuranceID + dq + ", "
+                    + dq + warrantyInfo.getContractType().getDetail() + dq + ", "
                     + warrantyInfo.getWarrantyAmount() + ", "
                     + dq + warrantyInfo.getWarrantyConditions() + dq + ", "
                     + dq + warrantyInfo.getWarrantyContent() + dq + ", "
-                    + dq + warrantyInfo.getWarrantyInfo() + dq + ", "
-                    + dq + insuranceID + dq + ");";
-            System.out.println("Execute QueryForWarrantyInfo - " + query);
+                    + dq + warrantyInfo.getWarrantyInfo() + dq + ");";
             return super.create(query);
     }
 
@@ -27,7 +26,7 @@ public class WarrantyInfoDao extends Dao {
             ArrayList<WarrantyInfo> warrantyInfos = new ArrayList<>();
 
             String query = "select * from warrantyInfo where insuranceId = " + dq + insuranceID + dq + ";";
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = super.retrieve(query);
             while (resultSet.next()) { warrantyInfos.add(setWarrantyInfoByResultset(resultSet)); }
             return warrantyInfos;
         } catch (SQLException e){}
@@ -37,7 +36,6 @@ public class WarrantyInfoDao extends Dao {
     private WarrantyInfo setWarrantyInfoByResultset(ResultSet resultSet) {
         try {
             WarrantyInfo warrantyInfo = new WarrantyInfo();
-
             warrantyInfo.setContractType(ContractType.makeContractType(resultSet.getString("contractType")));
             warrantyInfo.setWarrantyAmount(resultSet.getInt("warrantyAmount"));
             warrantyInfo.setWarrantyConditions(resultSet.getString("warrantyCondition"));

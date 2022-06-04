@@ -37,10 +37,7 @@ public class Dao {
 
     public boolean create(PreparedStatement pstmt){
         try {
-
             return pstmt.executeUpdate()!=0;
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

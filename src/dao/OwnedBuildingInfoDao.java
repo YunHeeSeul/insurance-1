@@ -21,7 +21,7 @@ public class OwnedBuildingInfoDao extends Dao {
         try {
             if(inputID == null) return null;
             String query = "select * from ownedBuildingInfo where ownedBuildingInfoId = " + dq + inputID + dq + ";";
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = super.retrieve(query);
             if(resultSet.next()) return setInfoByResultset(resultSet);
             else return null;
         } catch (SQLException e){}

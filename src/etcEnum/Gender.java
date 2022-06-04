@@ -9,6 +9,12 @@ public enum Gender {
 		this.detail=detail;
 	}
 
+	public static Gender makeGender(String detail){
+		if (detail.equals(male.getDetail())) return male;
+		if (detail.equals(female.getDetail())) return female;
+		else return null;
+	}
+
 	public String getDetail(){
 		return this.detail;
 	}

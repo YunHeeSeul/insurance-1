@@ -1,5 +1,7 @@
 package Practice.InsuranceCompany.Design.src.etcEnum;
 
+import Practice.InsuranceCompany.Design.src.model.customer.CustomerType;
+
 public enum Responsibility {
 	notResponsible("면책"),
 	responsible("부책");
@@ -7,6 +9,12 @@ public enum Responsibility {
 	String detail;
 	Responsibility(String detail) {
 		this.detail=detail;
+	}
+
+	public static Responsibility makeResponsibility(String detail){
+		if (detail.equals(notResponsible.getDetail())) return notResponsible;
+		if (detail.equals(responsible.getDetail())) return responsible;
+		else return null;
 	}
 
 	public String getDetail(){

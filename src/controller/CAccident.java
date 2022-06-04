@@ -22,8 +22,8 @@ public class CAccident {
         return this.accidentDao.create(accident);
     }
 
-    public boolean updateAccidentSurvey(String accidentID, String doingHarm, String exemptionInfo, String accidentScale) {
-        return this.accidentDao.update(accidentID,doingHarm,exemptionInfo,accidentScale);
+    public boolean updateAccidentSurvey(String accidentID, boolean doingHarm, String exemptionInfoID, String accidentScale) {
+        return this.accidentDao.update(accidentID,doingHarm,exemptionInfoID,accidentScale);
     }
 
 //  public boolean deleteAccidentById(String accidentID) {
