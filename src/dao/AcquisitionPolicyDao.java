@@ -56,7 +56,7 @@ public class AcquisitionPolicyDao extends Dao {
             if(inputID.equals("null")) return null;
 
             String query = "select * from acquisitionPolicy where acquisitionPolicyId = " + dq +inputID + dq + ";";
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = super.retrieve(query);
 
             if(resultSet.next()){ return setAcquisitionPolicyByResultSet(resultSet); }
             else return null;
@@ -82,7 +82,7 @@ public class AcquisitionPolicyDao extends Dao {
     public int retrieveMaxID() {
         try {
             String query = "select max(acquisitionPolicyId) as ID from acquisitionPolicy;";
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = super.retrieve(query);
             if (resultSet.next()) {
                 String id = resultSet.getString("ID");
                 if (id == null) return 0;

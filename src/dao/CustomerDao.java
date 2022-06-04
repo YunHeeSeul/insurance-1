@@ -25,13 +25,13 @@ public class CustomerDao extends Dao {
         String query = "insert into customer value(";
         query += dq + customer.getCustomerID() + dq + ", "
                         + dq + customer.getName() + dq + ", "
+                        + dq + CustomerType.interested.getDetail() + dq + ", "
                         + dq + customer.getResidentRegistrationNumber() + dq + ", "
                         + dq + customer.getGender().getDetail() + dq + ", "
                         + dq + customer.getDateOfBirth() + dq + ", "
                         + dq + customer.getPhoneNumber() + dq + ", "
                         + dq + customer.getEmailAddress() + dq + ", "
-                        + dq + customer.getAddress() + dq + ", "
-                        + dq + CustomerType.interested.getDetail() + dq + ", ";
+                        + dq + customer.getAddress() + dq + ", ";
 
         if(customer.getDiseaseHistory() == null) query += "null" + ", ";
         else query += dq + customer.getDiseaseHistory().getId() + dq + ", ";
@@ -50,7 +50,7 @@ public class CustomerDao extends Dao {
             CustomerListImpl customerList = new CustomerListImpl();
 
             String query = "select * from customer";
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = super.retrieve(query);
             while (resultSet.next()) { customerList.add(setCustomerByResultset(resultSet)); }
             return customerList;
 
@@ -62,7 +62,7 @@ public class CustomerDao extends Dao {
     public Customer retrieveById(String inputID) {
         try {
             String query = "select * from customer where customerId = " + dq + inputID + dq + ";";
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = super.retrieve(query);
 
             if (resultSet.next()) { return setCustomerByResultset(resultSet); }
             else return null;
@@ -78,7 +78,7 @@ public class CustomerDao extends Dao {
     public int retrieveMaxID() {
         try {
             String query = "select max(customerId) as ID from customer;";
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = super.retrieve(query);
             if (resultSet.next()) {
                 String id = resultSet.getString("ID");
                 if (id == null) return 0;
@@ -97,8 +97,9 @@ public class CustomerDao extends Dao {
 
             customer.setCustomerID(resultSet.getString("customerId"));
             customer.setName(resultSet.getString("customerName"));
+            customer.setCustomerType(CustomerType.makeCustomerType(resultSet.getString("customerType")));
             customer.setResidentRegistrationNumber(resultSet.getString("residentRegistrationNum"));
-            customer.setGender(resultSet.getString("gender").equals(Gender.female.getDetail())? Gender.female:Gender.male);
+            customer.setGender(Gender.makeGender(resultSet.getString("gender")));
             customer.setDateOfBirth(resultSet.getString("date_of_birth"));
             customer.setPhoneNumber(resultSet.getString("phone_number"));
             customer.setEmailAddress(resultSet.getString("email_address"));

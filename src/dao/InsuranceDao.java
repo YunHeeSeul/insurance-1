@@ -44,7 +44,7 @@ public class InsuranceDao extends Dao{
             InsuranceListImpl insuranceList = new InsuranceListImpl();
 
             String query = "select * from insurance";
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = super.retrieve(query);
             while (resultSet.next()) { insuranceList.add(setInsuranceByResultset(resultSet)); }
             return insuranceList;
 
@@ -55,7 +55,7 @@ public class InsuranceDao extends Dao{
     public Insurance retrieveById(String inputID) {
         try {
             String query = "select * from insurance where insuranceId = " + dq + inputID + dq + ";";
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = super.retrieve(query);
 
             if (resultSet.next()) { return setInsuranceByResultset(resultSet); }
             else return null;
@@ -133,7 +133,7 @@ public class InsuranceDao extends Dao{
     public int retrieveMaxID() {
         try {
             String query = "select max(insuranceId) as ID from insurance;";
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = super.retrieve(query);
             if (resultSet.next()) {
                 String id = resultSet.getString("ID");
                 if (id == null) return 0;

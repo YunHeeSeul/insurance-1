@@ -12,29 +12,13 @@ public class ExemptionInfoDao extends Dao{
         super.connect();
     };
 
-    public boolean create(ExemptionInfo exemptionInfo){
-        try {
-            PreparedStatement pstmt = null;
-        /*  String query = "insert into surveyCompany values (?,?,?,?,?)";
-
-            pstmt = connectPrepareStatement(query);
-            pstmt.setString(1, exemptionInfo.getExemptionInfoID());
-            pstmt.setObject(2, exemptionInfo.getResponsibility());
-            pstmt.setString(3, exemptionInfo.getJudgementReason());
-            pstmt.setDouble(4, exemptionInfo.getPaymentRatio());
-
-            super.create(pstmt);
-         */
-            String query = "insert into exemptionInfo values ('"
-                    +exemptionInfo.getExemptionInfoID()+"','"
-                    +exemptionInfo.getResponsibility()+"','"
-                    +exemptionInfo.getJudgementReason()+"','"
-                    +exemptionInfo.getPaymentRatio()+"';";
-            return super.create(query);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
+    public boolean create(ExemptionInfo exemptionInfo) {
+        String query = "insert into exemptionInfo values ('"
+                + exemptionInfo.getExemptionInfoID() + "','"
+                + exemptionInfo.getResponsibility().getDetail() + "','"
+                + exemptionInfo.getJudgementReason() + "',"
+                + exemptionInfo.getPaymentRatio() + ");";
+        return super.create(query);
     }
 
     public boolean delete(String exemptionInfoID){
@@ -43,7 +27,7 @@ public class ExemptionInfoDao extends Dao{
     }
 
     public boolean update(String exemptionInfoID, Responsibility responsibility, String judgementReason, Double paymentRatio){
-        String query = "update exemptionInfo set responsibility='"+responsibility+"', judgementReason='"+judgementReason+"', paymentRatio='"+paymentRatio+"' where exemptionInfoID='"+exemptionInfoID+"';";
+        String query = "update exemptionInfo set responsibility='"+responsibility.getDetail()+"', judgementReason='"+judgementReason+"', paymentRatio="+paymentRatio+" where exemptionInfoID='"+exemptionInfoID+"';";
         return super.update(query);
     }
 
@@ -78,7 +62,7 @@ public class ExemptionInfoDao extends Dao{
         try{
             ExemptionInfo exemptionInfo = new ExemptionInfo();
             exemptionInfo.setExemptionInfoID(rs.getString("exemptionInfoID"));
-            exemptionInfo.setResponsibility((Responsibility) rs.getObject("responsibility"));
+            exemptionInfo.setResponsibility(Responsibility.makeResponsibility(rs.getString("responsibility")));
             exemptionInfo.setJudgementReason(rs.getString("judgementReason"));
             exemptionInfo.setPaymentRatio(rs.getDouble("paymentRatio"));
 

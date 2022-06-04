@@ -17,7 +17,7 @@ public class PolicyholderDao extends Dao {
                 + policyholder.getAccountNum()+"',"
                 + policyholder.isAcceptedAccidentExistence()+","
                 + policyholder.getOwnedBuildingNumber()+","
-                + policyholder.isPaymentState()+";";
+                + policyholder.isPaymentState()+");";
         return super.create(query);
     }
 
@@ -25,7 +25,7 @@ public class PolicyholderDao extends Dao {
     public Policyholder retrieveById(String inputID) {
         try {
             String query = "select * from policyholder where customerId = ''" + inputID +  "'';";
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = super.retrieve(query);
 
             if (resultSet.next()) { return setCustomerByResultset(resultSet); }
             else return null;
