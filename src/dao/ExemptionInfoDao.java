@@ -74,7 +74,6 @@ public class ExemptionInfoDao extends Dao{
             throw new RuntimeException(e);
         }
     }
-
     public ExemptionInfo getFromResultSet(ResultSet rs){
         try{
             ExemptionInfo exemptionInfo = new ExemptionInfo();

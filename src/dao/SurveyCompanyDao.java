@@ -16,7 +16,6 @@ public class SurveyCompanyDao extends Dao{
         try {
             PreparedStatement pstmt = null;
          /* String query = "insert into surveyCompany values (?,?,?,?,?)";
-
             pstmt = connectPrepareStatement(query);
             pstmt.setString(1, surveyCompany.getSurveyCompanyID());
             pstmt.setString(2, surveyCompany.getSurveyCompanyName());

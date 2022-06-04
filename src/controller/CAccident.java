@@ -18,7 +18,6 @@ public class CAccident {
     public Accident getByAccidentID (String accidentID) {
         return this.accidentDao.retrieveById(accidentID);
     }
-
     public boolean addAccident(Accident accident) {
         return this.accidentDao.create(accident);
     }

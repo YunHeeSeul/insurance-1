@@ -18,7 +18,6 @@ public class VAccident {
     Scanner scn;
     private Accident accident;
     private SurveyCompany surveyCompany;
-
     private CAccident cAccident;
     private CSurveyCompany cSurveyCompany;
     private CCustomer cCustomer;

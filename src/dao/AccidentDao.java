@@ -19,7 +19,6 @@ public class AccidentDao extends Dao{
         try {
             PreparedStatement pstmt = null;
         /*  String query = "insert into accident values (?,?,?,?,?,?,?,?,?,?,?,?)";
-
             pstmt = connectPrepareStatement(query);
             pstmt.setString(1, accident.getAccidentID());
             pstmt.setString(2, accident.getCustomerID());

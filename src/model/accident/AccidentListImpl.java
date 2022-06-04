@@ -8,9 +8,6 @@ import java.util.Optional;
 
 public class AccidentListImpl implements AccidentList {
 
-public abstract class AccidentListImpl implements AccidentList {
-
-
 	public ArrayList<Accident> accidentList;
 
 	public AccidentListImpl(){
@@ -96,14 +93,11 @@ public abstract class AccidentListImpl implements AccidentList {
 
 	@Override
 	public Optional<Accident> getOptionalAccidentByCustomerId(String customerID) {
-
-
 		return Optional.empty();
 	}
 
 	@Override
 	public Optional<Accident> getOptionalAccidentByAccidentId(String accidentID) {
-
 		return Optional.empty();
 	}
 }//end AccidentListImpl

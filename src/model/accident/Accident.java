@@ -31,58 +31,9 @@ public class Accident {
 	}
 	private ArrayList<ExemptionInfo> exemptionContent;
 
-	public Accident(Scanner scn, String accidentID, String customerID, AccidentType accidentType, String accidentDate, String accidentLocation, Level accidentScale, String accidentContent, boolean doingHarm, SurveyCompany repSurveyCompany, String exemptionInfoID, boolean onSite){
+	public Accident(Scanner scn, String accidentID, String customerID, AccidentType accidentType, String accidentDate, String accidentLocation, Level accidentScale, String accidentContent, boolean doingHarm, SurveyCompany repSurveyCompany, String exemptionInfoID, boolean onSite) {
 		this.scn = scn;
 		this.accidentID = accidentID;
-
-import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
-
-public class Accident {
-
-	private String accidentContent;
-	private String accidentDate;
-	private String accidentID;
-	private String accidentLocation;
-	private Level accidentScale;
-	private AccidentType accidentType;
-	private String customerID;
-	private boolean doingHarm;
-	private ExemptionInfo exemptionInfo;
-	private boolean onSite;
-	private SurveyCompany repSurveyCompany;
-	public ExemptionInfo m_ExemptionInfo;
-	public SurveyCompany m_SurveyCompany;
-
-	public Accident(){
-
-	}
-
-	public Accident(String accidentID, String customerID, AccidentType accidentType, String accidentDate, String accidentLocation, Level accidentScale, String accidentContent, boolean doingHarm, SurveyCompany repSurveyCompany, ExemptionInfo exemptionInfo, boolean onSite){
-
-		this.accidentID = "acc1";
-		this.customerID = customerID;
-		this.accidentType = accidentType;
-		this.accidentDate = accidentDate;
-		this.accidentLocation = accidentLocation;
-		this.accidentScale = accidentScale;
-		this.accidentContent = accidentContent;
-		this.doingHarm = doingHarm;
-		this.repSurveyCompany = repSurveyCompany;
-
-		this.exemptionInfoID = exemptionInfoID;
-
-		this.exemptionInfo = exemptionInfo;
-
-		this.onSite = onSite;
-
-	}
-
-	public ArrayList<ExemptionInfo> getExemptionContent() {
-		return exemptionContent;
-	}
-
-	public void setExemptionContent(ArrayList<ExemptionInfo> exemptionContent) {
-		this.exemptionContent = exemptionContent;
 	}
 
 	public String getAccidentID() {
@@ -161,7 +112,12 @@ public class Accident {
 	public void setExemptionInfoID(String exemptionInfoID) {
 		this.exemptionInfoID = exemptionInfoID;
   }
-
+	public ArrayList<ExemptionInfo> getExemptionContent() {
+		return exemptionContent;
+	}
+  	public void setExemptionContent(ArrayList<ExemptionInfo> exemptionContent) {
+		this.exemptionContent = exemptionContent;
+	}
 	public boolean isOnsite() {
 		return onSite;
 	}

@@ -3,7 +3,6 @@ package Practice.InsuranceCompany.Design.src.controller;
 import Practice.InsuranceCompany.Design.src.dao.SurveyCompanyDao;
 import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
 import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompanyListImpl;
-
 public class CSurveyCompany {
     private SurveyCompanyDao surveyCompanyDao;
     public CSurveyCompany(){

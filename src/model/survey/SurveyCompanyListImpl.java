@@ -36,7 +36,6 @@ public class SurveyCompanyListImpl implements SurveyCompanyList {
 		}
 		return null;
 	}
-
 	@Override
 	public boolean updateSurveyAbility(String surveyCompanyID, boolean surveyAbility){
 		SurveyCompany surveyCompany = this.get(surveyCompanyID);
