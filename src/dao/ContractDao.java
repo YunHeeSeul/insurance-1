@@ -120,4 +120,18 @@ public class ContractDao extends Dao{
             throw new RuntimeException(e);
         }
     }
+
+    public ContractListImpl retrieveByCustomerId(String customerID) {
+        try {
+            String query = "select * from contract where customerId='"+customerID+"';";
+            ResultSet rs = super.retrieve(query);
+            ContractListImpl contractList=new ContractListImpl();
+            while(rs.next()){
+                contractList.add(getFromResultSet(rs));
+            }
+            return contractList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
