@@ -59,15 +59,4 @@ public class ExemptionInfo {
 		return true;
 	}
 
-public class ExemptionInfo {
-
-	private String judgementData;
-	private String judgementReason;
-	private double paymentRatio;
-	private Responsibility responsibility;
-
-	public ExemptionInfo(){
-
-	}
-
 }//end ExemptionInfo

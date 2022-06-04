@@ -3,7 +3,6 @@ package Practice.InsuranceCompany.Design.src.controller;
 import Practice.InsuranceCompany.Design.src.dao.ExemptionInfoDao;
 import Practice.InsuranceCompany.Design.src.model.accident.ExemptionInfo;
 
-
 public class CExemptionInfo {
     private ExemptionInfoDao exemptionInfoDao;
     public CExemptionInfo(){
