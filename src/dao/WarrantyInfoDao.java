@@ -12,7 +12,7 @@ public class WarrantyInfoDao extends Dao {
 
     public boolean create(WarrantyInfo warrantyInfo, String insuranceID){
         String query = "insert into warrantyInfo value(";
-            query += dq + warrantyInfo.getContractType().name() + dq + ", "
+            query += dq + warrantyInfo.getContractType().getDetail() + dq + ", "
                     + warrantyInfo.getWarrantyAmount() + ", "
                     + dq + warrantyInfo.getWarrantyConditions() + dq + ", "
                     + dq + warrantyInfo.getWarrantyContent() + dq + ", "
@@ -38,7 +38,7 @@ public class WarrantyInfoDao extends Dao {
         try {
             WarrantyInfo warrantyInfo = new WarrantyInfo();
 
-            warrantyInfo.setContractType(ContractType.valueOf(resultSet.getString("contractType")));
+            warrantyInfo.setContractType(ContractType.makeContractType(resultSet.getString("contractType")));
             warrantyInfo.setWarrantyAmount(resultSet.getInt("warrantyAmount"));
             warrantyInfo.setWarrantyConditions(resultSet.getString("warrantyCondition"));
             warrantyInfo.setWarrantyContent(resultSet.getString("warrantyContent"));

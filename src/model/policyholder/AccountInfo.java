@@ -1,22 +1,36 @@
 package Practice.InsuranceCompany.Design.src.model.policyholder;
 
-
-/**
- * @author macbook
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:47
- */
 public class AccountInfo {
 
 	private String account;
 	private String accountHolder;
 	private String bankName;
 
-	public AccountInfo(){
-
+	public String getAccount() {
+		return account;
 	}
 
-	public void finalize() throws Throwable {
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
+	public String getAccountHolder() {
+		return accountHolder;
+	}
+
+	public void setAccountHolder(String accountHolder) {
+		this.accountHolder = accountHolder;
+	}
+
+	public String getBankName() {
+		return bankName;
+	}
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+
+	public AccountInfo(){
 
 	}
 }//end AccountInfo

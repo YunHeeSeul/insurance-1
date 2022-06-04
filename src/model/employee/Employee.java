@@ -2,81 +2,47 @@ package Practice.InsuranceCompany.Design.src.model.employee;
 
 
 import Practice.InsuranceCompany.Design.src.etcEnum.Department;
-import Practice.InsuranceCompany.Design.src.model.insurance.Insurance;
-import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 
-import java.util.ArrayList;
-
-/**
- * @author macbook
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:48
- */
 public class Employee {
 
-	private Department deparment;
-	private String EmployeeId;
+	private String employeeId;
 	private String name;
+	private Department department;
 	private String phoneNum;
 
 	public Employee(){
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-	/**
-	 * 
-	 * @param insurance
-	 */
-	public boolean createInsurance(Insurance insurance){
-		return false;
+	public String getEmployeeId() {
+		return employeeId;
 	}
 
-	public ArrayList<Customer> findUnpaidCustomer(){
-		return null;
+	public void setEmployeeId(String employeeId) {
+		this.employeeId = employeeId;
 	}
 
-	/**
-	 * 
-	 * @param insurance
-	 */
-	public boolean sendAuthorizationRequest(Insurance insurance){
-		return false;
+	public String getName() {
+		return name;
 	}
 
-	/**
-	 * 
-	 * @param employeeID
-	 * @param subscriptionID
-	 */
-	public boolean sendContractStatus(String employeeID, String subscriptionID){
-		return false;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	/**
-	 * 
-	 * @param customerID
-	 * @param paymentFormID
-	 */
-	public boolean sendPamentStatus(String customerID, String paymentFormID){
-		return false;
+	public Department getDepartment() {
+		return department;
 	}
 
-	/**
-	 * 
-	 * @param insurance
-	 */
-	public boolean sendRateVerfication(Insurance insurance){
-		return false;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
-	/**
-	 * 
-	 * @param customerID
-	 */
-	public boolean sendUnpaidInformation(String customerID){
-		return false;
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
 	}
 }//end Employee

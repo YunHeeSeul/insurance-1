@@ -14,14 +14,12 @@ public class OwnedCarInfoDao extends Dao {
     public boolean create(OwnedCarInfo ownedCarInfo) {
         String query = "insert into ownedCarInfo value(";
         query += dq + ownedCarInfo.getId() + dq + ", "
-                + dq + Integer.toString(ownedCarInfo.getAccidentNumber()) + dq + ", "
-                + dq + ownedCarInfo.getCarType() + dq + ", "
-                + dq + ownedCarInfo.getCarPurpose() + dq + ", "
-                + dq + Integer.toString(ownedCarInfo.getDisplacement()) + dq + ");";
-        System.out.println("Execute Query - " + query);
+                + dq + ownedCarInfo.getAccidentNumber() + dq + ", "
+                + dq + ownedCarInfo.getCarType().getDetail() + dq + ", "
+                + dq + ownedCarInfo.getCarPurpose().getDetail() + dq + ", "
+                + dq + ownedCarInfo.getDisplacement() + dq + ");";
 
-        if(super.create(query)) return true;
-        else return false;
+        return super.create(query);
     }
 
     public OwnedCarInfo retrieveById(String inputID) {
@@ -29,28 +27,24 @@ public class OwnedCarInfoDao extends Dao {
             if(inputID == null ) return null;
             String query = "select * from ownedCarInfo where ownedCarInfoId = " + dq + inputID + dq + ";";
             ResultSet resultSet = statement.executeQuery(query);
-            System.out.println("execture query - " + query);
-            OwnedCarInfo ownedCarInfo = new OwnedCarInfo();
-            if(setInfoByResultset(ownedCarInfo, resultSet)) return ownedCarInfo;
+            if(resultSet.next()) return setInfoByResultset(resultSet);
+            else return null;
         } catch (SQLException e){}
         return null;
     }
 
-    private boolean setInfoByResultset(OwnedCarInfo ownedCarInfo, ResultSet resultSet) {
+    private OwnedCarInfo setInfoByResultset(ResultSet resultSet) {
         try {
-            while(resultSet.next()) {
-                String id = resultSet.getString("ownedCarInfoId");
-                if(id.equals("null")) return false;
-
-                ownedCarInfo.setId(id);
-                ownedCarInfo.setAccidentNumber(resultSet.getInt("accidentNum"));
-                ownedCarInfo.setCarType(CarType.valueOf(resultSet.getString("carType")));
-                ownedCarInfo.setCarPurpose(CarPurpose.valueOf(resultSet.getString("carPurpose")));
-                ownedCarInfo.setDisplacement(resultSet.getInt("displacement"));
-            }
-            return true;
-        } catch (SQLException e){}
-        return false;
+            OwnedCarInfo ownedCarInfo = new OwnedCarInfo();
+            ownedCarInfo.setId(resultSet.getString("ownedCarInfoId"));
+            ownedCarInfo.setAccidentNumber(resultSet.getInt("accidentNum"));
+            ownedCarInfo.setCarType(CarType.makeCarType(resultSet.getString("carType")));
+            ownedCarInfo.setCarPurpose(CarPurpose.makeCarPurpose(resultSet.getString("carPurpose")));
+            ownedCarInfo.setDisplacement(resultSet.getInt("displacement"));
+            return ownedCarInfo;
+        } catch (SQLException e) {
+        }
+        return null;
     }
 
 }

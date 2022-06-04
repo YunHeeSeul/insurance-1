@@ -1,13 +1,23 @@
 package Practice.InsuranceCompany.Design.src.etcEnum;
 
-
-/**
- * @author SeoyeonPark
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:48
- */
 public enum CarType {
-	passenger,
-	lorry,
-	van
+	passenger("승용차"),
+	lorry("화물차"),
+	van("승합차");
+
+	String detail;
+	CarType(String detail) {
+		this.detail=detail;
+	}
+
+	public static CarType makeCarType(String detail){
+		if (detail.equals(passenger.getDetail())) return passenger;
+		if (detail.equals(lorry.getDetail())) return lorry;
+		if (detail.equals(van.getDetail())) return van;
+		else return null;
+	}
+
+	public String getDetail(){
+		return this.detail;
+	}
 }

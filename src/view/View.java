@@ -93,7 +93,7 @@ public class View {
         System.out.println("- ID : " + customer.getCustomerID());
         System.out.println("- 성함 : " + customer.getName());
         System.out.println("- 주민등록번호 : " + customer.getResidentRegistrationNumber());
-        System.out.println("- 성별 : " + (customer.getGender()== Gender.female?"여성":"남성"));
+        System.out.println("- 성별 : " + customer.getGender().getDetail());
         System.out.println("- 생년월일 : " + customer.getDateOfBirth());
         System.out.println("- 휴대전화번호 : " + customer.getPhoneNumber());
         System.out.println("- 이메일 : " + customer.getEmailAddress());

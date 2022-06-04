@@ -39,6 +39,9 @@ public class Customer {
 	}
 
 	public void setCustomerID(String customerID) { this.customerID = customerID; }
+	public CustomerType getCustomerType() {
+		return customerType;
+	}
 	public void setCustomerType(CustomerType customerType) { this.customerType = customerType; }
 	public String getCustomerID(){ return this.customerID; }
 	public String getAddress() {
@@ -98,9 +101,5 @@ public class Customer {
 		System.out.println("ID : " + this.customerID);
 		System.out.println("Name : " + this.name);
 		System.out.println("Date of Birth : " + this.dateOfBirth);
-	}
-
-	public void finalize() throws Throwable {
-
 	}
 }//end Customer

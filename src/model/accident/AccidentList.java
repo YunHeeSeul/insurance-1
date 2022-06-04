@@ -8,21 +8,25 @@ import java.util.Optional;
 
 public interface AccidentList {
 
-	public boolean add(Accident Accident);
+	boolean add(Accident accident);
 
-	public boolean delete(String accidentID);
+	boolean delete(String accidentID);
+
+	ArrayList<Accident> getAllList();
+
+	boolean updateAccidentScale(String accidentID, Level accidentScale);
+
+	boolean updateDoingHarm(String accidentID, boolean doingHarm);
+
+	boolean updateExemptionInfo(String exemptionInfoID, ArrayList exemptionContent);
+
+	Optional<Accident> getOptionalAccidentByCustomerId(String customerID);
+
+	Optional<Accident> getOptionalAccidentByAccidentId(String accidentID);
 
 	public Accident getByAccidentId(String accidentID);
 
 	public Accident getByCustomerId(String customerID);
 
-	public boolean updateAccidentScale(String accidentID, Level accidentScale);
-
-	public boolean updateDoingHarm(String accidentID, boolean doingHarm);
-
-	public boolean updateExemptionInfo(String accidentID, ExemptionInfo ExemptionInfo);
-
-	ArrayList<Accident> getAllList();
-	Optional<Accident> getOptionalAccidentByCustomerId(String customerID);
 
 }

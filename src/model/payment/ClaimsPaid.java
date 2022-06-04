@@ -83,6 +83,7 @@ public class ClaimsPaid extends Payment {
 
 		while(selectClaimReason == 0){
 			System.out.println("청구 사유를 다시 선택하세요 : ");
+			selectClaimReason = scn.nextInt();
 		}
 
 		switch (selectClaimReason){

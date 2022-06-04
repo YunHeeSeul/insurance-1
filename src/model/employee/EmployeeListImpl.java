@@ -1,54 +1,34 @@
 package Practice.InsuranceCompany.Design.src.model.employee;
 
 
-import Practice.InsuranceCompany.Design.src.model.customer.Customer;
+import java.util.ArrayList;
 
-/**
- * @author SeoyeonPark
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:48
- */
-public abstract class EmployeeListImpl implements EmployeeList {
+public class EmployeeListImpl implements EmployeeList {
 
-//	private ArrayList<Customer> customerList;
-	public Employee m_Employee;
+	private ArrayList<Employee> employeeList;
 
 	public EmployeeListImpl(){
-
+		this.employeeList=new ArrayList<>();
 	}
-
-	public void finalize() throws Throwable {
-
-	}
-	/**
-	 * 
-	 * @param employee
-	 */
 	public boolean add(Employee employee){
-		return false;
+		this.employeeList.add(employee);
+		return true;
 	}
 
-	/**
-	 * 
-	 * @param employeeID
-	 */
 	public boolean delete(String employeeID){
+		for(Employee employee : this.employeeList) {
+			if (employee.getEmployeeId().equals(employeeID))
+				return this.employeeList.remove(employee);
+		}
 		return false;
 	}
 
-	/**
-	 * 
-	 * @param employeeID
-	 */
-	public Employee get(String employeeID){
+	public Employee getByID(String employeeID){
+		for(Employee employee : this.employeeList) {
+			if (employee.getEmployeeId().equals(employeeID))
+				return employee;
+		}
 		return null;
 	}
 
-//	/**
-//	 *
-//	 * @param employeeName
-//	 */
-//	public Employee get(String employeeName){
-//		return null;
-//	}
 }//end EmployeeListImpl

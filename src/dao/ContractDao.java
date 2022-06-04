@@ -107,6 +107,20 @@ public class ContractDao extends Dao{
         }
     }
 
+    public ContractListImpl retrieveValidByCustomerId(String cusID) {
+        try {
+            String query = "select * from contract where customerID = '"+cusID+"' and date_add(joindate, interval contractPeriod*12 Month)>now();";
+            ResultSet rs = super.retrieve(query);
+            ContractListImpl contractList=new ContractListImpl();
+            while(rs.next()){
+                contractList.add(getFromResultSet(rs));
+            }
+            return contractList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public int retrieveMaxID() {
         try {
             String query = "select max(contractID) as ID from contract;";

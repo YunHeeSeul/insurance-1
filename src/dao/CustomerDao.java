@@ -3,6 +3,7 @@ package Practice.InsuranceCompany.Design.src.dao;
 import Practice.InsuranceCompany.Design.src.etcEnum.Gender;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
+import Practice.InsuranceCompany.Design.src.model.customer.CustomerType;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,11 +26,12 @@ public class CustomerDao extends Dao {
         query += dq + customer.getCustomerID() + dq + ", "
                         + dq + customer.getName() + dq + ", "
                         + dq + customer.getResidentRegistrationNumber() + dq + ", "
-                        + dq + (customer.getGender()==Gender.female?"f":"m") + dq + ", "
+                        + dq + customer.getGender().getDetail() + dq + ", "
                         + dq + customer.getDateOfBirth() + dq + ", "
                         + dq + customer.getPhoneNumber() + dq + ", "
                         + dq + customer.getEmailAddress() + dq + ", "
-                        + dq + customer.getAddress() + dq + ", ";
+                        + dq + customer.getAddress() + dq + ", "
+                        + dq + CustomerType.interested.getDetail() + dq + ", ";
 
         if(customer.getDiseaseHistory() == null) query += "null" + ", ";
         else query += dq + customer.getDiseaseHistory().getId() + dq + ", ";
@@ -39,8 +41,6 @@ public class CustomerDao extends Dao {
 
         if(customer.getOwnedCarInfo() == null) query += "null" + ");";
         else query += dq + customer.getOwnedCarInfo().getId() + dq + ");";
-
-        System.out.println("Execute Query - " + query);
 
         return super.create(query);
     }
@@ -63,11 +63,9 @@ public class CustomerDao extends Dao {
         try {
             String query = "select * from customer where customerId = " + dq + inputID + dq + ";";
             ResultSet resultSet = statement.executeQuery(query);
-            System.out.println("Exectue Query - " + query);
 
-            Customer customer = null;
-            while (resultSet.next()) { customer = setCustomerByResultset(resultSet); }
-            return customer;
+            if (resultSet.next()) { return setCustomerByResultset(resultSet); }
+            else return null;
         } catch (SQLException e){}
         return null;
     }
@@ -100,13 +98,11 @@ public class CustomerDao extends Dao {
             customer.setCustomerID(resultSet.getString("customerId"));
             customer.setName(resultSet.getString("customerName"));
             customer.setResidentRegistrationNumber(resultSet.getString("residentRegistrationNum"));
-            customer.setGender(resultSet.getString("gender").equals("f")? Gender.female:Gender.male);
+            customer.setGender(resultSet.getString("gender").equals(Gender.female.getDetail())? Gender.female:Gender.male);
             customer.setDateOfBirth(resultSet.getString("date_of_birth"));
             customer.setPhoneNumber(resultSet.getString("phone_number"));
             customer.setEmailAddress(resultSet.getString("email_address"));
             customer.setAddress(resultSet.getString("address"));
-
-
 
             customer.setDiseaseHistory(this.diseaseHistoryDao.retrieveById(resultSet.getString("diseaseHistoryId")));
             customer.setOwnedBuildingInfo(this.ownedBuildingInfoDao.retrieveById(resultSet.getString("ownedBuildingInfoId")));
@@ -124,11 +120,12 @@ public class CustomerDao extends Dao {
         String query = "update customer set ";
         query += "customerName = " + dq + customer.getName() + dq + ", "
                 + "residentRegistrationNum = " + dq + customer.getResidentRegistrationNumber() + dq + ", "
-                + "gender = " + dq + (customer.getGender()==Gender.female?"f":"m") + dq + ", "
+                + "gender = " + dq + customer.getGender().getDetail() + dq + ", "
                 + "date_of_birth = " + dq + customer.getDateOfBirth() + dq + ", "
                 + "phone_number = " + dq + customer.getPhoneNumber() + dq + ", "
                 + "email_address = " + dq  + customer.getEmailAddress() + dq + ", "
-                + "address = " + dq + customer.getAddress() + dq + ", ";
+                + "address = " + dq + customer.getAddress() + dq + ", "
+                + "customerType = " + dq + customer.getCustomerType().getDetail() + dq + ", ";
 
         if(customer.getDiseaseHistory() == null) query += "diseaseHistoryId = null, ";
         else query += "diseaseHistoryId = " + dq + customer.getDiseaseHistory().getId() + dq + ", ";
@@ -141,7 +138,12 @@ public class CustomerDao extends Dao {
 
         query += " where customerId = " + dq + inputID + dq ;
 
-        System.out.println("Execute Query - " + query);
+        return super.update(query);
+    }
+
+    public boolean updateCustomerTypeById(String inputID) {
+        String query = "update customer set customerType = '"+ CustomerType.subscriber.getDetail()
+                + "' where customerId = " + dq + inputID + dq +";" ;
         return super.update(query);
     }
 }
