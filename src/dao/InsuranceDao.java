@@ -24,16 +24,15 @@ public class InsuranceDao extends Dao{
         String queryForInsurance = "insert into insurance value(";
         queryForInsurance += dq + insurance.getInsuranceID() + dq + ", "
                 + dq + insurance.getInsuranceName() + dq + ", "
-                + dq + insurance.getInsuranceType().name() + dq + ", "
+                + dq + insurance.getInsuranceType().getDetail() + dq + ", "
                 + dq + insurance.getJoinAge() + dq + ", "
                 + dq + insurance.getPeril() + dq + ", "
                 + dq + insurance.getRate() + dq + ", "
-                + dq + (insurance.isPermission()?"t":"f") + dq + ", "
+                + dq + insurance.isPermission() + dq + ", "
                 + dq + insurance.getPremium() + dq + ", ";
 
         if(insurance.getAcquisitionPolicy() == null) queryForInsurance += dq + null + dq + ");";
         else queryForInsurance += dq + insurance.getAcquisitionPolicy().getID() + dq + ");";
-        System.out.println("Execute QueryForInsurance - " + queryForInsurance);
 
         return super.create(queryForInsurance);
     }
@@ -57,11 +56,9 @@ public class InsuranceDao extends Dao{
         try {
             String query = "select * from insurance where insuranceId = " + dq + inputID + dq + ";";
             ResultSet resultSet = statement.executeQuery(query);
-            System.out.println("Exectue Query - " + query);
 
-            Insurance insurance = null;
-            while (resultSet.next()) { insurance = setInsuranceByResultset(resultSet); }
-            return insurance;
+            if (resultSet.next()) { return setInsuranceByResultset(resultSet); }
+            else return null;
         } catch (SQLException e){}
         return null;
     }
@@ -69,16 +66,15 @@ public class InsuranceDao extends Dao{
     public boolean updateById(String inputID, Insurance insurance) {
         String query = "update insurance set ";
         query += "insuranceName = " + dq + insurance.getInsuranceName() + dq + ", "
-                + "insuranceType = " + dq + insurance.getInsuranceType() + dq + ", "
+                + "insuranceType = " + dq + insurance.getInsuranceType().getDetail() + dq + ", "
                 + "join_age = " + insurance.getJoinAge() + ", "
                 + "peril = " + insurance.getPeril() + ", "
                 + "rate = " + insurance.getRate() + ", "
-                + "permission = " + dq + (insurance.isPermission()?"t":"f") + dq + ", "
+                + "permission = " + dq + insurance.isPermission() + dq + ", "
                 + "premium = " + insurance.getPremium() + ", "
                 + "acquisitionPolicyId = " + dq + insurance.getAcquisitionPolicy().getID() + dq
                 + " where insuranceId = " + dq + inputID + dq + ";";
 
-        System.out.println("Execute Query - " + query);
         return super.update(query);
     }
 
@@ -116,11 +112,11 @@ public class InsuranceDao extends Dao{
 
             insurance.setInsuranceID(resultSet.getString("insuranceId"));
             insurance.setInsuranceName(resultSet.getString("insuranceName"));
-            insurance.setInsuranceType(InsuranceType.valueOf(resultSet.getString("insuranceType")));
+            insurance.setInsuranceType(InsuranceType.makeInsuranceType(resultSet.getString("insuranceType")));
             insurance.setJoinAge(resultSet.getInt("join_age"));
             insurance.setPeril(resultSet.getDouble("peril"));
             insurance.setRate(resultSet.getDouble("rate"));
-            insurance.setPermission(resultSet.getString("permission") == "t" ? true : false);
+            insurance.setPermission(resultSet.getBoolean("permission"));
             insurance.setPremium(resultSet.getInt("premium"));
 
             insurance.setWarrantyContent(warrantyInfoDao.retrieveAllByInsuranceId(insurance.getInsuranceID()));

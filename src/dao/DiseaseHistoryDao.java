@@ -13,12 +13,10 @@ public class DiseaseHistoryDao extends Dao {
         String query = "insert into diseaseHistory value(";
         query += dq + diseaseHistory.getId() + dq + ", "
                 + dq + diseaseHistory.getName() + dq + ", "
-                + dq + diseaseHistory.getSeverity().name() + dq + ", "
+                + dq + diseaseHistory.getSeverity().getDetail() + dq + ", "
                 + diseaseHistory.getStrugglePeriod() + ");";
-        System.out.println("Execute Query - " + query);
 
-        if(super.create(query)) return true;
-        else return false;
+        return super.create(query);
     }
 
     public DiseaseHistory retrieveById(String inputID) {
@@ -27,18 +25,18 @@ public class DiseaseHistoryDao extends Dao {
 
             String query = "select * from diseaseHistory where diseaseHistoryId = " + dq + inputID + dq + ";";
             ResultSet resultSet = statement.executeQuery(query);
-            DiseaseHistory diseaseHistory = new DiseaseHistory();
-            while(resultSet.next()) { diseaseHistory = setInfoByResultset(diseaseHistory, resultSet); }
-            return diseaseHistory;
+            if(resultSet.next()) { return setInfoByResultset(resultSet); }
+            else return null;
         } catch (SQLException e){}
         return null;
     }
 
-    private DiseaseHistory setInfoByResultset(DiseaseHistory diseaseHistory, ResultSet resultSet) {
+    private DiseaseHistory setInfoByResultset(ResultSet resultSet) {
         try {
+            DiseaseHistory diseaseHistory = new DiseaseHistory();
             diseaseHistory.setId(resultSet.getString("diseaseHistoryId"));
             diseaseHistory.setName(resultSet.getString("diseaseName"));
-            diseaseHistory.setSeverity(Level.valueOf(resultSet.getString("severity")));
+            diseaseHistory.setSeverity(Level.makeLevel(resultSet.getString("severity")));
             diseaseHistory.setStrugglePeriod(resultSet.getInt("strugglePeriod"));
             return diseaseHistory;
         } catch (SQLException e){}

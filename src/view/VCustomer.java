@@ -116,7 +116,7 @@ public class VCustomer extends View {
             case 3:
                 System.out.println("새로운 고객 성별 : ");
                 input = scanner.next();
-                customer.setGender(input.equals("여성")?Gender.female:Gender.male);
+                customer.setGender(input.equals(Gender.female.getDetail())?Gender.female:Gender.male);
                 break;
             case 4:
                 System.out.println("새로운 고객 생년월일 : ");
@@ -148,9 +148,9 @@ public class VCustomer extends View {
 
                 System.out.println("-- 질환의 중증도(고/중/저) : ");
                 input = scanner.next();
-                if(input.equals("고")) diseaseHistory.setSeverity(Level.high);
-                else if(input.equals("중")) diseaseHistory.setSeverity(Level.middle);
-                else if(input.equals("저")) diseaseHistory.setSeverity(Level.low);
+                if(input.equals(Level.high.getDetail())) diseaseHistory.setSeverity(Level.high);
+                else if(input.equals(Level.middle.getDetail())) diseaseHistory.setSeverity(Level.middle);
+                else if(input.equals(Level.low.getDetail())) diseaseHistory.setSeverity(Level.low);
 
                 System.out.println("-- 투병기간(단위:개월) : ");
                 input = scanner.next();
@@ -183,14 +183,14 @@ public class VCustomer extends View {
 
                 System.out.println("-- 차량 종류(승용차/회물차/승합차) : ");
                 input = scanner.next();
-                if(input.equals("승용차")) ownedCarInfo.setCarType(CarType.passenger);
-                else if(input.equals("회물차")) ownedCarInfo.setCarType(CarType.lorry);
-                else if(input.equals("승합차")) ownedCarInfo.setCarType(CarType.van);
+                if(input.equals(CarType.passenger.getDetail())) ownedCarInfo.setCarType(CarType.passenger);
+                else if(input.equals(CarType.lorry.getDetail())) ownedCarInfo.setCarType(CarType.lorry);
+                else if(input.equals(CarType.van.getDetail())) ownedCarInfo.setCarType(CarType.van);
 
                 System.out.println("-- 차량 용도(사업용/비사업용) : ");
                 input = scanner.next();
-                if(input.equals("사업용")) ownedCarInfo.setCarPurpose(CarPurpose.business);
-                else if(input.equals("비사업용")) ownedCarInfo.setCarPurpose(CarPurpose.notBusiness);
+                if(input.equals(CarPurpose.business.getDetail())) ownedCarInfo.setCarPurpose(CarPurpose.business);
+                else if(input.equals(CarPurpose.notBusiness.getDetail())) ownedCarInfo.setCarPurpose(CarPurpose.notBusiness);
 
                 System.out.println("-- 배기량(단위:cc) : ");
                 input = scanner.next();
@@ -224,10 +224,10 @@ public class VCustomer extends View {
         System.out.println("고객 주민등록번호 (입력 예시 => 950231-123456) : ");
         customer.setResidentRegistrationNumber(scanner.next());
 
-        System.out.println("성별 (여성은 f, 남성은 m 으로 입력) : ");
-        customer.setGender(scanner.next().equals("f")? Gender.female:Gender.male);
+        System.out.println("성별 (여성, 남성) : ");
+        customer.setGender(scanner.next().equals(Gender.female.getDetail())? Gender.female:Gender.male);
 
-        System.out.println("고객의 생년월일 (입력 예시 => 1995.02.31) : ");
+        System.out.println("고객의 생년월일 (입력 예시 => 1995-02-31) : ");
         customer.setDateOfBirth(scanner.next());
 
         System.out.println("고객의 휴대전화번호 (입력 예시 => 010-1111-2222) : ");

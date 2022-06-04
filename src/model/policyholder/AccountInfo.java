@@ -1,11 +1,5 @@
 package Practice.InsuranceCompany.Design.src.model.policyholder;
 
-
-/**
- * @author macbook
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:47
- */
 public class AccountInfo {
 
 	private String account;
@@ -13,10 +7,6 @@ public class AccountInfo {
 	private String bankName;
 
 	public AccountInfo(){
-
-	}
-
-	public void finalize() throws Throwable {
 
 	}
 }//end AccountInfo

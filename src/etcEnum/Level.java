@@ -1,17 +1,26 @@
 package Practice.InsuranceCompany.Design.src.etcEnum;
 
-
-/**
- * @author SeoyeonPark
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:49
- */
 public enum Level {
-	high(2),
-	middle(1),
-	low(0);
+	high("상",2),
+	middle("중",1),
+	low("하",0);
 
 	private int severity;
-	Level(int severity){ this.severity = severity; }
+	private String detail;
+	Level(String detail, int severity){
+		this.severity = severity;
+		this.detail=detail;
+	}
+
+	public static Level makeLevel(String detail){
+		if(detail.equals(high.getDetail())) return high;
+		if(detail.equals(middle.getDetail())) return middle;
+		if(detail.equals(low.getDetail())) return low;
+		return null;
+	}
 	public int getLevelNum(){ return this.severity; }
+
+	public String getDetail() {
+		return detail;
+	}
 }

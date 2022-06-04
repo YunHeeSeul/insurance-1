@@ -50,9 +50,9 @@ public class DiseaseHistory {
 
 		System.out.println("질환의 중즘도(고/중/저) : ");
 		String input = scanner.next();
-		if(input.equals("고")) this.severity = Level.high;
-		else if(input.equals("중")) this.severity = Level.high;
-		else if(input.equals("저")) this.severity = Level.low;
+		if(input.equals(Level.high.getDetail())) this.severity = Level.high;
+		else if(input.equals(Level.middle.getDetail())) this.severity = Level.middle;
+		else if(input.equals(Level.low.getDetail())) this.severity = Level.low;
 		else System.out.println("잘못된 중증도입니다.");
 
 		System.out.println("투병 기간(단위:개월) : ");

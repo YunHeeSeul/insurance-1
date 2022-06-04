@@ -1,6 +1,8 @@
 package Practice.InsuranceCompany.Design.src.view;
 
 import Practice.InsuranceCompany.Design.src.controller.CContract;
+import Practice.InsuranceCompany.Design.src.controller.CCustomer;
+import Practice.InsuranceCompany.Design.src.controller.CInsurance;
 import Practice.InsuranceCompany.Design.src.model.contract.Contract;
 import Practice.InsuranceCompany.Design.src.model.contract.ContractListImpl;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
@@ -16,10 +18,6 @@ public class VContract {
     private CCustomer cCustomer;
     private CInsurance cInsurance;
     private CSubscription cSubscription;
-//    private ContractListImpl contractList;
-//    private SubscriptionListImpl subscriptionList;
-//    private CustomerListImpl customerList;
-//    private InsuranceListImpl insuranceList;
 
     public VContract(Scanner scn){
         this.scn=scn;
@@ -28,14 +26,6 @@ public class VContract {
         this.cInsurance=new CInsurance();
         this.cSubscription=new CSubscription();
     }
-
-//    public VContract(Scanner scn, ContractListImpl contractList, SubscriptionListImpl subscriptionList, CustomerListImpl customerList, InsuranceListImpl insuranceList){
-//        this.scn=scn;
-//        this.contractList=contractList;
-//        this.subscriptionList=subscriptionList;
-//        this.customerList=customerList;
-//        this.insuranceList=insuranceList;
-//    }
 
     public void run() {
         while (true) {
@@ -54,10 +44,6 @@ public class VContract {
 
 
     private boolean inquireAllContract(){
-//        System.out.println("----------------------------계약 전체 목록----------------------------");
-//        System.out.println("(계약ID) (고객ID) (보험ID) (월보험료) (가입일자) (가입기간) (계약유지활동일자)");
-//        for(Contract contract : this.contractList.getAllList())
-//            System.out.println(contract.getContractInfo());
         ContractListImpl contractList=this.cContract.getAllContractList();
         if(contractList.getAllList().size()==0){ System.out.println("계약이 없습니다."); return false;}
         System.out.println("----------------------------계약 전체 목록----------------------------");
@@ -76,9 +62,9 @@ public class VContract {
         if(subscription==null) { System.out.println("없는 청약서 ID 입니다."); return; }
 
         String cusID = subscription.getCustomerID();
-        String cusName=this.cCustomer.getByCustomerId(cusID).getCustomerName();
+        String cusName=this.cCustomer.retrieveById(cusID).getName();
         String insuranceID =subscription.getInsuranceID();
-        String insuranceName=this.cInsurance.getInsuranceInfoById(insuranceID).getInsuranceName();
+        String insuranceName=this.cInsurance.retrieveById(insuranceID).getInsuranceName();
         String date = subscription.getDateCreated();
         UnderwritingStatus status = subscription.getUnderwritingStatus();
         String insuranceAgentID=subscription.getInsuranceAgentID();
@@ -133,9 +119,9 @@ public class VContract {
         System.out.println("------------------------계약유지활동 대상 목록------------------------");
         System.out.println("(계약ID) (보험명) (고객명) (생년월일) (가입일자) (가입기간) (계약유지활동일자)");
         for(Contract contract : contractList.getAllList()){
-            Customer customer = this.cCustomer.getByCustomerId(contract.getCustomerID());
+            Customer customer = this.cCustomer.retrieveById(contract.getCustomerID());
             String insuranceID =contract.getInsuranceID();
-            String insuranceName = this.cInsurance.getInsuranceInfoById(insuranceID).getInsuranceName();
+            String insuranceName = this.cInsurance.retrieveById(insuranceID).getInsuranceName();
             String cusName = customer.getName();
             String birth = customer.getDateOfBirth();
             String joinDate = contract.getJoinDate();
