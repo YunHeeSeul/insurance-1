@@ -39,14 +39,14 @@ public class AccidentDao extends Dao{
                     +accident.getAccidentID()+"','"
                     +accident.getCustomerID()+"','"
                     +accident.getAccidentType()+"','"
-                    +accident.getAccidentDate()+"',"
-                    +accident.getAccidentLocation()+"',"
-                    +accident.getAccidentScale()+"',"
-                    +accident.getAccidentContent()+"',"
-                    +accident.isDoingHarm()+"',"
-                    +accident.getRepSurveyCompany()+"',"
+                    +accident.getAccidentDate()+"','"
+                    +accident.getAccidentLocation()+"','"
+                    +accident.getAccidentScale()+"','"
+                    +accident.getAccidentContent()+"','"
+                    +accident.isDoingHarm()+"','"
+                    +accident.getRepSurveyCompany()+"','"
                     +accident.getExemptionInfoID()+"',"
-                    +accident.isOnsite()+"';";
+                    +accident.isOnsite()+";";
             return super.create(query);
 
         } catch (Exception e) {

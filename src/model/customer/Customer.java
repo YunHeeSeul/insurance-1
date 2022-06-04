@@ -102,8 +102,4 @@ public class Customer {
 		System.out.println("Name : " + this.name);
 		System.out.println("Date of Birth : " + this.dateOfBirth);
 	}
-
-	public void finalize() throws Throwable {
-
-	}
 }//end Customer
