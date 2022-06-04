@@ -1,7 +1,5 @@
 package Practice.InsuranceCompany.Design.src.model.policyholder;
-
-
-import Practice.InsuranceCompany.Design.src.customer.Customer;
+import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 
 import java.util.ArrayList;
 

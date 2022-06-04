@@ -1,16 +1,9 @@
 package Practice.InsuranceCompany.Design.src.dao;
-
 import Practice.InsuranceCompany.Design.src.model.contract.Contract;
 import Practice.InsuranceCompany.Design.src.model.contract.ContractListImpl;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 public class ContractDao extends Dao{
 
     public ContractDao(){
@@ -127,4 +120,24 @@ public class ContractDao extends Dao{
             throw new RuntimeException(e);
         }
     }
+
+    public ContractListImpl retrieveByCustomerId(String customerID) {
+        try {
+            ContractListImpl contractList = new ContractListImpl;
+
+            String query = "select * from contract where customerId='"+customerID+"';";
+            ResultSet rs = super.retrieve(query);
+
+            while(rs.next()){
+                Contract contract = getFromResultSet(rs);
+                contractList.add(contract);
+            }
+
+            return contractList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

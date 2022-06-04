@@ -67,8 +67,10 @@ public class ContractListImpl implements ContractList {
 		return false;
 	}
 
-	@Override
-	public Optional<Contract> getOptionalContractByCustomerId(String customerID) {
-		return Optional.empty();
+
+	public void printAllList() {
+		for(Contract contract: this.ContractList){
+			contract.getContractInfo();
+		}
 	}
 }//end ContractListImpl

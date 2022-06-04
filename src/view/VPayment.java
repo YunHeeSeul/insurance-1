@@ -1,6 +1,7 @@
 package Practice.InsuranceCompany.Design.src.view;
 
 import Practice.InsuranceCompany.Design.src.controller.CContract;
+import Practice.InsuranceCompany.Design.src.controller.CCustomer;
 import Practice.InsuranceCompany.Design.src.controller.CPayment;
 
 import Practice.InsuranceCompany.Design.src.model.contract.Contract;
@@ -9,8 +10,6 @@ import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentForm;
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentType;
-
-import java.util.Optional;
 import java.util.Scanner;
 
 public class VPayment {
@@ -75,13 +74,13 @@ public class VPayment {
 
         System.out.print("고객 ID : ");
         String customerID = scn.next();
-        customer= cCustomer.getByCustomerId(customerID);
+        customer= cCustomer.retrieveById(customerID);
 
 
         while(customer == null) {
             System.out.println("없는 고객입니다. 다시 입력해주세요.");
             customerID = scn.next();
-            customer = cCustomer.getByCustomerId(customerID);
+            customer = cCustomer.retrieveById(customerID);
         }
 
         System.out.println("제지급금 유형을 선택하세요.");
@@ -120,7 +119,7 @@ public class VPayment {
         paymentForm.setPayment(paymentForm.getPaymentType().getPayment());
         paymentForm.getPayment().setPaymentInfo(scn);
 
-        ContractListImpl contractList = cContract.getContractByCustomerId(customer.getCustomerID());
+        ContractListImpl contractList = cContract.getByCustomerId(customer.getCustomerID());
         contractList.printAllList();
 
         System.out.println("계약 고유 코드를 입력해주세요");
@@ -145,7 +144,7 @@ public class VPayment {
         System.out.print("고객 ID : ");
         String customerID = scn.next();
 
-        Customer customer = cCustomer.getByCustomerId(customerID);
+        Customer customer = cCustomer.retrieveById(customerID);
 
         while (customer == null) {
             System.out.print("해당 고객 ID를 가진 고객이 존재하지 않습니다.");
@@ -153,7 +152,7 @@ public class VPayment {
             System.out.print("=============================================================");
             System.out.print("고객 ID : ");
             customerID = scn.next();
-            customer = cCustomer.getByCustomerId(customerID);
+            customer = cCustomer.retrieveById(customerID);
         }
 
         Contract contract = cContract.getContractById(customerID);
@@ -186,7 +185,7 @@ public class VPayment {
         System.out.print("=============================================================");
         System.out.print("고객 ID : ");
         String customerID = scn.next();
-        Customer customer= cCustomer.getByCustomerId(customerID);
+        Customer customer= cCustomer.retrieveById(customerID);
 
         while(customer == null){
             System.out.print("해당 고객 ID를 가진 고객이 존재하지 않습니다.");
@@ -194,7 +193,7 @@ public class VPayment {
             System.out.print("=============================================================");
             System.out.print("고객 ID : ");
             customerID = scn.next();
-            customer= cCustomer.getByCustomerId(customerID);
+            customer= cCustomer.retrieveById(customerID);
         }
 
 

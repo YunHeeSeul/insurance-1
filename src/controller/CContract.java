@@ -38,4 +38,8 @@ public class CContract {
     public int getMaxID() {
         return this.contractDao.retrieveMaxID();
     }
+
+    public ContractListImpl getByCustomerId(String customerID) {
+        return this.contractDao.retrieveByCustomerId(customerID);
+    }
 }

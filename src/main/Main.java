@@ -10,7 +10,3 @@ public class Main {
         vMain.run();
     }
 }
-
-/*
-*
- */

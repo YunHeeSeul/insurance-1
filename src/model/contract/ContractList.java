@@ -21,5 +21,5 @@ public interface ContractList {
 
 	boolean updateMDate(String contractID, String maintenanceDate);
 
-	Optional<Contract> getOptionalContractByCustomerId(String customerID);
+	public void printAllList();
 }

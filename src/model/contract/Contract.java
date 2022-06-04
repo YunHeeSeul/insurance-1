@@ -85,7 +85,7 @@ public class Contract {
 
 	// 추가
 	public String getContractInfo(){
-		return contractID+" "+customerID+" "+insuranceID+" "+ premium +" "+joinDate+" "+ contractPeriod +" "+ activityDate;
+		return "계약 고유번호: " +  contractID+" 고객 고유번호: "+customerID+" 보험 고유번호:  "+insuranceID+" 월 보험료: "+ premium +"가입 일자:  "+joinDate+" 계약 기간:  "+ contractPeriod +"계약 유지활동 수행 일자:  "+ activityDate;
 	}
 
 	// 추가
