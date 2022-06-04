@@ -1,5 +1,10 @@
 package Practice.InsuranceCompany.Design.src.model.accident;
 
+public enum AccidentType {
+	car,
+	fire,
+	health
+
 import Practice.InsuranceCompany.Design.src.etcEnum.CarType;
 
 public enum AccidentType {
@@ -21,4 +26,5 @@ public enum AccidentType {
 	public String getDetail(){
 		return this.detail;
 	}
+
 }

@@ -1,11 +1,15 @@
 package Practice.InsuranceCompany.Design.src.model.survey;
 
+import java.util.ArrayList;
+
+=======
 
 /**
  * @author SeoyeonPark
  * @version 1.0
  * @created 21-5-2022 ���� 11:03:50
  */
+
 public interface SurveyCompanyList {
 
 
@@ -14,13 +18,10 @@ public interface SurveyCompanyList {
 
 	boolean delete(String surveyCompanyID);
 
+	SurveyCompany get(String surveyCompanyID);
+	ArrayList<SurveyCompany> getAllList();
 
-	SurveyCompany getID(String surveyCompanyID);
+ 	boolean updateSurveyAbility(String surveyCompanyID, boolean surveyAbility);
 
+}
 
-	SurveyCompany getName(String name);
-
-
-	boolean update(String surveyCompanyID, boolean surveyAbility);
-
-}}
