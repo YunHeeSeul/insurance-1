@@ -1,74 +1,47 @@
 package Practice.InsuranceCompany.Design.src.model.subscription;
 
-
-import Practice.InsuranceCompany.Design.src.etcEnum.UnderwritingStatus;
+import Practice.InsuranceCompany.Design.src.model.insurance.Insurance;
 
 import java.util.ArrayList;
 
-/**
- * @author SeoyeonPark
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:50
- */
-public abstract class SubscriptionListImpl implements SubscriptionList {
+public class SubscriptionListImpl implements SubscriptionList {
 
-	private ArrayList<Subscription> subscriptionList;
-	public Subscription m_Subscription;
+    private ArrayList<Subscription> subscriptionList;
 
-	public SubscriptionListImpl(){
+    public SubscriptionListImpl(){ this.subscriptionList = new ArrayList<>(); }
+    public ArrayList<Subscription> getSubscriptionList(){ return this.subscriptionList; }
 
-	}
+    @Override
+    public boolean add(Subscription subscription) {
+        if(this.subscriptionList != null){
+            this.subscriptionList.add(subscription);
+            return true;
+        }
+        return false;
+    }
 
-	public void finalize() throws Throwable {
+    @Override
+    public boolean delete(String subscriptionID) {
+        if(this.subscriptionList != null) {
+            for (Subscription subscription : this.subscriptionList) {
+                if (subscriptionID.equals(subscription.getInsuranceID())) { this.subscriptionList.remove(subscription); }
+                return true;
+            }
+        }
+        return false;
+    }
 
-	}
-	/**
-	 * 
-	 * @param subscription
-	 */
-	public boolean add(Subscription subscription){
-		return false;
-	}
+    @Override
+    public Subscription get(String subscriptionID) {
+        if(this.subscriptionList != null) {
+            for (Subscription subscription : this.subscriptionList)
+                if (subscriptionID.equals(subscription.getInsuranceID())) return subscription;
+        }
+        return null;
+    }
 
-	/**
-	 * 
-	 * @param subscriptionID
-	 */
-	public boolean delete(String subscriptionID){
-		return false;
-	}
-
-	/**
-	 * 
-	 * @param custiomerID
-	 */
-	public Subscription getByCustomerID(String custiomerID){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param subscriptionID
-	 */
-	public Subscription getBySubscriptionID(String subscriptionID){
-		return null;
-	}
-
-	/**
-	 * 
-	 * @param updateSubscriptionID
-	 * @param underwritingStatus
-	 */
-	public boolean updateUnderwriting(String updateSubscriptionID, UnderwritingStatus underwritingStatus){
-		return false;
-	}
-
-	/**
-	 * 
-	 * @param subscriptionID
-	 * @param underwritingStatus
-	 */
-	public boolean updateUnderwritingStatus(String subscriptionID, UnderwritingStatus underwritingStatus){
-		return false;
-	}
-}//end SubscriptionListImpl
+    @Override
+    public boolean update(String subscriptionID) {
+        return false;
+    }
+}

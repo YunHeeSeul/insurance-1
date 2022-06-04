@@ -1,7 +1,5 @@
 package Practice.InsuranceCompany.Design.src.main;
 
-
-
 import Practice.InsuranceCompany.Design.src.view.VMain;
 
 public class Main {

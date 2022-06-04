@@ -1,8 +1,6 @@
 package Practice.InsuranceCompany.Design.src.model.customer;
 
 
-import java.util.Optional;
-
 public interface CustomerList {
 
 	public boolean add(Customer customer);

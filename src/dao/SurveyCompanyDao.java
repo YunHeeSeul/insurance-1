@@ -12,29 +12,14 @@ public class SurveyCompanyDao extends Dao{
         super.connect();
     };
 
-    public boolean create(SurveyCompany surveyCompany){
-        try {
-            PreparedStatement pstmt = null;
-         /* String query = "insert into surveyCompany values (?,?,?,?,?)";
-            pstmt = connectPrepareStatement(query);
-            pstmt.setString(1, surveyCompany.getSurveyCompanyID());
-            pstmt.setString(2, surveyCompany.getSurveyCompanyName());
-            pstmt.setString(3, surveyCompany.getAddress());
-            pstmt.setString(4, surveyCompany.getPhoneNum());
-            pstmt.setBoolean(5, surveyCompany.isSurveyAbility());
-            super.create(pstmt);
-*/
-            String query = "insert into surveyCompany values ('"
-                    +surveyCompany.getSurveyCompanyID()+"','"
-                    +surveyCompany.getSurveyCompanyName()+"','"
-                    +surveyCompany.getAddress()+"','"
-                    +surveyCompany.getPhoneNum()+"',"
-                    +surveyCompany.isSurveyAbility()+"';";
-            return super.create(query);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
+    public boolean create(SurveyCompany surveyCompany) {
+        String query = "insert into surveyCompany values ('"
+                + surveyCompany.getSurveyCompanyID() + "','"
+                + surveyCompany.getSurveyCompanyName() + "','"
+                + surveyCompany.getAddress() + "','"
+                + surveyCompany.getPhoneNum() + "',"
+                + surveyCompany.isSurveyAbility() + ");";
+        return super.create(query);
     }
 
     public boolean delete(String surveyCompanyID){
@@ -43,7 +28,7 @@ public class SurveyCompanyDao extends Dao{
     }
 
     public boolean update(String surveyCompanyID, boolean surveyAbility){
-        String query = "update surveyCompany set surveyAbility='"+surveyAbility+"' where surveyCompanyID='"+surveyCompanyID+"';";
+        String query = "update surveyCompany set surveyAbility="+surveyAbility+" where surveyCompanyID='"+surveyCompanyID+"';";
         return super.update(query);
     }
 

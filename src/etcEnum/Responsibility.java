@@ -9,6 +9,12 @@ public enum Responsibility {
 		this.detail=detail;
 	}
 
+	public static Responsibility makeResponsibility(String detail){
+		if (detail.equals(notResponsible.getDetail())) return notResponsible;
+		if (detail.equals(responsible.getDetail())) return responsible;
+		else return null;
+	}
+
 	public String getDetail(){
 		return this.detail;
 	}

@@ -1,5 +1,7 @@
 package Practice.InsuranceCompany.Design.src.model.payment;
 
+import Practice.InsuranceCompany.Design.src.etcEnum.Responsibility;
+
 public enum PaymentType {
 	payout("보험금",new ClaimsPaid()),
 	maturity("만기보험금",new MaturityDividend()),
@@ -10,6 +12,13 @@ public enum PaymentType {
 	PaymentType(String detail, Payment payment){
 		this.detail=detail;
 		this.payment=payment;
+	}
+
+	public static PaymentType makePaymentType(String detail){
+		if (detail.equals(payout.getDetail())) return payout;
+		if (detail.equals(maturity.getDetail())) return maturity;
+		if (detail.equals(cancellation.getDetail())) return cancellation;
+		else return null;
 	}
 
 	public String getDetail() {

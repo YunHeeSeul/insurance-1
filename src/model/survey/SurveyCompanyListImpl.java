@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import java.util.Scanner;
 
-
 public class SurveyCompanyListImpl implements SurveyCompanyList {
 
 	private ArrayList<SurveyCompany> surveyCompanyList;

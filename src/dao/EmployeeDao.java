@@ -19,7 +19,6 @@ public class EmployeeDao extends Dao {
                 +employee.getName()+"', '"
                 +employee.getDepartment().getDetail()+"', '"
                 +employee.getPhoneNum()+"');";
-
         return super.create(query);
     }
 
@@ -28,7 +27,7 @@ public class EmployeeDao extends Dao {
             EmployeeListImpl employeeList = new EmployeeListImpl();
 
             String query = "select * from employee";
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = super.retrieve(query);
             while (resultSet.next()) { employeeList.add(setEmployeeByResultset(resultSet)); }
             return employeeList;
 
@@ -40,7 +39,7 @@ public class EmployeeDao extends Dao {
     public Employee retrieveById(String inputID) {
         try {
             String query = "select * from employee where employeeId = " + dq + inputID + dq + ";";
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = super.retrieve(query);
 
             if (resultSet.next()) { return setEmployeeByResultset(resultSet); }
             else return null;
@@ -56,7 +55,7 @@ public class EmployeeDao extends Dao {
     public int retrieveMaxID() {
         try {
             String query = "select max(employeeId) as ID from employee;";
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = super.retrieve(query);
             if (resultSet.next()) {
                 String id = resultSet.getString("ID");
                 if (id == null) return 0;

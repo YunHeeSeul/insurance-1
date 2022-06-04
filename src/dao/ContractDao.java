@@ -1,42 +1,28 @@
 package Practice.InsuranceCompany.Design.src.dao;
+
 import Practice.InsuranceCompany.Design.src.model.contract.Contract;
 import Practice.InsuranceCompany.Design.src.model.contract.ContractListImpl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 public class ContractDao extends Dao{
 
     public ContractDao(){
         super.connect();
     }
 
-    public boolean create(Contract contract){
-        try {
-//            PreparedStatement pstmt = null;
-//            String query = "insert into contract values (?,?,?,?,?,?,?,?)";
-//            pstmt = connectPrepareStatement(query);
-//            pstmt.setString(1, contract.getContractID());
-//            pstmt.setString(2, contract.getCustomerID());
-//            pstmt.setString(3, contract.getInsuranceID());
-//            pstmt.setString(4, contract.getJoinDate());
-//            pstmt.setInt(5, contract.getContractPeriod());
-//            pstmt.setInt(6, contract.getPremium());
-//            pstmt.setString(7, contract.getActivityDate());
-//            pstmt.setString(8, contract.getInsuranceAgentID());
-            String query = "insert into contract values ('"
-                    +contract.getContractID()+"','"
-                    +contract.getCustomerID()+"','"
-                    +contract.getInsuranceID()+"','"
-                    +contract.getJoinDate()+"',"
-                    +contract.getContractPeriod()+","
-                    +contract.getPremium()+",'"
-                    +contract.getActivityDate()+"','"
-                    +contract.getInsuranceAgentID()+"';";
-            return super.create(query);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
+    public boolean create(Contract contract) {
+        String query = "insert into contract values ('"
+                + contract.getContractID() + "','"
+                + contract.getCustomerID() + "','"
+                + contract.getInsuranceID() + "','"
+                + contract.getJoinDate() + "',"
+                + contract.getContractPeriod() + ","
+                + contract.getPremium() + ",'"
+                + contract.getActivityDate() + "','"
+                + contract.getInsuranceAgentID() + "');";
+        return super.create(query);
     }
 
     public boolean delete(String contractId){
@@ -134,24 +120,4 @@ public class ContractDao extends Dao{
             throw new RuntimeException(e);
         }
     }
-
-    public ContractListImpl retrieveByCustomerId(String customerID) {
-        try {
-            ContractListImpl contractList = new ContractListImpl;
-
-            String query = "select * from contract where customerId='"+customerID+"';";
-            ResultSet rs = super.retrieve(query);
-
-            while(rs.next()){
-                Contract contract = getFromResultSet(rs);
-                contractList.add(contract);
-            }
-
-            return contractList;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
 }

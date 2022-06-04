@@ -10,8 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Accident {
-	//	private static int IDnum=0;
-	Scanner scn;
+	private Scanner scn;
 	private String accidentID;
 	private String customerID;
 	private AccidentType accidentType;
@@ -26,7 +25,6 @@ public class Accident {
 	private boolean permission;
 
 	public Accident(){
-//		this.accidentID = Integer.toString(IDnum + 1);
 		this.permission = true;
 	}
 	private ArrayList<ExemptionInfo> exemptionContent;
@@ -151,7 +149,7 @@ public class Accident {
 	}
 
 	public boolean dispatchOnsite(boolean permission){
-		if(repSurveyCompany.isSurveyAbility()==true) {
+		if(repSurveyCompany.isSurveyAbility()) {
 			this.permission = permission;
 			return true;
 		}else

@@ -5,11 +5,6 @@ import Practice.InsuranceCompany.Design.src.controller.COwnedBuildingInfo;
 
 import java.util.Scanner;
 
-/**
- * @author SeoyeonPark
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:49
- */
 public class OwnedBuildingInfo {
 
 	private static int IDNum = 0;

@@ -18,7 +18,6 @@ public class OwnedCarInfoDao extends Dao {
                 + dq + ownedCarInfo.getCarType().getDetail() + dq + ", "
                 + dq + ownedCarInfo.getCarPurpose().getDetail() + dq + ", "
                 + dq + ownedCarInfo.getDisplacement() + dq + ");";
-
         return super.create(query);
     }
 
@@ -26,7 +25,7 @@ public class OwnedCarInfoDao extends Dao {
         try {
             if(inputID == null ) return null;
             String query = "select * from ownedCarInfo where ownedCarInfoId = " + dq + inputID + dq + ";";
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = super.retrieve(query);
             if(resultSet.next()) return setInfoByResultset(resultSet);
             else return null;
         } catch (SQLException e){}
