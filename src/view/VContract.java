@@ -48,7 +48,7 @@ public class VContract {
         ContractListImpl contractList=this.cContract.getAllContractList();
         if(contractList.getAllList().size()==0){ System.out.println("계약이 없습니다."); return false;}
         System.out.println("----------------------------계약 전체 목록----------------------------");
-        System.out.println("(계약ID) (고객ID) (보험ID) (월보험료) (가입일자) (가입기간) (계약유지활동일자)");
+        System.out.println("(계약ID)(고객ID)(보험ID)(월보험료)(가입일자)(가입기간)(계약유지활동일자)");
         for(Contract contract:contractList.getAllList())
             System.out.println(contract.getContractInfo());
         return true;
@@ -71,7 +71,7 @@ public class VContract {
         String insuranceAgentID=subscription.getInsuranceAgentID();
 
         System.out.println("-----------------"+cusName+"님의 청약서-----------------");
-        System.out.println("(가입자명) (보험명) (작성일자) (인수심사상태) (담당 설계사 ID)");
+        System.out.println("(고객명) (보험명) (작성일자)(인수심사상태)(담당설계사ID)");
         System.out.println(cusName+" "+insuranceName+" "+date+" "+status.name()+" "+insuranceAgentID);
         if(status==UnderwritingStatus.applied||status==UnderwritingStatus.notApplied){
             System.out.println("아직 인수심사 결과가 없습니다."); return;
@@ -126,10 +126,11 @@ public class VContract {
         ContractListImpl contractList=this.cContract.getMaintenanceTargetList();
         if(contractList.getAllList().size()==0){ System.out.println("계약 유지 활동 대상이 없습니다."); return false;}
 
-        System.out.println("------------------------계약유지활동 대상 목록------------------------");
-        System.out.println("(계약ID) (보험명) (고객명) (생년월일) (가입일자) (가입기간) (계약유지활동일자)");
+        System.out.println("----------------------계약유지활동 대상 목록----------------------");
+        System.out.println("(계약ID)   (보험명)   (고객명) (생년월일) (가입일자) (가입기간) (활동일자)");
         for(Contract contract : contractList.getAllList()){
             Customer customer = this.cCustomer.retrieveById(contract.getCustomerID());
+            String contractID =contract.getContractID();
             String insuranceID =contract.getInsuranceID();
             String insuranceName = this.cInsurance.retrieveById(insuranceID).getInsuranceName();
             String cusName = customer.getName();
@@ -137,7 +138,7 @@ public class VContract {
             String joinDate = contract.getJoinDate();
             int period = contract.getContractPeriod();
             String maintenanceDate = contract.getActivityDate();
-            System.out.println(insuranceID+" "+insuranceName+" "+cusName+" "+birth+" "+joinDate+" "+period+" "+maintenanceDate);
+            System.out.println("  "+contractID+"  "+insuranceName+"  "+cusName+" "+birth+" "+joinDate+"  "+period+"  "+maintenanceDate);
         }
         return true;
     }

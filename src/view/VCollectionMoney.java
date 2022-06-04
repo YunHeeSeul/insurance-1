@@ -73,11 +73,11 @@ public class VCollectionMoney {
             return;
         }
         System.out.println("--------------------가입자 목록--------------------");
-        System.out.println("(고객ID) (고객명) (총월보험료) (납부상태)");
+        System.out.println("(고객ID)(고객명)(총월보험료)(납부상태)");
         for (Customer customer : customerList.getCustomerList()) {
             Policyholder p = (Policyholder) customer;
             String state = p.getPaymentState() ? "납부" : "미납";
-            System.out.println(p.getCustomerID() + " " + p.getName() + " " + p.getTotalPremium() + " " + state);
+            System.out.println("   "+p.getCustomerID() + "   " + p.getName() + "   " + p.getTotalPremium() + "   " + state);
         }
 
         System.out.print("고객 ID : ");
