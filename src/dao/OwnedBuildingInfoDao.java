@@ -13,11 +13,8 @@ public class OwnedBuildingInfoDao extends Dao {
         String query = "insert into ownedBuildingInfo value(";
         query += dq + ownedBuildingInfo.getId() + dq + ", "
                         + dq + ownedBuildingInfo.getFloorNumber() + dq + ", "
-                        + dq + (ownedBuildingInfo.getSpecializedBuilding()?"t":"f") + dq + ");";
-        System.out.println("Execute Query - " + query);
-
-        if(super.create(query)) return true;
-        else return false;
+                        + dq + ownedBuildingInfo.getSpecializedBuilding() + dq + ");";
+        return super.create(query);
     }
 
     public OwnedBuildingInfo retrieveById(String inputID) {
@@ -25,23 +22,21 @@ public class OwnedBuildingInfoDao extends Dao {
             if(inputID == null) return null;
             String query = "select * from ownedBuildingInfo where ownedBuildingInfoId = " + dq + inputID + dq + ";";
             ResultSet resultSet = statement.executeQuery(query);
-            OwnedBuildingInfo ownedBuildingInfo = new OwnedBuildingInfo();
-            if(setInfoByResultset(ownedBuildingInfo, resultSet)) return ownedBuildingInfo;
+            if(resultSet.next()) return setInfoByResultset(resultSet);
+            else return null;
         } catch (SQLException e){}
         return null;
     }
 
-    private boolean setInfoByResultset(OwnedBuildingInfo ownedBuildingInfo, ResultSet resultSet) {
+    private OwnedBuildingInfo setInfoByResultset(ResultSet resultSet) {
         try {
-            while(resultSet.next()) {
-                String id = resultSet.getString("ownedBuildingInfoId");
-                if(id.equals("null")) return false;
-                ownedBuildingInfo.setId(id);
-                ownedBuildingInfo.setFloorNumber(resultSet.getInt("floorNum"));
-                ownedBuildingInfo.setSpecializedBuilding(resultSet.getString("specializedBuilding") == "t" ? true : false);
-            }
-            return true;
-        } catch (SQLException e){}
-        return false;
+            OwnedBuildingInfo ownedBuildingInfo = new OwnedBuildingInfo();
+            ownedBuildingInfo.setId(resultSet.getString("ownedBuildingInfoId"));
+            ownedBuildingInfo.setFloorNumber(resultSet.getInt("floorNum"));
+            ownedBuildingInfo.setSpecializedBuilding(resultSet.getBoolean("specializedBuilding"));
+            return ownedBuildingInfo;
+        } catch (SQLException e) {
+        }
+        return null;
     }
 }

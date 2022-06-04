@@ -39,6 +39,9 @@ public class Customer {
 	}
 
 	public void setCustomerID(String customerID) { this.customerID = customerID; }
+	public CustomerType getCustomerType() {
+		return customerType;
+	}
 	public void setCustomerType(CustomerType customerType) { this.customerType = customerType; }
 	public String getCustomerID(){ return this.customerID; }
 	public String getAddress() {

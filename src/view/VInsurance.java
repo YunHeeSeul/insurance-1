@@ -200,9 +200,9 @@ public class VInsurance extends View {
             case 3:
                 System.out.println("새로운 보험 분류(차/화재/실손) : ");
                 input = scanner.next();
-                if(input.equals("차")) insurance.setInsuranceType(InsuranceType.car);
-                else if(input.equals("화재")) insurance.setInsuranceType(InsuranceType.fire);
-                else if(input.equals("실손")) insurance.setInsuranceType(InsuranceType.personalHealth);
+                if(input.equals(InsuranceType.car.getDetail())) insurance.setInsuranceType(InsuranceType.car);
+                else if(input.equals(InsuranceType.fire.getDetail())) insurance.setInsuranceType(InsuranceType.fire);
+                else if(input.equals(InsuranceType.personalHealth.getDetail())) insurance.setInsuranceType(InsuranceType.personalHealth);
                 break;
             case 4:
                 System.out.println("새로운 가입제한연령 : ");

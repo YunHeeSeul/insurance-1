@@ -7,11 +7,6 @@ import Practice.InsuranceCompany.Design.src.etcEnum.CarType;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * @author SeoyeonPark
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:49
- */
 public class OwnedCarInfo {
 
 	private static int IDNum = 1;
@@ -60,8 +55,8 @@ public class OwnedCarInfo {
 		this.availableNumOfViolation = availableNumOfViolation;
 	}
 
-	public String getCarType(){ return this.carType.toString(); }
-	public String getCarPurpose(){ return this.carPurpose.toString(); }
+	public CarType getCarType(){ return this.carType; }
+	public CarPurpose getCarPurpose(){ return this.carPurpose; }
 	public int getDisplacement(){ return this.displacement; }
 	public int getAvailableNumOfViolation(){ return this.availableNumOfViolation; }
 	public ArrayList<violationInfo> getViolationHistory(){ return this.violationHistory; }
@@ -87,11 +82,11 @@ public class OwnedCarInfo {
 
 
 	private void inputAvailableCarType(String input) {
-			if (input.equals("승용차"))
+			if (input.equals(CarType.passenger.getDetail()))
 				this.carType = CarType.passenger;
-			else if (input.equals("승합차"))
+			else if (input.equals(CarType.van.getDetail()))
 				this.carType = CarType.van;
-			else if (input.equals("화물차"))
+			else if (input.equals(CarType.lorry.getDetail()))
 				this.carType = CarType.lorry;
 			else {
 				System.out.println("잘못 입력했습니다.");
@@ -100,17 +95,12 @@ public class OwnedCarInfo {
 
 
 	private void inputAvailableCarUse(String input) {
-			if (input.equals("사업용"))
+			if (input.equals(CarPurpose.business.getDetail()))
 				this.carPurpose = CarPurpose.business;
-			else if (input.equals("비사업용"))
+			else if (input.equals(CarPurpose.notBusiness.getDetail()))
 				this.carPurpose = CarPurpose.notBusiness;
 			else {
 				System.out.println("잘못 입력했습니다.");
 			}
-	}
-
-
-	public void finalize() throws Throwable {
-
 	}
 }//end OwnedCarInfo

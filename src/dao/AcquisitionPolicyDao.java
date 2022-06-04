@@ -21,7 +21,7 @@ public class AcquisitionPolicyDao extends Dao {
     public boolean create(AcquisitionPolicy acquisitionPolicy) {
         String buildingInfoID = "null";
         String carInfoID = "null";
-        String deseaseHistoryID = "null";
+        String diseaseHistoryID = "null";
 
         if(acquisitionPolicy.getCarInfoPolicy() != null) {
             this.ownedCarInfoDao.create(acquisitionPolicy.getCarInfoPolicy());
@@ -29,7 +29,7 @@ public class AcquisitionPolicyDao extends Dao {
         }
         else if(acquisitionPolicy.getDiseaseInfoPolicy() != null) {
             this.diseaseHistoryDao.create(acquisitionPolicy.getDiseaseInfoPolicy());
-            deseaseHistoryID = dq + acquisitionPolicy.getCarInfoPolicy().getId() + dq;
+            diseaseHistoryID = dq + acquisitionPolicy.getCarInfoPolicy().getId() + dq;
         }
         else if(acquisitionPolicy.getBuildingInfoPolicy() != null) {
             this.ownedBuildingInfoDao.create(acquisitionPolicy.getBuildingInfoPolicy());
@@ -40,11 +40,9 @@ public class AcquisitionPolicyDao extends Dao {
         query += dq + acquisitionPolicy.getID() + dq + ", "
                         + buildingInfoID + ", "
                         + carInfoID + ", "
-                        + deseaseHistoryID + ");";
-        System.out.println("Execute Query - " + query);
+                        + diseaseHistoryID + ");";
 
-        if(super.create(query)) return true;
-        else return false;
+        return super.create(query);
     }
 
     public void retrieve(){}
@@ -60,9 +58,8 @@ public class AcquisitionPolicyDao extends Dao {
             String query = "select * from acquisitionPolicy where acquisitionPolicyId = " + dq +inputID + dq + ";";
             ResultSet resultSet = statement.executeQuery(query);
 
-            AcquisitionPolicy acquisitionPolicy = new AcquisitionPolicy();
-            while(resultSet.next()){ acquisitionPolicy = setAcquisitionPolicyByResultSet(resultSet); }
-            return acquisitionPolicy;
+            if(resultSet.next()){ return setAcquisitionPolicyByResultSet(resultSet); }
+            else return null;
         } catch (SQLException e){}
         return null;
     }
