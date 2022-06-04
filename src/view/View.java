@@ -2,20 +2,21 @@ package Practice.InsuranceCompany.Design.src.view;
 
 import Practice.InsuranceCompany.Design.src.controller.CCustomer;
 import Practice.InsuranceCompany.Design.src.controller.CInsurance;
+import Practice.InsuranceCompany.Design.src.controller.CSubscription;
 import Practice.InsuranceCompany.Design.src.etcEnum.Gender;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
 import Practice.InsuranceCompany.Design.src.model.insurance.Insurance;
 import Practice.InsuranceCompany.Design.src.model.insurance.InsuranceListImpl;
 import Practice.InsuranceCompany.Design.src.model.insurance.InsuranceType;
+import Practice.InsuranceCompany.Design.src.model.subscription.Subscription;
+import Practice.InsuranceCompany.Design.src.model.subscription.SubscriptionListImpl;
+
+import java.util.ArrayList;
 
 public class View {
 
-    public void run(String menuStr, String subMenuList) {
-        System.out.println("----------------------------- " + menuStr + " ----------------------------");
-        System.out.println("| " + subMenuList + " | ");
-        System.out.println("------------------------------------------------------------------");
-    }
+    public void run(String menuStr, String subMenuList) {}
 
     /*** methods for Insurance ***/
     public void printAllInsurance(CInsurance cInsurance) {
@@ -93,7 +94,7 @@ public class View {
         System.out.println("- ID : " + customer.getCustomerID());
         System.out.println("- 성함 : " + customer.getName());
         System.out.println("- 주민등록번호 : " + customer.getResidentRegistrationNumber());
-        System.out.println("- 성별 : " + customer.getGender().getDetail());
+        System.out.println("- 성별 : " + (customer.getGender()== Gender.female?"여성":"남성"));
         System.out.println("- 생년월일 : " + customer.getDateOfBirth());
         System.out.println("- 휴대전화번호 : " + customer.getPhoneNumber());
         System.out.println("- 이메일 : " + customer.getEmailAddress());
@@ -116,7 +117,32 @@ public class View {
 
         if(customer.getOwnedCarInfo() == null) System.out.println("* 고객소유의 차량 정보가 등록되어 있지 않습니다. *");
         else {
-            //
+            // 구현해야함
         }
+    }
+
+    /*** methods for Subscription ***/
+    public void printAllSubscription(CSubscription cSubscription) {
+        System.out.println("<---- 청약서 정보 조회 ---->");
+        SubscriptionListImpl subscriptionList = cSubscription.retrieveAll();
+        if (subscriptionList.getSubscriptionList().size() == 0)
+            System.out.println("청약서 정보 목록이 비어있습니다.");
+        else {
+            for (Subscription subscription : subscriptionList.getSubscriptionList()) {
+                printSubscriptionDetails(subscription);
+                System.out.println("\n");
+            }
+        }
+    }
+
+    public void printSubscriptionDetails(Subscription subscription) {
+        System.out.println("- ID : " + subscription.getSubscriptionID());
+        System.out.println("- 인수심사 신청 상태 : " + subscription.getUnderwritingStatus().getDetail());
+        System.out.println("- 청약서 생성일자 : " + subscription.getDateCreated());
+        System.out.println("- 보험 계약 기간 : " + subscription.getInsurancePeriod() + "개월");
+        System.out.println("- 보험료 : " + subscription.getPremium() + "원");
+        System.out.println("- 가입 고객 ID : " + subscription.getCustomerID());
+        System.out.println("- 가입 보험 ID : " + subscription.getInsuranceID());
+        System.out.println("- 담당 설계사 ID : " + subscription.getInsuranceAgentID());
     }
 }

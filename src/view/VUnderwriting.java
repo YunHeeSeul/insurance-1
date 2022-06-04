@@ -11,16 +11,11 @@ import Practice.InsuranceCompany.Design.src.model.insurance.InsuranceListImpl;
 import java.util.Scanner;
 
 public class VUnderwriting extends View {
-
-//    private InsuranceListImpl insuranceList;
-//    private CustomerListImpl customerList;
     private Scanner scanner;
     private CAcquisitionPolicy cAcquisitionPolicy;
     private CInsurance cInsurance;
 
     public VUnderwriting(Scanner scanner){
-//        this.insuranceList = new InsuranceListImpl();
-//        this.customerList = new CustomerListImpl();
         this.scanner = scanner;
         this.cAcquisitionPolicy = new CAcquisitionPolicy();
         this.cInsurance = new CInsurance();

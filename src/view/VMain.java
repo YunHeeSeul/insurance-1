@@ -3,6 +3,7 @@ package Practice.InsuranceCompany.Design.src.view;
 import java.util.Scanner;
 
 public class VMain {
+    private Scanner scn;
     private VInsurance vInsurance;
     private VContract vContract;
     private VUnderwriting vUnderwriting;
@@ -10,15 +11,14 @@ public class VMain {
     private VAccident vAccident;
     private VCollectionMoney vCollectionMoney;
     private VCustomer vCustomer;
-
+    private VSubscription vSubscription;
 
     public void run() {
-        Scanner scn = new Scanner(System.in);
+        this.scn = new Scanner(System.in);
 
         while (true) {
             System.out.println("----------------------------보험 시스템-----------------------------");
-            System.out.println("1. 상품 관리 2. 계약 관리 3. Underwriting 4. 지급 관리 5. 사고처리 관리 6. 수금 관리 7. 고객 관리 0. 종료");
-
+            System.out.println("1. 상품 관리 2. 계약 관리 3. Underwriting 4. 지급 관리 5. 사고처리 관리 6. 수금 관리 7. 고객 관리 8. 청약서 관리 0. 종료");
 
             String input = scn.next();
             System.out.println(input + " 선택");
@@ -48,7 +48,10 @@ public class VMain {
             } else if (input.equals("7")) {
                 this.vCustomer = new VCustomer(scn);
                 this.vCustomer.run();
-            } else if (input.equals("0")) {
+            }else if (input.equals("8")) {
+                this.vSubscription = new VSubscription(scn);
+                this.vSubscription.run();
+            }else if (input.equals("0")) {
                 return;
             } else
                 System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");

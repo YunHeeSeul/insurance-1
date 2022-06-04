@@ -1,7 +1,5 @@
 package Practice.InsuranceCompany.Design.src.etcEnum;
 
-import Practice.InsuranceCompany.Design.src.model.customer.CustomerType;
-
 public enum Responsibility {
 	notResponsible("면책"),
 	responsible("부책");
