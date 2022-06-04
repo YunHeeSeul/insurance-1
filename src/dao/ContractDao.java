@@ -3,13 +3,8 @@ package Practice.InsuranceCompany.Design.src.dao;
 import Practice.InsuranceCompany.Design.src.model.contract.Contract;
 import Practice.InsuranceCompany.Design.src.model.contract.ContractListImpl;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class ContractDao extends Dao{
 

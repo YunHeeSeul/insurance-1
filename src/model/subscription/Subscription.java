@@ -26,36 +26,68 @@ public class Subscription {
 
 	}
 
-	public String getInsuranceID() {
-		return insuranceID;
-	}
-
 	public String getCustomerID() {
 		return customerID;
 	}
 
-	public String getInsuranceAgentID() {
-		return insuranceAgentID;
-	}
-
-	public int getInsurancePeriod() {
-		return insurancePeriod;
-	}
-
-	public int getPremium() {
-		return premium;
-	}
-
-	public String getSubscriptionID() {
-		return subscriptionID;
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
 
 	public String getDateCreated() {
 		return dateCreated;
 	}
 
+	public void setDateCreated(String dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public String getInsuranceAgentID() {
+		return insuranceAgentID;
+	}
+
+	public void setInsuranceAgentID(String insuranceAgentID) {
+		this.insuranceAgentID = insuranceAgentID;
+	}
+
+	public void setInsuranceID(String insuranceID) {
+		this.insuranceID = insuranceID;
+	}
+
+	public int getInsurancePeriod() {
+		return insurancePeriod;
+	}
+
+	public void setInsurancePeriod(int insurancePeriod) {
+		this.insurancePeriod = insurancePeriod;
+	}
+
+	public int getPremium() {
+		return premium;
+	}
+
+	public void setPremium(int premium) {
+		this.premium = premium;
+	}
+
+	public String getSubscriptionID() {
+		return subscriptionID;
+	}
+
+	public void setSubscriptionID(String subscriptionID) {
+		this.subscriptionID = subscriptionID;
+	}
+
 	public UnderwritingStatus getUnderwritingStatus() {
 		return underwritingStatus;
+	}
+
+	public void setUnderwritingStatus(UnderwritingStatus underwritingStatus) {
+		this.underwritingStatus = underwritingStatus;
+	}
+
+	public String getInsuranceID() {
+		return insuranceID;
 	}
 
 	public void finalize() throws Throwable {
@@ -74,10 +106,11 @@ public class Subscription {
 		System.out.println("인수심사 신청 여부 : " + this.underwritingStatus.getDetail());
 	}
 
+
 	public boolean signUpUnderwriting(CustomerListImpl customerList, InsuranceListImpl insuranceList){
-		Customer customer = customerList.getByCustomerId(this.customerID);
-		Insurance insurance = insuranceList.get(this.insuranceID);
-		this.checkAvailabilityOfUW(customer, insurance);
+//		Customer customer = customerList.getByCustomerId(this.customerID);
+//		Insurance insurance = insuranceList.get(this.insuranceID);
+//		this.checkAvailabilityOfUW(customer, insurance);
 		return false;
 	}
 

@@ -6,6 +6,8 @@ import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
 import Practice.InsuranceCompany.Design.src.model.policyholder.Policyholder;
 
+import java.util.ArrayList;
+
 public class CPolicyholder {
     private PolicyholderDao policyholderDao;
 
@@ -13,6 +15,7 @@ public class CPolicyholder {
         this.policyholderDao = new PolicyholderDao();
     }
 
+    public CustomerListImpl retrieveAll(){ return this.policyholderDao.retrieveAll();}
     public Policyholder retrieveById(String inputID) { return this.policyholderDao.retrieveById(inputID); }
     public boolean create(Policyholder customer){
         return this.policyholderDao.create(customer);

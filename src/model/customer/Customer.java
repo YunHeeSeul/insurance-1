@@ -2,30 +2,19 @@ package Practice.InsuranceCompany.Design.src.model.customer;
 
 
 import Practice.InsuranceCompany.Design.src.etcEnum.Gender;
-import Practice.InsuranceCompany.Design.src.model.contract.Contract;
 import Practice.InsuranceCompany.Design.src.model.policyholder.DiseaseHistory;
 import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedBuildingInfo;
 import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedCarInfo;
 
-/**
- * @author macbook
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:48
- */
 public class Customer {
-
-//	private static int IDNum = 0;
-
 	private String address;
 	private String customerID;
-	private CustomerType customerType;
 	private String dateOfBirth;
 	private String emailAddress;
 	private Gender gender;
 	private String name;
 	private String phoneNumber;
 	private String residentRegistrationNumber;
-	public Contract m_Contract;
 
 
 	/*** 아래 정보는 잠재 고객 및 가입자 모두에게 필요 ***/
@@ -35,14 +24,9 @@ public class Customer {
 
 
 	public Customer(){
-//		this.customerID = Integer.toString(IDNum++);
 	}
 
 	public void setCustomerID(String customerID) { this.customerID = customerID; }
-	public CustomerType getCustomerType() {
-		return customerType;
-	}
-	public void setCustomerType(CustomerType customerType) { this.customerType = customerType; }
 	public String getCustomerID(){ return this.customerID; }
 	public String getAddress() {
 		return address;

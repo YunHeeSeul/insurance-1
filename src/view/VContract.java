@@ -1,12 +1,11 @@
 package Practice.InsuranceCompany.Design.src.view;
 
-import Practice.InsuranceCompany.Design.src.controller.CContract;
-import Practice.InsuranceCompany.Design.src.controller.CCustomer;
-import Practice.InsuranceCompany.Design.src.controller.CInsurance;
+import Practice.InsuranceCompany.Design.src.controller.*;
 import Practice.InsuranceCompany.Design.src.model.contract.Contract;
 import Practice.InsuranceCompany.Design.src.model.contract.ContractListImpl;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.etcEnum.UnderwritingStatus;
+import Practice.InsuranceCompany.Design.src.model.policyholder.Policyholder;
 import Practice.InsuranceCompany.Design.src.model.subscription.Subscription;
 
 import java.util.Scanner;
@@ -18,6 +17,7 @@ public class VContract {
     private CCustomer cCustomer;
     private CInsurance cInsurance;
     private CSubscription cSubscription;
+    private CPolicyholder cPolicyholder;
 
     public VContract(Scanner scn){
         this.scn=scn;
@@ -25,6 +25,7 @@ public class VContract {
         this.cCustomer=new CCustomer();
         this.cInsurance=new CInsurance();
         this.cSubscription=new CSubscription();
+        this.cPolicyholder=new CPolicyholder();
     }
 
     public void run() {
@@ -58,7 +59,7 @@ public class VContract {
         System.out.print("청약서 ID : ");
         String subscriptionID = scn.next();
 
-        Subscription subscription= this.cSubscription.getBySubscriptionID(subscriptionID);
+        Subscription subscription= this.cSubscription.retrieveById(subscriptionID);
         if(subscription==null) { System.out.println("없는 청약서 ID 입니다."); return; }
 
         String cusID = subscription.getCustomerID();
@@ -86,15 +87,24 @@ public class VContract {
                 int premium=subscription.getPremium();
                 String contractID="CT"+this.cContract.getMaxID()+1;
                 Contract contract=new Contract(contractID,cusID,insuranceID,period,premium,insuranceAgentID);
+
+                if(this.cPolicyholder.retrieveById(cusID) == null) {
+                    System.out.println("신규 가입자 입니다. 고객의 계좌번호를 입력하세요.");
+                    String accountNum = scn.next();
+                    if(!this.cPolicyholder.create(new Policyholder(cusID, accountNum))){
+                        System.out.println("DB 오류입니다."); return;
+                    };
+                }
+
                 if(!this.cContract.addContract(contract)) { System.out.println("DB 오류입니다."); return; }
-                if(!this.cSubscription.updateUnderwritingStatus(subscription.getSubscriptionID(),UnderwritingStatus.completed)){
+                if(!this.cSubscription.updateUWstatusById(subscription.getSubscriptionID(),UnderwritingStatus.completed)){
                     System.out.println("DB 오류입니다."); return;
                 }
-                this.cCustomer.updateCustomerType(cusID);
+
                 System.out.println("계약 체결 완료 처리되었습니다.");
                 break;
             case "2" :
-                if(!this.cSubscription.updateUnderwritingStatus(subscription.getSubscriptionID(),UnderwritingStatus.completed)){
+                if(!this.cSubscription.updateUWstatusById(subscription.getSubscriptionID(),UnderwritingStatus.completed)){
                     System.out.println("DB 오류입니다."); return;
                 }
                 System.out.println("계약 체결 반려 처리되었습니다.");

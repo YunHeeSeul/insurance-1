@@ -5,11 +5,6 @@ import Practice.InsuranceCompany.Design.src.etcEnum.Level;
 
 import java.util.Scanner;
 
-/**
- * @author macbook
- * @version 1.0
- * @created 21-5-2022 ���� 11:03:48
- */
 public class DiseaseHistory {
 
 	private static int IDNum = 0;

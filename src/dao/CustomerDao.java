@@ -3,7 +3,6 @@ package Practice.InsuranceCompany.Design.src.dao;
 import Practice.InsuranceCompany.Design.src.etcEnum.Gender;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
-import Practice.InsuranceCompany.Design.src.model.customer.CustomerType;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +24,6 @@ public class CustomerDao extends Dao {
         String query = "insert into customer value(";
         query += dq + customer.getCustomerID() + dq + ", "
                         + dq + customer.getName() + dq + ", "
-                        + dq + CustomerType.interested.getDetail() + dq + ", "
                         + dq + customer.getResidentRegistrationNumber() + dq + ", "
                         + dq + customer.getGender().getDetail() + dq + ", "
                         + dq + customer.getDateOfBirth() + dq + ", "
@@ -97,7 +95,6 @@ public class CustomerDao extends Dao {
 
             customer.setCustomerID(resultSet.getString("customerId"));
             customer.setName(resultSet.getString("customerName"));
-            customer.setCustomerType(CustomerType.makeCustomerType(resultSet.getString("customerType")));
             customer.setResidentRegistrationNumber(resultSet.getString("residentRegistrationNum"));
             customer.setGender(Gender.makeGender(resultSet.getString("gender")));
             customer.setDateOfBirth(resultSet.getString("date_of_birth"));
@@ -125,8 +122,7 @@ public class CustomerDao extends Dao {
                 + "date_of_birth = " + dq + customer.getDateOfBirth() + dq + ", "
                 + "phone_number = " + dq + customer.getPhoneNumber() + dq + ", "
                 + "email_address = " + dq  + customer.getEmailAddress() + dq + ", "
-                + "address = " + dq + customer.getAddress() + dq + ", "
-                + "customerType = " + dq + customer.getCustomerType().getDetail() + dq + ", ";
+                + "address = " + dq + customer.getAddress() + dq + ", ";
 
         if(customer.getDiseaseHistory() == null) query += "diseaseHistoryId = null, ";
         else query += "diseaseHistoryId = " + dq + customer.getDiseaseHistory().getId() + dq + ", ";
@@ -139,12 +135,6 @@ public class CustomerDao extends Dao {
 
         query += " where customerId = " + dq + inputID + dq ;
 
-        return super.update(query);
-    }
-
-    public boolean updateCustomerTypeById(String inputID) {
-        String query = "update customer set customerType = '"+ CustomerType.subscriber.getDetail()
-                + "' where customerId = " + dq + inputID + dq +";" ;
         return super.update(query);
     }
 }

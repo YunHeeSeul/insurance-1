@@ -18,10 +18,6 @@ public class CCustomer {
     }
     public boolean deleteById(String inputID) { return this.customerDao.deleteById(inputID); }
     public boolean updateById(String inputID, Customer customer) { return this.customerDao.updateById(inputID, customer); }
-    public boolean updateCustomerType(String inputID){
-        return this.customerDao.updateCustomerTypeById(inputID);
-    }
-
     public int getMaxID() { return this.customerDao.retrieveMaxID(); }
 
 

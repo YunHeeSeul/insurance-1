@@ -2,13 +2,11 @@ package Practice.InsuranceCompany.Design.src.view;
 
 import Practice.InsuranceCompany.Design.src.controller.CContract;
 import Practice.InsuranceCompany.Design.src.controller.CCustomer;
-import Practice.InsuranceCompany.Design.src.controller.CInsurance;
 import Practice.InsuranceCompany.Design.src.controller.CPolicyholder;
 import Practice.InsuranceCompany.Design.src.model.contract.Contract;
 import Practice.InsuranceCompany.Design.src.model.contract.ContractListImpl;
+import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
-import Practice.InsuranceCompany.Design.src.model.insurance.Insurance;
-import Practice.InsuranceCompany.Design.src.model.insurance.InsuranceListImpl;
 import Practice.InsuranceCompany.Design.src.model.policyholder.Policyholder;
 
 import java.util.Scanner;
@@ -16,7 +14,6 @@ import java.util.Scanner;
 public class VCollectionMoney {
 
     private Scanner scn;
-    private CInsurance cInsurance;
     private CContract cContract;
     private CCustomer cCustomer;
     private CPolicyholder cPolicyholder;
@@ -24,7 +21,6 @@ public class VCollectionMoney {
     public VCollectionMoney(Scanner scn) {
         this.scn = scn;
         this.cCustomer = new CCustomer();
-        this.cInsurance = new CInsurance();
         this.cContract=new CContract();
         this.cPolicyholder=new CPolicyholder();
     }
@@ -48,6 +44,7 @@ public class VCollectionMoney {
         System.out.println("--------------------가입자 목록--------------------");
         CustomerListImpl customerList=this.cCustomer.retrieveAll();
         customerList.printAllCustomerInfo();
+
         System.out.print("고객 ID : ");
         String cusID = scn.next();
         if (customerList.checkValidationID(cusID)) {
@@ -68,21 +65,33 @@ public class VCollectionMoney {
     }
 
     private void getCollectionOfPremium() {
+        //(유스케이스 시나리오 수정 필요)
         // 보험료 납부 확인하기
+        CustomerListImpl customerList = this.cPolicyholder.retrieveAll();
+        if (customerList.getCustomerList().size() == 0) {
+            System.out.println("가입자가 없습니다.");
+            return;
+        }
         System.out.println("--------------------가입자 목록--------------------");
-        CustomerListImpl customerList=this.cCustomer.retrieveAll();
-        customerList.printAllCustomerInfo();
+        System.out.println("(고객ID) (고객명) (총월보험료) (납부상태)");
+        for (Customer customer : customerList.getCustomerList()) {
+            Policyholder p = (Policyholder) customer;
+            String state = p.getPaymentState() ? "납부" : "미납";
+            System.out.println(p.getCustomerID() + " " + p.getName() + " " + p.getTotalPremium() + " " + state);
+        }
 
         System.out.print("고객 ID : ");
         String cusID = scn.next();
         if (customerList.checkValidationID(cusID)) {
-            if (this.cPolicyholder.retrieveById(cusID).isPaymentState())
+            Policyholder policyholder = this.cPolicyholder.retrieveById(cusID);
+            if (policyholder.isPaymentState())
                 System.out.println("당월 보험료 납부 상태는 완납입니다.");
-            else{
-                System.out.println("당월 보험료 납부 상태는 미납입니다.");
-                // 미납 안내 전송?
+            else {
+                System.out.print("미납안내 메일을 전송하시겠습니까?(y/n) ");
+                String input = scn.next();
+                if (input.equals("y")) System.out.println(policyholder.getEmailAddress() + "로 미납안내 메일을 전송했습니다.");
+                else System.out.println("전송 취소합니다.");
             }
-
-        }
+        } else System.out.println("해당 고객이 없습니다.");
     }
 }

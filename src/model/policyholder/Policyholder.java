@@ -10,6 +10,18 @@ public class Policyholder extends Customer {
 	private boolean paymentState;
 	private int totalPremium;
 
+	public Policyholder(){
+
+	}
+	public Policyholder(String cusID, String accountNum){
+		this.setCustomerID(cusID);
+		this.totalPremium=0;
+		this.accountNum=accountNum;
+		this.acceptedAccidentExistence=false;
+		this.ownedBuildingNumber=0;
+		this.paymentState=false;
+	}
+
 	public boolean isAcceptedAccidentExistence() {
 		return acceptedAccidentExistence;
 	}
@@ -42,9 +54,6 @@ public class Policyholder extends Customer {
 		this.paymentState = paymentState;
 	}
 
-	public Policyholder(){
-
-	}
 	public void changePaymentState(boolean paymentState){ this.paymentState = paymentState; }
 
 	public boolean getPaymentState(){
