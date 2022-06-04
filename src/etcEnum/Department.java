@@ -12,6 +12,15 @@ public enum Department {
 		this.detail=detail;
 	}
 
+	public static Department makeDepartment(String detail){
+		if (detail.equals(contractManagement.getDetail())) return contractManagement;
+		if (detail.equals(sales.getDetail())) return sales;
+		if (detail.equals(UW.getDetail())) return UW;
+		if (detail.equals(development.getDetail())) return development;
+		if (detail.equals(indemnification.getDetail())) return indemnification;
+		else return null;
+	}
+
 	public String getDetail(){
 		return this.detail;
 	}
