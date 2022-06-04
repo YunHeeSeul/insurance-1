@@ -1,13 +1,6 @@
 package Practice.InsuranceCompany.Design.src.model.accident;
 
 public enum AccidentType {
-	car,
-	fire,
-	health
-
-import Practice.InsuranceCompany.Design.src.etcEnum.CarType;
-
-public enum AccidentType {
 	car("자동차"),
 	fire("화재"),
 	health("상해");
