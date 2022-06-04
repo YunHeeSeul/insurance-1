@@ -56,7 +56,6 @@ public class SubscriptionDao extends Dao {
         try {
             String query = "select * from subscription where subscriptionId = " + dq + inputID + dq + ";";
             ResultSet resultSet = super.retrieve(query);
-            System.out.println("Exectue Query - " + query);
 
             Subscription subscription = null;
             while (resultSet.next()) { subscription = setSubscriptionByResultset(resultSet); }
@@ -102,8 +101,8 @@ public class SubscriptionDao extends Dao {
 
     public int retrieveMaxID() {
         try {
-            String query = "select max(insuranceId) as ID from insurance;";
-            ResultSet resultSet = statement.executeQuery(query);
+            String query = "select max(subscriptionId) as ID from subscription;";
+            ResultSet resultSet = super.retrieve(query);
             if (resultSet.next()) {
                 String id = resultSet.getString("ID");
                 if (id == null) return 0;
@@ -132,7 +131,6 @@ public class SubscriptionDao extends Dao {
                 + "insuranceAgentId = " + dq + subscription.getInsuranceAgentID() + dq
                 + " where subscriptionId = " + dq + inputID + dq + ";";
 
-        System.out.println("Execute Query - " + query);
         return super.update(query);
     }
 }

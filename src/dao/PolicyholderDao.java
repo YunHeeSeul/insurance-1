@@ -35,7 +35,7 @@ public class PolicyholderDao extends Dao {
         try {
             CustomerListImpl policyHolderList = new CustomerListImpl();
 
-            String query = "select * from customer c right join policyholder p on c.customerid=p.customerid;";
+            String query = "select * from customer c join policyholder p on c.customerid=p.customerid;";
             ResultSet resultSet = super.retrieve(query);
             while (resultSet.next()) { policyHolderList.add(setPolicyHolderByResultset(resultSet)); }
             return policyHolderList;
@@ -46,7 +46,7 @@ public class PolicyholderDao extends Dao {
 
     public Policyholder retrieveById(String inputID) {
         try {
-            String query = "select * from customer c right join policyholder p on c.customerid=p.customerid where customerId = ''" + inputID +  "'';";
+            String query = "select * from customer c join policyholder p on c.customerid=p.customerid where c.customerId = '" + inputID +  "';";
             ResultSet resultSet = super.retrieve(query);
 
             if (resultSet.next()) { return setPolicyHolderByResultset(resultSet); }
@@ -59,7 +59,7 @@ public class PolicyholderDao extends Dao {
         try {
             Policyholder policyholder = new Policyholder();
 
-            policyholder.setCustomerID(resultSet.getString("customerId"));
+            policyholder.setCustomerID(resultSet.getString("c.customerId"));
             policyholder.setName(resultSet.getString("customerName"));
             policyholder.setResidentRegistrationNumber(resultSet.getString("residentRegistrationNum"));
             policyholder.setGender(Gender.makeGender(resultSet.getString("gender")));
