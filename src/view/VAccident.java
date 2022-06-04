@@ -175,7 +175,7 @@ public class VAccident {
                     showSurveyCompany();
                     String scID = scn.next();
                     SurveyCompany surveyCompany1 = cSurveyCompany.getBySurveyCompanyID(scID);
-                    accident.setRepSurveyCompany(surveyCompany1);
+                    accident.setRepSurveyCompany(surveyCompany1 );
 
                     System.out.println("가해 여부를 입력해주세요");
                     System.out.println("(y)예 (n)아니오");

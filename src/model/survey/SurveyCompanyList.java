@@ -12,6 +12,6 @@ public interface SurveyCompanyList {
 	SurveyCompany get(String surveyCompanyID);
 	ArrayList<SurveyCompany> getAllList();
 
-	boolean updateSurveyAbility(String surveyCompanyID, boolean surveyAbility);
+ 	boolean updateSurveyAbility(String surveyCompanyID, boolean surveyAbility);
 
 }

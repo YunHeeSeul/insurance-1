@@ -16,7 +16,7 @@ public class ExemptionInfo {
 
 
 	public ArrayList<ExemptionInfo> exemptionInfoList;
-	
+
 	public ExemptionInfo(){
 		this.exemptionInfoList = new ArrayList<>();
 		//	this.exemptionInfoID = Integer.toString(IDnum + 1);
