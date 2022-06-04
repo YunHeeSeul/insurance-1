@@ -2,6 +2,7 @@ package Practice.InsuranceCompany.Design.src.model.accident;
 
 
 import Practice.InsuranceCompany.Design.src.etcEnum.Level;
+
 import Practice.InsuranceCompany.Design.src.etcEnum.Responsibility;
 import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
 
@@ -33,6 +34,32 @@ public class Accident {
 	public Accident(Scanner scn, String accidentID, String customerID, AccidentType accidentType, String accidentDate, String accidentLocation, Level accidentScale, String accidentContent, boolean doingHarm, SurveyCompany repSurveyCompany, String exemptionInfoID, boolean onSite){
 		this.scn = scn;
 		this.accidentID = accidentID;
+
+import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
+
+public class Accident {
+
+	private String accidentContent;
+	private String accidentDate;
+	private String accidentID;
+	private String accidentLocation;
+	private Level accidentScale;
+	private AccidentType accidentType;
+	private String customerID;
+	private boolean doingHarm;
+	private ExemptionInfo exemptionInfo;
+	private boolean onSite;
+	private SurveyCompany repSurveyCompany;
+	public ExemptionInfo m_ExemptionInfo;
+	public SurveyCompany m_SurveyCompany;
+
+	public Accident(){
+
+	}
+
+	public Accident(String accidentID, String customerID, AccidentType accidentType, String accidentDate, String accidentLocation, Level accidentScale, String accidentContent, boolean doingHarm, SurveyCompany repSurveyCompany, ExemptionInfo exemptionInfo, boolean onSite){
+
+		this.accidentID = "acc1";
 		this.customerID = customerID;
 		this.accidentType = accidentType;
 		this.accidentDate = accidentDate;
@@ -41,7 +68,11 @@ public class Accident {
 		this.accidentContent = accidentContent;
 		this.doingHarm = doingHarm;
 		this.repSurveyCompany = repSurveyCompany;
+
 		this.exemptionInfoID = exemptionInfoID;
+
+		this.exemptionInfo = exemptionInfo;
+
 		this.onSite = onSite;
 
 	}
@@ -75,6 +106,15 @@ public class Accident {
 	public void setAccidentType(AccidentType accidentType) {
 		this.accidentType = accidentType;
 	}
+
+	public String getAccidentContent() {
+		return accidentContent;
+	}
+
+	public void setAccidentContent(String accidentContent) {
+		this.accidentContent = accidentContent;
+	}
+
 	public String getAccidentDate() {
 		return accidentDate;
 	}
@@ -82,9 +122,11 @@ public class Accident {
 	public void setAccidentDate(String accidentDate) {
 		this.accidentDate = accidentDate;
 	}
+
 	public String getAccidentLocation() {
 		return accidentLocation;
 	}
+
 	public void setAccidentLocation(String accidentLocation) {
 		this.accidentLocation = accidentLocation;
 	}
@@ -96,13 +138,6 @@ public class Accident {
 	public void setAccidentScale(Level accidentScale) {
 		this.accidentScale = accidentScale;
 	}
-	public String getAccidentContent() {
-		return accidentContent;
-	}
-
-	public void setAccidentContent(String accidentContent) {
-		this.accidentContent = accidentContent;
-	}
 
 	public boolean isDoingHarm() {
 		return doingHarm;
@@ -111,6 +146,7 @@ public class Accident {
 	public void setDoingHarm(boolean doingHarm) {
 		this.doingHarm = doingHarm;
 	}
+
 	public SurveyCompany getRepSurveyCompany() {
 		return repSurveyCompany;
 	}
@@ -124,7 +160,7 @@ public class Accident {
 
 	public void setExemptionInfoID(String exemptionInfoID) {
 		this.exemptionInfoID = exemptionInfoID;
-	}
+  }
 
 	public boolean isOnsite() {
 		return onSite;
@@ -133,6 +169,7 @@ public class Accident {
 	public void setOnsite(boolean onsite) {
 		this.onSite = onsite;
 	}
+
 
 	public void printAccidentDetails(){
 		System.out.println("사고 ID : " + this.accidentID);
@@ -197,5 +234,6 @@ public class Accident {
 		return accidentID+" "+customerID+" "+accidentType+" "+accidentDate+" "+accidentLocation+" "+ accidentScale +" "+ accidentContent +" "+ doingHarm +" "+ repSurveyCompany +" "+ exemptionContent +" "+ onSite;
 	}
 
+	
 
 }//end Accident

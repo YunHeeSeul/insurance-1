@@ -8,6 +8,9 @@ import java.util.Optional;
 
 public class AccidentListImpl implements AccidentList {
 
+public abstract class AccidentListImpl implements AccidentList {
+
+
 	public ArrayList<Accident> accidentList;
 
 	public AccidentListImpl(){
@@ -30,7 +33,9 @@ public class AccidentListImpl implements AccidentList {
 	}
 
 	@Override
-	public Accident getAccidentID(String accidentID){
+  
+	public Accident getByAccidentId(String accidentID){
+
 		for(Accident accident : this.accidentList) {
 			if (accident.getAccidentID().equals(accidentID))
 				return accident;
@@ -38,14 +43,15 @@ public class AccidentListImpl implements AccidentList {
 		return null;
 	}
 	@Override
-	public Accident getCustomerID(String customerID){
+
+	public Accident getByCustomerId(String customerID){
+
 		for(Accident accident : this.accidentList) {
 			if (accident.getCustomerID().equals(customerID))
 				return accident;
 		}
 		return null;
 	}
-
 
 
 	@Override
@@ -71,10 +77,12 @@ public class AccidentListImpl implements AccidentList {
 	}
 
 	@Override
+
 	public boolean updateExemptionInfo(String exemptionInfoID, ArrayList exemptionContent){
 		for(Accident accident : this.accidentList) {
 			if (accident.getExemptionInfoID().equals(exemptionInfoID)){
 				accident.setExemptionContent(exemptionContent);
+
 				return true;
 			}
 		}
@@ -89,11 +97,13 @@ public class AccidentListImpl implements AccidentList {
 	@Override
 	public Optional<Accident> getOptionalAccidentByCustomerId(String customerID) {
 
+
 		return Optional.empty();
 	}
 
 	@Override
 	public Optional<Accident> getOptionalAccidentByAccidentId(String accidentID) {
+
 		return Optional.empty();
 	}
 }//end AccidentListImpl

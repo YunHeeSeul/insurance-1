@@ -3,14 +3,16 @@ package Practice.InsuranceCompany.Design.src.dao;
 import java.sql.*;
 
 public class Dao {
-    private Connection connect=null;
-    private Statement statement=null;
-    private ResultSet resultSet=null;
+
+    protected static String dq = "\"";
+    protected Connection connect=null;
+    protected Statement statement=null;
+    protected ResultSet resultSet=null;
 
     public void connect(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect= DriverManager.getConnection("jdbc:mysql://localhost:3306/insurance?useSSL=false", "root", "seoyeon001!");
+            connect= DriverManager.getConnection("jdbc:mysql://localhost:3306/insurance?useSSL=false", "root", "0730");
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -35,7 +37,10 @@ public class Dao {
 
     public boolean create(PreparedStatement pstmt){
         try {
+
             return pstmt.executeUpdate()!=0;
+
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

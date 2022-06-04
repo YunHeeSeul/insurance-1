@@ -4,13 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0e9d00b-9787-45b8-a57a-2cf57f65810e" name="변경" comment="프로젝트 구조 변경">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="d0e9d00b-9787-45b8-a57a-2cf57f65810e" name="변경" comment="Survey 합치기">
+      <change afterPath="$PROJECT_DIR$/src/controller/CPayment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/PaymentDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contract/Contract.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/contract/Contract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/VContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VContract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/Dao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/payment/CancellationReturn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/payment/CancellationReturn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/payment/ClaimsPaid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/payment/ClaimsPaid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/payment/MaturityDividend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/payment/MaturityDividend.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/payment/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/payment/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/payment/PaymentForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/payment/PaymentForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/payment/PaymentFormList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/payment/PaymentFormList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/payment/PaymentFormListImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/payment/PaymentFormListImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/VPayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/VPayment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev_kimyubi" />
+        <entry key="$PROJECT_DIR$" value="dev_ub" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,6 +59,11 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="Practice.InsuranceCompany.Design.src.controller" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="디폴트 작업">
@@ -71,6 +82,8 @@
       <workItem from="1653530989423" duration="21000" />
       <workItem from="1653531824071" duration="53000" />
       <workItem from="1653908101329" duration="1089000" />
+      <workItem from="1654145244787" duration="16242000" />
+      <workItem from="1654247840200" duration="2664000" />
     </task>
     <task id="LOCAL-00001" summary="gitIgnore 수정">
       <created>1653219511543</created>
@@ -110,7 +123,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="HEAD" />
+                        <option value="dev_ub" />
                       </list>
                     </value>
                   </entry>

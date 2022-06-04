@@ -2,6 +2,7 @@ package Practice.InsuranceCompany.Design.src.model.survey;
 
 
 import java.util.ArrayList;
+
 import java.util.Scanner;
 
 

@@ -2,16 +2,24 @@ package Practice.InsuranceCompany.Design.src.model.survey;
 
 public class SurveyCompany {
 
-	private String surveyCompanyID;
+
 	private String surveyCompanyName;
+=======
+	private String surveyCompanyname;
+
 	private String address;
 	private String phoneNum;
 	private boolean surveyAbility;
+
 
 	public SurveyCompany(){}
 	public SurveyCompany(String surveyCompanyID, String surveyCompanyName, String address, String phoneNum, boolean surveyAbility){
 		this.surveyCompanyID=surveyCompanyID;
 		this.surveyCompanyName=surveyCompanyName;
+
+	public SurveyCompany(String surveyCompanyID, String surveyCompanyname, String address, String phoneNum, boolean surveyAbility){
+		this.surveyCompanyID=surveyCompanyID;
+		this.surveyCompanyname=surveyCompanyname;
 		this.address=address;
 		this.phoneNum=phoneNum;
 		this.surveyAbility=surveyAbility;
@@ -39,6 +47,22 @@ public class SurveyCompany {
 
 	public void setAddress(String address) {
 		this.address = address;
+=======
+	public String getAdress() {
+		return address;
+	}
+
+	public void setAdress(String adress) {
+		this.address = adress;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+
 	}
 
 	public String getPhoneNum() {
@@ -73,4 +97,14 @@ public class SurveyCompany {
 			System.out.println("현장 조사 여부 : 조사하지 않음");
 
 		 */
+=======
+	public String getSurveyCompanyID() {
+		return surveyCompanyID;
+	}
+
+	public void setSurveyCompanyId(String surveyCompanyID) {
+		this.surveyCompanyID = surveyCompanyID;
+	}
+
+
 }//end SurveyCompany

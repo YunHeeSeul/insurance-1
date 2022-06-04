@@ -1,33 +1,33 @@
 package Practice.InsuranceCompany.Design.src.view;
 
-import Practice.InsuranceCompany.Design.src.contract.Contract;
-import Practice.InsuranceCompany.Design.src.contract.ContractListImpl;
-import Practice.InsuranceCompany.Design.src.customer.Customer;
-import Practice.InsuranceCompany.Design.src.customer.CustomerListImpl;
+import Practice.InsuranceCompany.Design.src.controller.CContract;
+import Practice.InsuranceCompany.Design.src.controller.CCustomer;
+import Practice.InsuranceCompany.Design.src.controller.CInsurance;
+import Practice.InsuranceCompany.Design.src.model.contract.Contract;
+import Practice.InsuranceCompany.Design.src.model.contract.ContractListImpl;
+import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.etcEnum.UnderwritingStatus;
-import Practice.InsuranceCompany.Design.src.insurance.InsuranceListImpl;
-import Practice.InsuranceCompany.Design.src.subscription.Subscription;
-import Practice.InsuranceCompany.Design.src.subscription.SubscriptionListImpl;
+import Practice.InsuranceCompany.Design.src.model.subscription.Subscription;
 
 import java.util.Scanner;
 
 public class VContract {
 
     private Scanner scn;
-    private ContractListImpl contractList;
-    private SubscriptionListImpl subscriptionList;
-    private CustomerListImpl customerList;
-    private InsuranceListImpl insuranceList;
+    private CContract cContract;
+    private CCustomer cCustomer;
+    private CInsurance cInsurance;
+    private CSubscription cSubscription;
 
-    public VContract(Scanner scn, ContractListImpl contractList, SubscriptionListImpl subscriptionList, CustomerListImpl customerList, InsuranceListImpl insuranceList){
+    public VContract(Scanner scn){
         this.scn=scn;
-        this.contractList=contractList;
-        this.subscriptionList=subscriptionList;
-        this.customerList=customerList;
-        this.insuranceList=insuranceList;
+        this.cContract=new CContract();
+        this.cCustomer=new CCustomer();
+        this.cInsurance=new CInsurance();
+        this.cSubscription=new CSubscription();
     }
 
-    public void show() {
+    public void run() {
         while (true) {
             System.out.println("(1)계약 조회 (2)계약 체결 여부 설정 및 안내 (3)계약 유지 활동 대상 조회 및 수정");
             System.out.println("(b)뒤로가기");
@@ -44,9 +44,11 @@ public class VContract {
 
 
     private boolean inquireAllContract(){
+        ContractListImpl contractList=this.cContract.getAllContractList();
+        if(contractList.getAllList().size()==0){ System.out.println("계약이 없습니다."); return false;}
         System.out.println("----------------------------계약 전체 목록----------------------------");
         System.out.println("(계약ID) (고객ID) (보험ID) (월보험료) (가입일자) (가입기간) (계약유지활동일자)");
-        for(Contract contract : this.contractList.getAllList())
+        for(Contract contract:contractList.getAllList())
             System.out.println(contract.getContractInfo());
         return true;
     }
@@ -56,11 +58,13 @@ public class VContract {
         System.out.print("청약서 ID : ");
         String subscriptionID = scn.next();
 
-        Subscription subscription= this.subscriptionList.getBySubscriptionID(subscriptionID);
+        Subscription subscription= this.cSubscription.getBySubscriptionID(subscriptionID);
+        if(subscription==null) { System.out.println("없는 청약서 ID 입니다."); return; }
+
         String cusID = subscription.getCustomerID();
-        String cusName=this.customerList.getByCustomerId(cusID).getCustomerName();
+        String cusName=this.cCustomer.retrieveById(cusID).getName();
         String insuranceID =subscription.getInsuranceID();
-        String insuranceName=this.insuranceList.get(insuranceID).getInsuranceName();
+        String insuranceName=this.cInsurance.retrieveById(insuranceID).getInsuranceName();
         String date = subscription.getDateCreated();
         UnderwritingStatus status = subscription.getUnderwritingStatus();
         String insuranceAgentID=subscription.getInsuranceAgentID();
@@ -78,15 +82,21 @@ public class VContract {
         String input = scn.next();
         switch (input) {
             case "1" :
-                int period=subscription.getContractPeriod();
+                int period=subscription.getInsurancePeriod();
                 int premium=subscription.getPremium();
-                Contract contract=new Contract(cusID,insuranceID,period,premium,insuranceAgentID);
-                this.contractList.add(contract);
-                this.subscriptionList.updateUnderwritingStatus(subscription.getSubscriptionID(),UnderwritingStatus.completed);
+                String contractID="CT"+this.cContract.getMaxID()+1;
+                Contract contract=new Contract(contractID,cusID,insuranceID,period,premium,insuranceAgentID);
+                if(!this.cContract.addContract(contract)) { System.out.println("DB 오류입니다."); return; }
+                if(!this.cSubscription.updateUnderwritingStatus(subscription.getSubscriptionID(),UnderwritingStatus.completed)){
+                    System.out.println("DB 오류입니다."); return;
+                }
+                this.cCustomer.updateCustomerType(cusID);
                 System.out.println("계약 체결 완료 처리되었습니다.");
                 break;
             case "2" :
-                this.subscriptionList.updateUnderwritingStatus(subscription.getSubscriptionID(),UnderwritingStatus.completed);
+                if(!this.cSubscription.updateUnderwritingStatus(subscription.getSubscriptionID(),UnderwritingStatus.completed)){
+                    System.out.println("DB 오류입니다."); return;
+                }
                 System.out.println("계약 체결 반려 처리되었습니다.");
                 break;
             case "c" : return;
@@ -103,12 +113,15 @@ public class VContract {
     }
 
     private boolean inquireMaintenanceContract(){
+        ContractListImpl contractList=this.cContract.getMaintenanceTargetList();
+        if(contractList.getAllList().size()==0){ System.out.println("계약 유지 활동 대상이 없습니다."); return false;}
+
         System.out.println("------------------------계약유지활동 대상 목록------------------------");
         System.out.println("(계약ID) (보험명) (고객명) (생년월일) (가입일자) (가입기간) (계약유지활동일자)");
-        for(Contract contract : this.contractList.getMaintenanceTargetList()){
-            Customer customer = this.customerList.getByCustomerId(contract.getCustomerID());
+        for(Contract contract : contractList.getAllList()){
+            Customer customer = this.cCustomer.retrieveById(contract.getCustomerID());
             String insuranceID =contract.getInsuranceID();
-            String insuranceName = this.insuranceList.get(insuranceID).getInsuranceName();
+            String insuranceName = this.cInsurance.retrieveById(insuranceID).getInsuranceName();
             String cusName = customer.getName();
             String birth = customer.getDateOfBirth();
             String joinDate = contract.getJoinDate();
@@ -121,11 +134,12 @@ public class VContract {
 
     private void setMaintenanceActivityDate() {
         while (true) {
-            inquireMaintenanceContract();
+            if(!inquireMaintenanceContract()) return;
             System.out.println("------------계약유지활동 일자 수정------------");
             System.out.print("계약 ID : ");
             String contractID = scn.next();
-            Contract contract = this.contractList.getByContractId(contractID);
+            Contract contract = this.cContract.getContractById(contractID);
+            if(contract==null) {System.out.println("잘못된 계약ID 입니다."); return; }
             while (true) {
                 System.out.println("(c)나가기");
                 System.out.print("계약유지활동 일자 :");
@@ -137,8 +151,8 @@ public class VContract {
                     if (response.equals("y")) break;
                     else if (response.equals("n")) continue;
                 }
-                contract.setActivityDate(activityDate);
-                System.out.println("계약유지활동의 변경된 정보가 저장되었습니다.");
+                if(!this.cContract.updateActivityDate(contractID,activityDate)) System.out.println("DB 오류입니다.");
+                else System.out.println("계약유지활동의 변경된 정보가 저장되었습니다.");
                 return;
             }
         }

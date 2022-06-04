@@ -1,31 +1,30 @@
 package Practice.InsuranceCompany.Design.src.view;
 
-import Practice.InsuranceCompany.Design.src.contract.Contract;
-import Practice.InsuranceCompany.Design.src.contract.ContractList;
-import Practice.InsuranceCompany.Design.src.customer.Customer;
-import Practice.InsuranceCompany.Design.src.customer.CustomerList;
-import Practice.InsuranceCompany.Design.src.payment.PaymentForm;
-import Practice.InsuranceCompany.Design.src.payment.PaymentFormList;
-import Practice.InsuranceCompany.Design.src.payment.PaymentType;
+import Practice.InsuranceCompany.Design.src.controller.CContract;
+import Practice.InsuranceCompany.Design.src.controller.CPayment;
 
-import javax.swing.text.html.Option;
+import Practice.InsuranceCompany.Design.src.model.contract.Contract;
+import Practice.InsuranceCompany.Design.src.model.contract.ContractListImpl;
+import Practice.InsuranceCompany.Design.src.model.customer.Customer;
+
+import Practice.InsuranceCompany.Design.src.model.payment.PaymentForm;
+import Practice.InsuranceCompany.Design.src.model.payment.PaymentType;
+
 import java.util.Optional;
 import java.util.Scanner;
 
 public class VPayment {
 
     Scanner scn;
-    CustomerList customerList;
 
-    ContractList contractList;
+    private CContract cContract;
 
-    PaymentFormList paymentFormList;
+    CPayment cPayment;
 
-    public VPayment(Scanner scn, CustomerList customerList, ContractList contractList, PaymentFormList paymentFormList) {
+    private CCustomer cCustomer;
+
+    public VPayment(Scanner scn) {
         this.scn = scn;
-        this.customerList = customerList;
-        this.contractList = contractList;
-        this.paymentFormList = paymentFormList;
     }
 
     public void run(){
@@ -45,9 +44,9 @@ public class VPayment {
                     return;
 
                 case 2:
-                    int sendPaymentResult = this.sendPayment();
+                    Long sendPaymentResult = this.sendPayment();
 
-                    if (sendPaymentResult == -1) System.out.println("제지급금 지급에 실패하였습니다.");
+                    if (sendPaymentResult == -1L) System.out.println("제지급금 지급에 실패하였습니다.");
                     else System.out.println(sendPaymentResult + "원의 제지급금이 지급되었습니다.");
                     return;
 
@@ -72,27 +71,17 @@ public class VPayment {
     public boolean registerPayment(){
         PaymentForm paymentForm = new PaymentForm();
 
-        Optional<Customer> customer;
-        Customer existingCustomer;
+        Customer customer;
 
         System.out.print("고객 ID : ");
         String customerID = scn.next();
-        customer= customerList.getByCustomerId(customerID);
+        customer= cCustomer.getByCustomerId(customerID);
 
-        // 입력받은 customerID를 가진 customer 가 있는 경우
-        if(customer.isPresent()){
-            existingCustomer = customer.get();
-        }
 
-        // 입력받은 customerID를 가진 customer 가 없는 경우
-        else{
-
+        while(customer == null) {
             System.out.println("없는 고객입니다. 다시 입력해주세요.");
-
-            while(customer.isPresent()){
-                customerID = scn.next();
-                customer= customerList.getByCustomerId(customerID);
-            }
+            customerID = scn.next();
+            customer = cCustomer.getByCustomerId(customerID);
         }
 
         System.out.println("제지급금 유형을 선택하세요.");
@@ -101,19 +90,23 @@ public class VPayment {
         int paymentType = scn.nextInt();
 
         while (paymentType != 1 && paymentType != 2 && paymentType != 3){
+            System.out.println("잘못 입력하셨습니다. 제지급금 유형을 다시 선택하세요.");
             paymentType = scn.nextInt();
         }
 
         switch (paymentType){
                 case 1:
+                    // 보험금
                     paymentForm.setPaymentType(PaymentType.payout);
                     break;
 
                 case 2:
+                    // 만기보험금
                     paymentForm.setPaymentType(PaymentType.maturity);
                     break;
 
                 case 3:
+                    // 해약환급금
                     paymentForm.setPaymentType(PaymentType.cancellation);
                     break;
 
@@ -122,46 +115,66 @@ public class VPayment {
         }
 
 
-        paymentForm.setPayment(paymentForm.getPaymentType().getPayment());
-        paymentForm.getPayment().setPaymentInfo();
+        paymentForm.setCustomerId(customer.getCustomerID());
 
-        return paymentForm.getPayment() == null? false : true;
+        paymentForm.setPayment(paymentForm.getPaymentType().getPayment());
+        paymentForm.getPayment().setPaymentInfo(scn);
+
+        ContractListImpl contractList = cContract.getContractByCustomerId(customer.getCustomerID());
+        contractList.printAllList();
+
+        System.out.println("계약 고유 코드를 입력해주세요");
+        String contractId = scn.nextLine();
+
+        if (contractId.isEmpty() || cContract.getContractById(contractId) == null){
+            System.out.println("계약 고유 코드를 다시 입력해주세요");
+            contractId = scn.nextLine();
+        }
+
+        paymentForm.setContractID(contractId);
+
+        if(cPayment.save(paymentForm)) return true;
+        else return false;
     }
 
     // (2). 지급금 지급하기
     // 제지급금 지급 실패 : -1 반환
-    public int sendPayment() {
+    public Long sendPayment() {
         System.out.print("지급금을 지급할 고객을 선택해주세요");
         System.out.print("=============================================================");
         System.out.print("고객 ID : ");
         String customerID = scn.next();
-        Optional<Customer> customer = customerList.getByCustomerId(customerID);
 
-        while (customer.isEmpty()) {
+        Customer customer = cCustomer.getByCustomerId(customerID);
+
+        while (customer == null) {
             System.out.print("해당 고객 ID를 가진 고객이 존재하지 않습니다.");
             System.out.print("고객 ID를 다시 선택해주세요.");
             System.out.print("=============================================================");
             System.out.print("고객 ID : ");
             customerID = scn.next();
-            customer = customerList.getByCustomerId(customerID);
+            customer = cCustomer.getByCustomerId(customerID);
         }
 
-        Customer existringCustomer = customer.get();
-
-        Optional<Contract> contract = contractList.getOptionalContractByCustomerId(customerID);
-        if (contract.isEmpty()) {
+        Contract contract = cContract.getContractById(customerID);
+        if (contract == null) {
             System.out.println("고객 ID가 " + customerID + "인 고객이 소유하고 있는 보험이 존재하지 않습니다.");
-            return -1;
-        } else {
-            String contractId = contract.get().getContractID();
-            PaymentForm paymentForm = this.paymentFormList.get(contractId);
+            return -1L;
+        }
+
+        else {
+            String contractId = contract.getContractID();
+            PaymentForm paymentForm = this.cPayment.getContractById(contractId);
 
             if (paymentForm == null) {
                 System.out.println("고객 ID가 " + customerID + "인 고객이 계약 ID" + contractId + "에 대해 신청한 지급 신청서가 존재하지 않습니다.");
-                return -1;
-            } else {
-                // 지급 안내서 표출
-                return paymentForm.getPaymentType().getPayment().calculatePayment();
+                return -1L;
+            }
+            else {
+                int amount =  paymentForm.getPaymentType().getPayment().calculatePayment();
+                Long result = cPayment.setAmount(amount, paymentForm.getPaymentFormId());
+
+                return result;
             }
         }
     }
@@ -173,37 +186,41 @@ public class VPayment {
         System.out.print("=============================================================");
         System.out.print("고객 ID : ");
         String customerID = scn.next();
-        Optional<Customer> customer= customerList.getByCustomerId(customerID);
+        Customer customer= cCustomer.getByCustomerId(customerID);
 
-        while(customer.isEmpty()){
+        while(customer == null){
             System.out.print("해당 고객 ID를 가진 고객이 존재하지 않습니다.");
             System.out.print("고객 ID를 다시 선택해주세요.");
             System.out.print("=============================================================");
             System.out.print("고객 ID : ");
             customerID = scn.next();
-            customer= customerList.getByCustomerId(customerID);
+            customer= cCustomer.getByCustomerId(customerID);
         }
 
-        Customer existringCustomer = customer.get();
 
         // 지급 안내서를 표출한다.
-        Optional<Contract> contract = contractList.getOptionalContractByCustomerId(customerID);
-        if(contract.isEmpty()){
+        Contract contract = cContract.getContractById(customerID);
+        if(contract == null){
             System.out.println("고객 ID가 " + customerID + "인 고객이 소유하고 있는 보험이 존재하지 않습니다.");
             return false;
         }
         else{
-            String contractId = contract.get().getContractID();
-            PaymentForm paymentForm = this.paymentFormList.get(contractId);
+            String contractId = contract.getContractID();
+            PaymentForm paymentForm = cPayment.getContractById(contractId);
 
             if(paymentForm == null){
                 System.out.println("고객 ID가 " + customerID + "인 고객이 계약 ID" + contractId + "에 대해 신청한 지급 신청서가 존재하지 않습니다.");
                 return false;
             }
             else{
-                // 지급 안내서 표출
-                paymentForm.getPaymentType().getPayment().sendPaymentGuide(existringCustomer);
-                return true;
+
+                if(paymentForm.isExaminationResult()){
+                    // 지급 안내서 표출
+                    paymentForm.getPaymentType().getPayment().sendPaymentGuide(customer);
+                    return true;
+                }
+
+                return false;
             }
         }
     }
