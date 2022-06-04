@@ -9,12 +9,10 @@ public class VMain {
     private VPayment vPayment;
     private VAccident vAccident;
     private VCollectionMoney vCollectionMoney;
-
     private VCustomer vCustomer;
 
 
-
-    public void run(){
+    public void run() {
         Scanner scn = new Scanner(System.in);
 
         while (true) {
@@ -30,27 +28,27 @@ public class VMain {
                 this.vInsurance.run();
 
             } else if (input.equals("2")) {
-                    this.vContract = new VContract(scn);
-                    this.vContract.run();
+                this.vContract = new VContract(scn);
+                this.vContract.run();
 
             } else if (input.equals("3")) {
-                    this.vUnderwriting = new VUnderwriting(scn);
-                    this.vUnderwriting.run();
+                this.vUnderwriting = new VUnderwriting(scn);
+                this.vUnderwriting.run();
 
             } else if (input.equals("4")) {
                 this.vPayment = new VPayment(scn);
                 this.vPayment.run();
 
             } else if (input.equals("5")) {
-//                this.vAccident = new VAccident();
-//                this.vAccident.run();
-
-            }
-            else if (input.equals("7")) {
+                this.vAccident = new VAccident(scn);
+                this.vAccident.run();
+            } else if (input.equals("6")) {
+                this.vCollectionMoney = new VCollectionMoney(scn);
+                this.vCollectionMoney.run();
+            } else if (input.equals("7")) {
                 this.vCustomer = new VCustomer(scn);
                 this.vCustomer.run();
-            }
-            else if (input.equals("0")) {
+            } else if (input.equals("0")) {
                 return;
             } else
                 System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");

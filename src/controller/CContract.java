@@ -35,6 +35,10 @@ public class CContract {
         return this.contractDao.retrieveMaintenanceTargetList();
     }
 
+    public ContractListImpl getValidByCustomerID(String cusID){
+        return this.contractDao.retrieveValidByCustomerId(cusID);
+    }
+
     public int getMaxID() {
         return this.contractDao.retrieveMaxID();
     }
