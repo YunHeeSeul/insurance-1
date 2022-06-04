@@ -18,14 +18,6 @@ public class Dao {
         }
     }
 
-    public PreparedStatement connectPrepareStatement(String query){
-        try {
-            return connect.prepareStatement(query);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public boolean create(String query){
         try {
             statement = connect.createStatement();
@@ -33,15 +25,6 @@ public class Dao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public boolean create(PreparedStatement pstmt){
-        try {
-            return pstmt.executeUpdate()!=0;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
     }
 
     public boolean delete(String query) {
