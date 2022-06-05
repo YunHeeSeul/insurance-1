@@ -66,7 +66,7 @@ public class SubscriptionDao extends Dao {
 
     public boolean updateUWstatusById(String id, String detail) {
         String query = "update subscription set ";
-        query += "underwritingStatusId = " + dq + detail + dq
+        query += "underwritingStatus = " + dq + detail + dq
                 + " where subscriptionID = "+ dq + id + dq +";";
 
         return super.update(query);
