@@ -10,11 +10,13 @@ public class EmployeeListImpl implements EmployeeList {
     }
     public ArrayList<Employee> getEmployeeList(){ return this.employeeList; }
 
+    @Override
     public boolean add(Employee employee){
         this.employeeList.add(employee);
         return true;
     }
 
+    @Override
     public boolean delete(String employeeID){
         for(Employee employee : this.employeeList) {
             if (employee.getEmployeeId().equals(employeeID))
@@ -23,6 +25,7 @@ public class EmployeeListImpl implements EmployeeList {
         return false;
     }
 
+    @Override
     public Employee getByID(String employeeID){
         for(Employee employee : this.employeeList) {
             if (employee.getEmployeeId().equals(employeeID))

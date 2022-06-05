@@ -2,19 +2,19 @@ package Practice.InsuranceCompany.Design.src.model.insurance;
 
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class InsuranceListImpl implements InsuranceList {
 
 	private ArrayList<Insurance> insuranceList;
-	public Insurance m_Insurance;
 
 	public InsuranceListImpl(){
 		this.insuranceList = new ArrayList<>();
 	}
 
+	@Override
 	public ArrayList<Insurance> getInsuranceList(){ return this.insuranceList; }
 
+	@Override
 	public boolean add(Insurance insurance){
 		if(this.insuranceList != null) {
 			this.insuranceList.add(insurance);
@@ -23,6 +23,7 @@ public class InsuranceListImpl implements InsuranceList {
 		return false;
 	}
 
+	@Override
 	public boolean delete(String insuranceID){
 		if(this.insuranceList != null) {
 			for (Insurance insurance : this.insuranceList) {
@@ -33,6 +34,7 @@ public class InsuranceListImpl implements InsuranceList {
 		return false;
 	}
 
+	@Override
 	public Insurance get(String insuranceID){
 		if(this.insuranceList != null) {
 			for (Insurance insurance : this.insuranceList)

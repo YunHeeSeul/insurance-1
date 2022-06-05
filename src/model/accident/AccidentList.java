@@ -20,10 +20,6 @@ public interface AccidentList {
 
 	boolean updateExemptionInfo(String exemptionInfoID, ArrayList exemptionContent);
 
-	Optional<Accident> getOptionalAccidentByCustomerId(String customerID);
-
-	Optional<Accident> getOptionalAccidentByAccidentId(String accidentID);
-
 	public Accident getByAccidentId(String accidentID);
 
 	public Accident getByCustomerId(String customerID);

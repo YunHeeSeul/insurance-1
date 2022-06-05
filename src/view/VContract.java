@@ -86,7 +86,7 @@ public class VContract {
                 if(status==UnderwritingStatus.rejected) { System.out.println("심사 반려된 청약서입니다."); return; }
                 int period=subscription.getInsurancePeriod();
                 int premium=subscription.getPremium();
-                String contractID="CT"+this.cContract.getMaxID()+1;
+                String contractID="CT"+(this.cContract.getMaxID()+1);
                 Contract contract=new Contract(contractID,cusID,insuranceID,period,premium,insuranceAgentID);
 
                 if(this.cPolicyholder.retrieveById(cusID) == null) {
@@ -124,7 +124,7 @@ public class VContract {
             String email=this.cCustomer.retrieveById(cusID).getEmailAddress();
             System.out.println(email+"로 메일이 성공적으로 전송되었습니다.");
         }
-        else  System.out.println("전송에 실패했습니다.");
+        else  System.out.println("전송을 취소했습니다.");
     }
 
     private boolean inquireMaintenanceContract(){
@@ -155,7 +155,7 @@ public class VContract {
             System.out.print("계약 ID : ");
             String contractID = scn.next();
             Contract contract = this.cContract.getContractById(contractID);
-            if(contract==null) {System.out.println("잘못된 계약ID 입니다."); return; }
+            if(contract==null) {System.out.println("존재하지 않는 계약ID 입니다."); return; }
             while (true) {
                 System.out.println("(c)나가기");
                 System.out.print("계약유지활동 일자 :");
