@@ -11,11 +11,14 @@ public class SurveyCompanyListImpl implements SurveyCompanyList {
 	public SurveyCompanyListImpl(){
 		this.surveyCompanyList = new ArrayList<>();
 	}
+
+	@Override
 	public boolean add(SurveyCompany surveyCompany){
 		this.surveyCompanyList.add(surveyCompany);
 		return true;
 	}
 
+	@Override
 	public boolean delete(String surveyCompanyID){
 		if(this.surveyCompanyList != null){
 			for(SurveyCompany surveyCompany : this.surveyCompanyList) {
@@ -27,6 +30,7 @@ public class SurveyCompanyListImpl implements SurveyCompanyList {
 		return false;
 	}
 
+	@Override
 	public SurveyCompany get(String surveyCompanyID){
 		if(this.surveyCompanyList != null) {
 			for (SurveyCompany surveyCompany : this.surveyCompanyList)

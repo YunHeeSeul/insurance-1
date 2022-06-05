@@ -1,7 +1,5 @@
 package Practice.InsuranceCompany.Design.src.model.subscription;
 
-import Practice.InsuranceCompany.Design.src.model.insurance.Insurance;
-
 import java.util.ArrayList;
 
 public class SubscriptionListImpl implements SubscriptionList {
@@ -9,6 +7,8 @@ public class SubscriptionListImpl implements SubscriptionList {
     private ArrayList<Subscription> subscriptionList;
 
     public SubscriptionListImpl(){ this.subscriptionList = new ArrayList<>(); }
+
+    @Override
     public ArrayList<Subscription> getSubscriptionList(){ return this.subscriptionList; }
 
     @Override

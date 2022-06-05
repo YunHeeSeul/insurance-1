@@ -9,10 +9,10 @@ import java.util.Optional;
 public class CustomerListImpl implements CustomerList {
 
 	private ArrayList<Customer> customerList;
-	public Customer m_Customer;
 
 	public CustomerListImpl(){ this.customerList = new ArrayList<>(); }
 
+	@Override
 	public boolean add(Customer customer){
 		if(this.customerList != null) {
 			this.customerList.add(customer);
@@ -21,6 +21,7 @@ public class CustomerListImpl implements CustomerList {
 		return false;
 	}
 
+	@Override
 	public boolean delete(String customerID){
 		return false;
 	}
@@ -35,8 +36,10 @@ public class CustomerListImpl implements CustomerList {
 		return null;
 	}
 
+	@Override
 	public ArrayList<Customer> getCustomerList(){ return this.customerList; }
 
+	@Override
 	public boolean checkValidationID(String inputID) {
 		if(this.customerList != null) {
 			for (Customer customer : this.customerList)

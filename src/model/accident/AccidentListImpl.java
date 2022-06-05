@@ -91,13 +91,4 @@ public class AccidentListImpl implements AccidentList {
 		return this.accidentList;
 	}
 
-	@Override
-	public Optional<Accident> getOptionalAccidentByCustomerId(String customerID) {
-		return Optional.empty();
-	}
-
-	@Override
-	public Optional<Accident> getOptionalAccidentByAccidentId(String accidentID) {
-		return Optional.empty();
-	}
 }//end AccidentListImpl
