@@ -11,7 +11,7 @@ public class CPayment {
         this.paymentDao = new PaymentDao();
     }
 
-    public PaymentForm getContractById(String contractId) {
+    public PaymentForm getByContractId(String contractId) {
         return this.paymentDao.retrieveByContractId(contractId);
     }
 
@@ -36,5 +36,9 @@ public class CPayment {
 
     public PaymentForm getByPaymentFormId(String paymentFormId) {
         return this.paymentDao.retrieveByPaymentId(paymentFormId);
+    }
+
+    public PaymentFormListImpl getByCustomerId(String customerID) {
+        return this.paymentDao.getByCustomerId(customerID);
     }
 }

@@ -48,7 +48,6 @@ public class PaymentDao extends Dao{
                     +paymentForm.getPaymentType().getDetail()+"\");";
         }
 
-        System.out.println(query);
         return super.create(query);
     }
 
@@ -150,6 +149,21 @@ public class PaymentDao extends Dao{
     public PaymentFormListImpl retrieveByContractIdAndCustomerId(String contractId, String customerID) {
         try {
             String query = "select * from payment where customerId= \"" +customerID + "\"" + " and contractId= \"" + contractId +"\";";
+            ResultSet rs = super.retrieve(query);
+            PaymentFormListImpl paymentFormList=new PaymentFormListImpl();
+
+            while(rs.next()){
+                paymentFormList.add(getFromResultSet(rs));
+            }
+            return paymentFormList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public PaymentFormListImpl getByCustomerId(String customerID) {
+        try {
+            String query = "select * from payment where customerId= \"" +customerID + "\";" ;
             ResultSet rs = super.retrieve(query);
             PaymentFormListImpl paymentFormList=new PaymentFormListImpl();
 

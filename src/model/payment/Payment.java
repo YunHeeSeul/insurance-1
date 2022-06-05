@@ -28,7 +28,7 @@ public abstract class Payment {
 	// 만기보험금 필드
 	protected String dateOfExpiry;
 
-	abstract public void sendPaymentGuide(Customer customer);
+	abstract public void sendPaymentGuide(Customer customer, PaymentForm payment);
 	public abstract void setPaymentInfo(Scanner scn, Payment payment);
 	public abstract int calculatePayment(int premium);
 
