@@ -47,15 +47,6 @@ public class ContractListImpl implements ContractList {
 		return this.ContractList;
 	}
 
-//	@Override
-//	public ArrayList<Contract> getMaintenanceTargetList() {
-//		ArrayList<Contract> maintenanceTargetList = new ArrayList<>();
-//		for (Contract contract :this.ContractList){
-//			if(contract.isMaintenanceTarget()) maintenanceTargetList.add(contract);
-//		}
-//		return maintenanceTargetList;
-//	}
-
 	@Override
 	public boolean updateMDate(String contractID, String maintenanceDate) {
 		for(Contract contract : this.ContractList) {
