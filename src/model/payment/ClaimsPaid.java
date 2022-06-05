@@ -12,11 +12,11 @@ public class ClaimsPaid extends Payment {
 	@Override
 	public void setPaymentInfo(Scanner scn, Payment payment) {
 
-		System.out.println("사고 일시를 입력하세요 : ");
+		System.out.print("사고 일시를 입력하세요(yyyy-mm-dd) : ");
 		String accidentDateTime = scn.next();
 
 		while(accidentDateTime == null){
-			System.out.println("사고 일시를 다시 입력하세요 : ");
+			System.out.print("사고 일시를 다시 입력하세요(yyyy-mm-dd) : ");
 			accidentDateTime = scn.next();
 		}
 
@@ -24,12 +24,13 @@ public class ClaimsPaid extends Payment {
 
 		///////////////////////////////////////////////////////
 
-		System.out.println("사고 상황을 입력하세요 : ");
-		String accidentCircumstance = scn.next();
+		System.out.print("사고 상황을 입력하세요 : ");
+		scn.nextLine();
+		String accidentCircumstance = scn.nextLine();
 
-		while(accidentCircumstance == null){
-			System.out.println("사고 상황을 다시 입력하세요 : ");
-			accidentCircumstance = scn.next();
+		while(accidentCircumstance.isEmpty()){
+			System.out.print("사고 상황을 다시 입력하세요 : ");
+			accidentCircumstance = scn.nextLine();
 		}
 
 		payment.setAccidentCircumstance(accidentCircumstance);
@@ -62,24 +63,26 @@ public class ClaimsPaid extends Payment {
 
 		//////////////////////////////////////////////////
 
-		System.out.println("사고 장소를 입력하세요 : ");
-		String accidentPlace = scn.next();
+		System.out.print("사고 장소를 입력하세요 : ");
+		scn.nextLine();
+		String accidentPlace = scn.nextLine();
 
-		while(accidentPlace == null){
-			System.out.println("사고 장소를 다시 입력하세요 : ");
-			accidentPlace = scn.next();
+		while(accidentPlace.isEmpty()){
+			System.out.print("사고 장소를 다시 입력하세요 : ");
+			accidentPlace = scn.nextLine();
 		}
 
 		payment.setAccidentPlace(accidentPlace);
 
 		////////////////////////////////////////////////////
 
-		System.out.println("상해 혹은 질병명을 입력하세요 : ");
-		String diseaseName = scn.next();
+		System.out.print("상해 혹은 질병명을 입력하세요 : ");
+		scn.nextLine();
+		String diseaseName = scn.nextLine();
 
-		while(diseaseName == null){
-			System.out.println("상해 혹은 질병명을 다시 입력하세요 : ");
-			diseaseName = scn.next();
+		while(diseaseName.isEmpty()){
+			System.out.print("상해 혹은 질병명을 다시 입력하세요 : ");
+			diseaseName = scn.nextLine();
 		}
 
 		payment.setDiseaseName(diseaseName);

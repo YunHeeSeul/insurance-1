@@ -8,11 +8,11 @@ public class MaturityDividend extends Payment {
 
 	@Override
 	public void setPaymentInfo(Scanner scn, Payment payment) {
-		System.out.println("만기 일을 입력하세요.");
+		System.out.println("만기일을 입력하세요(yyyy-mm-dd)");
 		String dateOfExpiry = scn.next();
 		
 		while(dateOfExpiry.isEmpty()){
-			System.out.println("만기 일을 다시 입력하세요.");
+			System.out.println("만기일을 다시 입력하세요(yyyy-mm-dd)");
 			dateOfExpiry = scn.next();
 		}
 		payment.setDateOfExpiry(dateOfExpiry);
