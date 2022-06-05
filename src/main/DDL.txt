@@ -255,6 +255,9 @@ create table exemptionInfo(
 	paymentRatio double not null
 );
 
+insert into exemptionInfo values("EX1", "부책", "상대방의 급정거로 인한 사고이므로", 70.50);
+insert into exemptionInfo values("EX2", "부책", "건물이 오래돼서 누전이 발생했으므로", 89.75);
+
 # Accident
 
 create table accident(
@@ -274,11 +277,8 @@ create table accident(
 	foreign key(repSurveyCompanyID) references surveyCompany(surveyCompanyID) on update cascade
 );
 
-insert into accident values("ACC1", "CS1", "자동차", "2007-09-01", "강남역 교차로", "약", "가벼운 접촉사고", true, "SC3", "EX1", "출동");
-insert into accident values("ACF1", "CS2", "화재", "2012-12-05", "개인사무실", "중", "누전으로 인한 화재", false, "SC1", "EX2", "미출동");
-insert into accident values("ACH1", "CS1", "상해/질병", "2017-08-01", "수영장", "약", "미끄러짐으로 인한 가벼운 타박상", null, "SC1", "EX3", "미출동");
-insert into accident values("ACH2", "CS3", "상해/질병", "2021-01-23", "횡단보도", "중", "접촉사고로 인한 팔 골절", null, "SC2", "EX4", "출동");
-insert into accident values("ACC2", "CS4", "자동차", "2022-05-27", "고속도로", "강", "안전거리 미확보 교통사고", true, "SC4", "EX5", "출동");
+insert into accident values("ACC1", "CU4", "자동차", "2021-11-01", "강남역 교차로", "약", "가벼운 접촉사고", true, "SC3", "EX1", "출동");
+insert into accident values("ACF1", "CU1", "화재", "2012-12-05", "개인사무실", "중", "누전으로 인한 화재", false, "SC1", "EX2", "미출동");
 
 # 자동차사고 : ACC00n, 화재사고 : ACF00n, 상해/질병사고 : ACH00n
 
