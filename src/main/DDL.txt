@@ -41,10 +41,10 @@ create table ownedCarInfo (
 	displacement INT
 );
 
-insert into ownedCarInfo values ("CI1", 3, "van", "notBusiness", 220); # ap용
-insert into ownedCarInfo values ("CI2", 0, "lorry", "business", 310); # 개인용
-insert into ownedCarInfo values ("CI3", 1, "passenger", "notBusiness", 110); # 개인용
-insert into ownedCarInfo values ("CI4", 2, "lorry", "business", 320); # 개인용
+insert into ownedCarInfo values ("CI1", 3, "승합차", "비사업용", 220); # ap용
+insert into ownedCarInfo values ("CI2", 0, "화물차", "사업용", 310); # 개인용
+insert into ownedCarInfo values ("CI3", 1, "승용차", "비사업용", 110); # 개인용
+insert into ownedCarInfo values ("CI4", 2, "화물차", "사업용", 320); # 개인용
 
 # ViolationInfo
 

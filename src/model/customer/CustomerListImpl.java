@@ -52,7 +52,7 @@ public class CustomerListImpl implements CustomerList {
 				System.out.println("\n");
 			}
 		} else {
-			System.out.println("가입자 목록이 비어있습니다.-");
+			System.out.println("가입자 목록이 비어있습니다.");
 			return;
 		}
 	}

@@ -87,16 +87,4 @@ public class Contract {
 	public String getContractInfo(){
 		return "  " +  contractID+"    "+customerID+"    "+insuranceID+"   "+ premium +"  "+joinDate+"     "+ contractPeriod +"     "+ activityDate;
 	}
-
-	// 추가
-//	public boolean isMaintenanceTarget(){
-//		try {
-//			DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
-//			Date today=new Date();
-//			Date date=format.parse(joinDate);
-//			return date.compareTo(today) <= 31;
-//		} catch (ParseException e) {
-//			throw new RuntimeException(e);
-//		}
-//	}
 }//end Contract
