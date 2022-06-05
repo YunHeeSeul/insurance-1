@@ -271,14 +271,14 @@ create table accident(
 	doingHarm BOOLEAN,
 	repSurveyCompanyID VARCHAR(6),
 	exemptionInfoId VARCHAR(6),
-	onSite VARCHAR(5),
+	onSite BOOLEAN,
 	foreign key(customerId) references customer(customerId) on delete restrict,
 	foreign key(exemptionInfoId) references exemptionInfo(exemptionInfoId) on update cascade,
 	foreign key(repSurveyCompanyID) references surveyCompany(surveyCompanyID) on update cascade
 );
 
-insert into accident values("AC1", "CU4", "자동차", "2021-11-01", "강남역 교차로", "약", "가벼운 접촉사고", true, "SV3", "EX1", "출동");
-insert into accident values("AC2", "CU1", "화재", "2012-12-05", "개인사무실", "중", "누전으로 인한 화재", false, "SV1", "EX2", "미출동");
+insert into accident values("AC1", "CU4", "자동차", "2021-11-01", "강남역 교차로", "약", "가벼운 접촉사고", true, "SV3", "EX1", true);
+insert into accident values("AC2", "CU1", "화재", "2012-12-05", "개인사무실", "중", "누전으로 인한 화재", false, "SV1", "EX2", false);
 
 
 create table payment(
@@ -305,4 +305,4 @@ insert into payment (paymentId, customerId, contractId, dateOfExpiry, paymentTyp
 insert into payment (paymentId, customerId, contractId, cancellationReason, paymentType) values("PM3","CU2","CT2","보장 조건이 더 좋은 다른 보험 가입 권유","해약환급금");
 insert into payment (paymentId, customerId, contractId, accidentCircumstance, accidentDateTime, accidentPlace, accidentType, claimReason, diseaseName, paymentType) values ("PM4","CU4","CT5","뜨거운 물로 씻다가 화상","2022-07-05","서울 서대문구 거북골로 34", "상해","내원","화상","보험금");
 insert into payment (paymentId, customerId, contractId, accidentCircumstance, accidentDateTime, accidentPlace, accidentType, claimReason, diseaseName, paymentType) values ("PM5","CU2","CT2","무단횡단으로 인한 교통사고","2022-02-04","서울 서대문구 거북골로 34", "자동차","입원","골절","보험금");
-insert into payment (paymentId, customerId, contractId, cancellationReason, paymentType) values("PM5","CU1","CT3","보험료 부담","해약환급금");
+insert into payment (paymentId, customerId, contractId, cancellationReason, paymentType) values("PM6","CU1","CT3","보험료 부담","해약환급금");
