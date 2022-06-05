@@ -64,7 +64,15 @@ public class ContractListImpl implements ContractList {
 		System.out.println("(계약ID) (고객ID) (보험ID) (월보험료) (가입일자) (가입기간) (계약유지활동일자)");
 
 		for(Contract contract: this.ContractList){
-			contract.getContractInfo();
+			System.out.println(contract.getContractInfo());
 		}
+	}
+
+	public int getSize(){
+		return this.ContractList.size();
+	}
+
+	public ArrayList<Contract> getContractList(){
+		return this.ContractList;
 	}
 }//end ContractListImpl

@@ -85,6 +85,6 @@ public class Contract {
 
 
 	public String getContractInfo(){
-		return "  " +  contractID+"    "+customerID+"    "+insuranceID+"   "+ premium +"  "+joinDate+"     "+ contractPeriod +"     "+ activityDate;
+		return "  " +  contractID+"     "+customerID+"     "+insuranceID+"     "+ premium +"   "+joinDate+"   "+ contractPeriod +"      "+ activityDate;
 	}
 }//end Contract

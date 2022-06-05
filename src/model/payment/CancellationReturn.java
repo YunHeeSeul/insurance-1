@@ -7,16 +7,17 @@ import java.util.Scanner;
 public class CancellationReturn extends Payment {
 
 	@Override
-	public void setPaymentInfo(Scanner scn) {
-		System.out.println("해약 사유를 입력하세요.");
+	public void setPaymentInfo(Scanner scn, Payment payment) {
+		scn.nextLine();
+
+		System.out.print("해약 사유를 입력하세요: ");
 		String cancellationReason = scn.nextLine();
 
 		while (cancellationReason.isEmpty()){
-			System.out.println("해약 사유를 다시 입력하세요.");
+			System.out.print("해약 사유를 다시 입력하세요.");
 			cancellationReason = scn.nextLine();
 		}
-
-		this.cancellationReason = cancellationReason;
+		payment.setCancellationReason(cancellationReason);
 	}
 
 	@Override

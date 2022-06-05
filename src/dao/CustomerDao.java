@@ -1,6 +1,7 @@
 package Practice.InsuranceCompany.Design.src.dao;
 
 import Practice.InsuranceCompany.Design.src.etcEnum.Gender;
+import Practice.InsuranceCompany.Design.src.model.contract.ContractListImpl;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
 
@@ -137,4 +138,5 @@ public class CustomerDao extends Dao {
 
         return super.update(query);
     }
+
 }

@@ -8,6 +8,7 @@ import Practice.InsuranceCompany.Design.src.model.contract.Contract;
 import Practice.InsuranceCompany.Design.src.model.contract.ContractListImpl;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 
+import Practice.InsuranceCompany.Design.src.model.payment.Payment;
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentForm;
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentType;
 import java.util.Scanner;
@@ -16,11 +17,9 @@ public class VPayment {
 
     Scanner scn;
 
-    private CContract cContract;
-
-    CPayment cPayment;
-
-    private CCustomer cCustomer;
+    private CContract cContract = new CContract();
+    private CPayment cPayment = new CPayment();
+    private CCustomer cCustomer = new CCustomer();
 
     public VPayment(Scanner scn) {
         this.scn = scn;
@@ -69,21 +68,23 @@ public class VPayment {
     // (1). 지급금 접수받기
     public boolean registerPayment(){
         PaymentForm paymentForm = new PaymentForm();
+        String paymentFormId ="PM"+(this.cPayment.getMaxID()+1);
+        paymentForm.setPaymentFormId(paymentFormId);
 
         Customer customer;
 
-        System.out.print("고객 ID : ");
+        System.out.print("고객 고유 번호를 입력하세요: ");
         String customerID = scn.next();
         customer= cCustomer.retrieveById(customerID);
 
-
         while(customer == null) {
             System.out.println("없는 고객입니다. 다시 입력해주세요.");
+            System.out.println("고객 고유 번호를 입력하세요: ");
             customerID = scn.next();
             customer = cCustomer.retrieveById(customerID);
         }
 
-        System.out.println("제지급금 유형을 선택하세요.");
+        System.out.println("\n제지급금 유형을 선택하세요.");
         System.out.println("(1)보험금 (2)만기보험금 (3)해약환급금");
 
         int paymentType = scn.nextInt();
@@ -113,34 +114,37 @@ public class VPayment {
                     break;
         }
 
-
-        paymentForm.setCustomerId(customer.getCustomerID());
-
-        paymentForm.setPayment(paymentForm.getPaymentType().getPayment());
-        paymentForm.getPayment().setPaymentInfo(scn);
-
         ContractListImpl contractList = cContract.getByCustomerId(customer.getCustomerID());
-        contractList.printAllList();
 
-        System.out.println("계약 고유 코드를 입력해주세요");
-        String contractId = scn.nextLine();
-
-        if (contractId.isEmpty() || cContract.getContractById(contractId) == null){
-            System.out.println("계약 고유 코드를 다시 입력해주세요");
-            contractId = scn.nextLine();
+        if(contractList.getSize() == 0){
+            System.out.println(customerID +" 고객은 가입한 보험 목록이 없습니다.");
+            return false;
         }
+        else{
+            contractList.printAllList();
 
-        paymentForm.setContractID(contractId);
+            System.out.println("계약 고유 코드를 입력해주세요");
+            String contractId = scn.next();
 
-        if(cPayment.save(paymentForm)) return true;
-        else return false;
+            if (contractId.isEmpty() || cContract.getContractById(contractId) == null){
+                System.out.println("계약 고유 코드를 다시 입력해주세요");
+                contractId = scn.next();
+            }
+
+            paymentForm.getPayment().setPaymentInfo(scn,paymentForm.getPayment());
+            paymentForm.setContractID(contractId);
+            paymentForm.setCustomerId(customer.getCustomerID());
+
+            if(cPayment.save(paymentForm)) return true;
+            else return false;
+        }
     }
 
     // (2). 지급금 지급하기
     // 제지급금 지급 실패 : -1 반환
     public Long sendPayment() {
-        System.out.print("지급금을 지급할 고객을 선택해주세요");
-        System.out.print("=============================================================");
+        System.out.println("지급금을 지급할 고객을 선택해주세요");
+        System.out.println("=============================================================");
         System.out.print("고객 ID : ");
         String customerID = scn.next();
 
@@ -181,11 +185,15 @@ public class VPayment {
     // (3). 지급 안내서 전송하기
     public boolean sendPaymentGuide(){
 
-        System.out.print("지급 안내서를 보낼 고객을 선택해주세요");
-        System.out.print("=============================================================");
-        System.out.print("고객 ID : ");
+        System.out.println("지급 안내서를 발송할 고객을 선택해주세요");
+        System.out.println("=============================================================");
+        System.out.println("고객 ID : ");
         String customerID = scn.next();
         Customer customer= cCustomer.retrieveById(customerID);
+
+        if(customer == null) {
+            System.out.println("고객 정보를 불러올 수 없습니다. *");
+        }
 
         while(customer == null){
             System.out.print("해당 고객 ID를 가진 고객이 존재하지 않습니다.");

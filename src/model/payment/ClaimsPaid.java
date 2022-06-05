@@ -10,94 +10,105 @@ import java.util.Scanner;
 public class ClaimsPaid extends Payment {
 
 	@Override
-	public void setPaymentInfo(Scanner scn) {
+	public void setPaymentInfo(Scanner scn, Payment payment) {
 
 		System.out.println("사고 일시를 입력하세요 : ");
-		String accidentDateTime = scn.nextLine();
+		String accidentDateTime = scn.next();
 
-		while(accidentDateTime.isEmpty()){
+		while(accidentDateTime == null){
 			System.out.println("사고 일시를 다시 입력하세요 : ");
+			accidentDateTime = scn.next();
 		}
 
-		this.accidentDateTime = accidentDateTime;
+		payment.setAccidentDateTime(accidentDateTime);
 
 		///////////////////////////////////////////////////////
 
 		System.out.println("사고 상황을 입력하세요 : ");
-		String accidentCircumstance = scn.nextLine();
+		String accidentCircumstance = scn.next();
 
-		while(accidentCircumstance.isEmpty()){
+		while(accidentCircumstance == null){
 			System.out.println("사고 상황을 다시 입력하세요 : ");
+			accidentCircumstance = scn.next();
 		}
 
-		this.accidentCircumstance = accidentCircumstance;
+		payment.setAccidentCircumstance(accidentCircumstance);
 
 		///////////////////////////////////////////////////////
 		System.out.println("사고 타입을 선택하세요 : ");
 		System.out.println("(1) 자동차 사고 (2) 화재 사고 (3) 질병 사고");
-		int select = scn.nextInt();
 
-		while(select == 0){
+		String select = scn.next();
+
+		while(select == "0"){
 			System.out.println("사고 타입을 다시 선택하세요 : ");
+			select = scn.next();
 		}
 
 		switch (select){
-			case 1:
-				this.accidentType = AccidentType.car;
+			case "1":
+				payment.setAccidentType(AccidentType.car);
 				break;
-			case 2:
-				this.accidentType = AccidentType.fire;
+			case "2":
+				payment.setAccidentType(AccidentType.fire);
 				break;
-			case 3:
-				this.accidentType = AccidentType.health;
+			case "3":
+				payment.setAccidentType(AccidentType.health);
+				break;
+			default:
+				break;
 
 		}
 
 		//////////////////////////////////////////////////
 
 		System.out.println("사고 장소를 입력하세요 : ");
-		String accidentPlace = scn.nextLine();
+		String accidentPlace = scn.next();
 
-		while(accidentPlace.isEmpty()){
+		while(accidentPlace == null){
 			System.out.println("사고 장소를 다시 입력하세요 : ");
+			accidentPlace = scn.next();
 		}
 
-		this.accidentPlace = accidentPlace;
+		payment.setAccidentPlace(accidentPlace);
 
 		////////////////////////////////////////////////////
 
 		System.out.println("상해 혹은 질병명을 입력하세요 : ");
-		String diseaseName = scn.nextLine();
+		String diseaseName = scn.next();
 
-		while(diseaseName.isEmpty()){
+		while(diseaseName == null){
 			System.out.println("상해 혹은 질병명을 다시 입력하세요 : ");
+			diseaseName = scn.next();
 		}
 
-		this.diseaseName = diseaseName;
+		payment.setDiseaseName(diseaseName);
 
 		//////////////////////////////////////////////////////
 
 		System.out.println("청구 사유를 선택하세요 : ");
 		System.out.println("(1) 사망 (2) 입원 (3) 수리 (4) 검진 / 진료");
-		int selectClaimReason = scn.nextInt();
+		String selectClaimReason = scn.next();
 
-		while(selectClaimReason == 0){
+		while(selectClaimReason != "1" && selectClaimReason == "2" && selectClaimReason == "3"&& selectClaimReason == "4"){
 			System.out.println("청구 사유를 다시 선택하세요 : ");
-			selectClaimReason = scn.nextInt();
+			selectClaimReason = scn.next();
 		}
 
 		switch (selectClaimReason){
-			case 1:
-				this.claimReason = ClaimType.dead;
+			case "1":
+				payment.setClaimReason(ClaimType.dead);
 				break;
-			case 2:
-				this.claimReason = ClaimType.hospitalization;
+			case "2":
+				payment.setClaimReason(ClaimType.hospitalization);
 				break;
-			case 3:
-				this.claimReason = ClaimType.repair;
+			case "3":
+				payment.setClaimReason(ClaimType.repair);
 				break;
-			case 4:
-				this.claimReason = ClaimType.visitHospital;
+			case "4":
+				payment.setClaimReason(ClaimType.visitHospital);
+				break;
+			default:
 				break;
 		}
 	}

@@ -15,21 +15,39 @@ public class PaymentDao extends Dao{
     }
 
     public boolean save(PaymentForm paymentForm){
-        String query = "insert into payment values ('"
-                +paymentForm.getPaymentFormId()+"',"
-                +paymentForm.getCustomerId()+"','"
-                +paymentForm.getContractID()+"',"
-                +paymentForm.getPayment().getAmount()+",'"
-                +paymentForm.getPayment().getAccidentCircumstance()+"','"
-                +paymentForm.getPayment().getAccidentDateTime()+"','"
-                +paymentForm.getPayment().getAccidentPlace()+"','"
-                +paymentForm.getPayment().getAccidentType().getDetail()+"','"
-                +paymentForm.getPayment().getClaimReason().getDetail()+"','"
-                +paymentForm.getPayment().getDiseaseName()+"','"
-                +paymentForm.getPayment().getCancellationReason()+"','"
-                +paymentForm.getPayment().getDateOfExpiry()+"','"
-                +paymentForm.getPaymentType().getDetail()+"',"
-                +paymentForm.isExaminationResult()+");";
+        String query = "";
+
+        if(paymentForm.getPaymentType().equals(PaymentType.payout)){
+             query = "insert into payment (paymentId, customerId, contractId, accidentCircumstance, accidentDateTime, accidentPlace, accidentType, claimReason, diseaseName, paymentType) values ("+ "\""
+                    +paymentForm.getPaymentFormId()+"\",\""
+                    +paymentForm.getCustomerId()+"\",\""
+                    +paymentForm.getContractID()+"\",\""
+                    +paymentForm.getPayment().getAccidentCircumstance()+"\",\""
+                    +paymentForm.getPayment().getAccidentDateTime()+"\",\""
+                    +paymentForm.getPayment().getAccidentPlace()+"\",\""
+                    +paymentForm.getPayment().getAccidentType().getDetail()+"\",\""
+                    +paymentForm.getPayment().getClaimReason().getDetail()+"\",\""
+                    +paymentForm.getPayment().getDiseaseName()+"\",\""
+                    +paymentForm.getPaymentType().getDetail()+"\");";
+        }
+        else if(paymentForm.getPaymentType().equals(PaymentType.cancellation)){
+            query = "insert into payment (paymentId, customerId, contractId, cancellationReason, paymentType) values ("+ "\""
+                    +paymentForm.getPaymentFormId()+"\",\""
+                    +paymentForm.getCustomerId()+"\",\""
+                    +paymentForm.getContractID()+"\",\""
+                    +paymentForm.getPayment().getCancellationReason()+"\",\""
+                    +paymentForm.getPaymentType().getDetail()+"\");";
+        }
+        else if(paymentForm.getPaymentType().equals(PaymentType.maturity)){
+            query = "insert into payment (paymentId, customerId, contractId, dateOfExpiry, paymentType) values ("+ "\""
+                    +paymentForm.getPaymentFormId()+"\",\""
+                    +paymentForm.getCustomerId()+"\",\""
+                    +paymentForm.getContractID()+"\",\""
+                    +paymentForm.getPayment().getDateOfExpiry()+"\",\""
+                    +paymentForm.getPaymentType().getDetail()+"\");";
+        }
+
+        System.out.println(query);
         return super.create(query);
     }
 
@@ -111,5 +129,19 @@ public class PaymentDao extends Dao{
         }
 
         return -1L;
+    }
+
+    public int retrieveMaxID() {
+        try {
+            String query = "select max(paymentId) as ID from payment;";
+            ResultSet rs = super.retrieve(query);
+            if(rs.next()) {
+                String id=rs.getString("ID");
+                return Integer.parseInt(id.substring(2));
+            }
+            else return 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

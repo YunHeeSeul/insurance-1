@@ -29,7 +29,7 @@ public abstract class Payment {
 	protected String dateOfExpiry;
 
 	abstract public void sendPaymentGuide(Customer customer);
-	public abstract void setPaymentInfo(Scanner scn);
+	public abstract void setPaymentInfo(Scanner scn, Payment payment);
 	public abstract int calculatePayment();
 
 	public String getAccidentCircumstance() {

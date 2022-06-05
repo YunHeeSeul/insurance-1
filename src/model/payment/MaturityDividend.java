@@ -7,16 +7,15 @@ import java.util.Scanner;
 public class MaturityDividend extends Payment {
 
 	@Override
-	public void setPaymentInfo(Scanner scn) {
+	public void setPaymentInfo(Scanner scn, Payment payment) {
 		System.out.println("만기 일을 입력하세요.");
-		String dateOfExpiry = scn.nextLine();
+		String dateOfExpiry = scn.next();
 		
 		while(dateOfExpiry.isEmpty()){
 			System.out.println("만기 일을 다시 입력하세요.");
-			dateOfExpiry = scn.nextLine();
+			dateOfExpiry = scn.next();
 		}
-
-		this.dateOfExpiry = dateOfExpiry;
+		payment.setDateOfExpiry(dateOfExpiry);
 	}
 
 	@Override

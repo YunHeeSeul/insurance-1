@@ -2,8 +2,6 @@ package Practice.InsuranceCompany.Design.src.model.payment;
 
 public class PaymentForm {
 
-	public static String paymentFormIdFormat = "pm";
-	public int cnt = 0;
 	private String paymentFormID;
 	private String contractID;
 	private String customerId;
@@ -14,7 +12,6 @@ public class PaymentForm {
 	private boolean examinationResult;
 
 	public PaymentForm(){
-		this.paymentFormID= paymentFormIdFormat + (cnt++);
 		this.examinationResult=false;
 	}
 
@@ -23,7 +20,7 @@ public class PaymentForm {
 	}
 
 	public Payment getPayment() {
-		return payment;
+		return this.payment;
 	}
 
 	public void setContractID(String contractID) {
@@ -32,6 +29,16 @@ public class PaymentForm {
 
 	public void setPaymentType(PaymentType paymentType) {
 		this.paymentType = paymentType;
+
+		if(paymentType.equals(PaymentType.payout)){
+			this.payment = new ClaimsPaid();
+		}
+		else if(paymentType.equals(PaymentType.maturity)){
+			this.payment = new MaturityDividend();
+		}
+		else if(paymentType.equals(PaymentType.cancellation)){
+			this.payment = new CancellationReturn();
+		}
 	}
 
 	public void setPayment(Payment payment) {
@@ -73,5 +80,9 @@ public class PaymentForm {
 
 	public void setExaminationResult(boolean examinationResult) {
 		this.examinationResult = examinationResult;
+	}
+
+	public void setPaymentFormId(String paymentFormId) {
+		this.paymentFormID = paymentFormId;
 	}
 }

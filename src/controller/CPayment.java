@@ -23,6 +23,9 @@ public class CPayment {
         return this.paymentDao.delete(PaymentFormId);
     }
 
-
     public Long setAmount(int amount, String paymentFormId) {  return this.paymentDao.setAmount(amount, paymentFormId);}
+
+    public int getMaxID() {
+        return this.paymentDao.retrieveMaxID();
+    }
 }
