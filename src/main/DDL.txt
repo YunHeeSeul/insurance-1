@@ -1,0 +1,302 @@
+drop database insurance;
+
+create database insurance;
+use insurance;
+
+# OwnedBuildingInfo
+
+create table ownedBuildingInfo (
+	ownedBuildingInfoId VARCHAR(6) not null primary key,
+	floorNum INT,
+	specializedBuilding BOOLEAN
+);
+
+insert into ownedBuildingInfo values ("BI1", 4, false); # 개인용
+insert into ownedBuildingInfo values ("BI2", 13, true); #개인용
+insert into ownedBuildingInfo values ("BI3", 10, false); # ap용
+insert into ownedBuildingInfo values ("BI4", 30, true); # ap용
+
+# DiseaseHistory
+
+create table diseaseHistory (
+	diseaseHistoryId VARCHAR(6) not null primary key,
+	diseaseName VARCHAR(30) not null,
+	severity VARCHAR(10) not null,
+	strugglePeriod INT
+);
+
+insert into diseaseHistory values ("DH1", "간암", "high", 60); # ap용
+insert into diseaseHistory values ("DH2", "췌장암", "high", 60); # ap용
+insert into diseaseHistory values ("DH3", "뇌종양", "high", 18); # 개인용
+insert into diseaseHistory values ("DH4", "허리디스크", "middle", 9); # 개인용
+insert into diseaseHistory values ("DH5", "장염", "low", 1); # 개인용
+
+# OwnedCarInfo
+
+create table ownedCarInfo (
+	ownedCarInfoId VARCHAR(6) not null primary key,
+	accidentNum INT,
+	carType VARCHAR(10),
+	carPurpose VARCHAR(30),
+	displacement INT
+);
+
+insert into ownedCarInfo values ("CI1", 3, "van", "notBusiness", 220); # ap용
+insert into ownedCarInfo values ("CI2", 0, "lorry", "business", 310); # 개인용
+insert into ownedCarInfo values ("CI3", 1, "passenger", "notBusiness", 110); # 개인용
+insert into ownedCarInfo values ("CI4", 2, "lorry", "business", 320); # 개인용
+
+# ViolationInfo
+
+create table violationInfo (
+	ownedCarInfoId VARCHAR(6) not null,
+	imprisonment_period INT,
+	name_of_violation VARCHAR(30),
+	penalty INT,
+	foreign key(ownedCarInfoId) references ownedCarInfo(ownedCarInfoId) on update cascade
+);
+
+insert into violationInfo values ("CI2", 0, "주행속도 위반", 50000);
+insert into violationInfo values ("CI3", 0, "교통신호 위반", 35000);
+insert into violationInfo values ("CI3", 0, "주행속도 위반", 50000);
+insert into violationInfo values ("CI4", 0, "불법주차", 30000);
+
+# customer
+
+create table customer (
+	customerId VARCHAR(6) not null primary key,
+	customerName VARCHAR(30) not null,
+	residentRegistrationNum VARCHAR(14) not null,
+	gender VARCHAR(2),
+	date_of_birth VARCHAR(10),
+	phone_number VARCHAR(13),
+	email_address VARCHAR(30),
+	address VARCHAR(50),
+	diseaseHistoryId VARCHAR(6),
+	ownedBuildingInfoId VARCHAR(6),
+	ownedCarInfoId VARCHAR(6),
+	foreign key(ownedBuildingInfoId) references ownedBuildingInfo(ownedBuildingInfoId) on update cascade,
+	foreign key(diseaseHistoryId) references diseaseHistory(diseaseHistoryId) on update cascade,
+	foreign key(ownedCarInfoId) references ownedCarInfo(ownedCarInfoId) on update cascade
+);
+
+insert into customer values("CU1", "박서연", "761120-1234567", "여성","1976-11-20", "010-1143-1352", "abx123@naver.com", "경기도 고양시", null,null,null);
+insert into customer values("CU2", "윤희슬", "890325-2525637", "여성","1989-03-25", "010-2626-3563", "absgd1@daum.com", "서울특별시", null,null,null);
+insert into customer values("CU3", "김유비", "950908-9537432", "여성","1995-09-08", "010-8462-5253", "sdhedg@naver.com", "강원도 춘천시", null,null,null);
+insert into customer values("CU4", "김초원", "991217-3684573", "여성","1999-12-17", "010-2763-0527", "jrskhg@gmail.com", "경기도 파주시", null,null,null);
+insert into customer values("CU5", "김기원", "000104-8568573", "남성","2000-01-04", "010-2754-9697", "uolddj123@gmail.com", "제주특별자치도 제주시", null,null,null);
+insert into customer values("CU6", "홍길동", "870811-1111111", "남성","1987-08-11", "010-1111-2222", "dnifdnfi@gmail.com", "경기도 안산시", null,null,null);
+
+
+# PolicyHolder
+
+create table policyholder (
+	customerId VARCHAR(6) not null primary key,
+	totalPremium INT,
+	accountNumber VARCHAR(30),
+	acceptedAccidentExistence BOOLEAN,
+	ownedBuildingNumber INT,
+	paymentStatus BOOLEAN,
+	foreign key(customerId) references customer(customerId) on delete cascade
+);
+
+insert into policyholder values("CU1", 40000, "1234-235233-2334", false, 0,false);
+insert into policyholder values("CU2", 20000, "1234-235233-2334", true, 0,true);
+insert into policyholder values("CU3", 18000, "1234-235233-2334", false, 0,false);
+insert into policyholder values("CU4", 0, "1234-235233-2334", false, 0,false);
+
+
+# AcquisitionPolicy
+
+create table acquisitionPolicy (
+	acquisitionPolicyId VARCHAR(6) not null primary key,
+	buildingInfoPolicyId VARCHAR(6),
+	carInfoPolicyId VARCHAR(6),
+	diseaseInfoPolicyId VARCHAR(6),
+	foreign key(buildingInfoPolicyId) references ownedBuildingInfo(ownedBuildingInfoId),
+	foreign key(carInfoPolicyId) references ownedCarInfo(ownedCarInfoId),
+	foreign key(diseaseInfoPolicyId) references diseaseHistory(diseaseHistoryId)
+);
+
+insert into acquisitionPolicy values ("AP1", null, null, "DH1");
+insert into acquisitionPolicy values ("AP2", "BI4", null, null);
+insert into acquisitionPolicy values ("AP3", null, null, "DH2");
+insert into acquisitionPolicy values ("AP4", null, "CI1", null);
+
+
+# insurance
+
+create table insurance (
+	insuranceId VARCHAR(6) not null primary key,
+	insuranceName VARCHAR(30) not null,
+	insuranceType VARCHAR(10) not null,
+	join_age INT,
+	peril DOUBLE,
+	rate DOUBLE,
+	permission BOOLEAN,
+	premium INT,
+	acquisitionPolicyId VARCHAR(6),
+ 	foreign key(acquisitionPolicyId) references acquisitionPolicy(acquisitionPolicyId) on update cascade
+);
+
+insert into insurance values("IN1", "3세대 실손보험", "실손", 15, 25.0, 19.7, false, 23000, "AP1");
+insert into insurance values("IN2", "플러스화재보험", "화재", 18, 27.6, 0.053, true, 43400, "AP2");
+insert into insurance values("IN3", "4세대 실손보험", "실손", 15, 28.4, 19.7, true, 26700, "AP3");
+insert into insurance values("IN4", "부릉자동차보험", "자동차", 18, 38.1, 76.5, true, 33000, "AP4");
+
+
+# WarrantyInfo (1개의 보험에 여러개의 보장정보가 들어가는 1:M 관계이므로, warrantyInfo에 insuranceId가 포함되는 형태)
+
+create table warrantyInfo (
+	insuranceId VARCHAR(6) not null,
+	contractType VARCHAR(20),
+	warrantyAmount INT,
+	warrantyCondition VARCHAR(500),
+	warrantyContent VARCHAR(500),
+	warrantyInfo VARCHAR(500),
+	foreign key(insuranceId) references insurance(insuranceId) on update cascade
+);
+
+insert into warrantyInfo values ("IN1", "주계약", 5000000, "가입 이전 관련 암 발병 이력 없음", "치료비,입원비 지원", "간암 발병 시 치료비 등 보장");
+insert into warrantyInfo values ("IN2", "주계약", 30000000, "가입 이전 관련 암 발병 이력 없음", "치료비,입원비 지원", "간암 발병 시 치료비 등 보장");
+insert into warrantyInfo values ("IN3", "주계약", 7000000, "가입 이전 관련 암 발병 이력 없음", "치료비,입원비 지원", "췌장암 발병 시 치료비 등 보장");
+insert into warrantyInfo values ("IN4", "주계약", 4000000, "사고에 대한 가입자 책임 40% 이하", "합의금,치료비 지원", "교통사고 처리비용 보장");
+
+# Employee
+
+create table employee (
+	employeeId VARCHAR(6) not null primary key,
+	name VARCHAR(30) not null,
+	department VARCHAR(10),
+	phoneNum VARCHAR(13)
+);
+
+insert into employee values("EM1", "박서연", "영업", "010-1212-1212");
+insert into employee values("EM2", "김유비", "상품계약관리", "010-1234-1234");
+insert into employee values("EM3", "김초원", "영업", "010-5656-5656");
+insert into employee values("EM4", "윤희슬", "UW", "010-5678-5678");
+insert into employee values("EM5", "이지은", "상품개발", "010-1111-1111");
+insert into employee values("EM6", "이지은", "보상", "010-3333-3333");
+
+# Subscription
+
+create table subscription (
+	subscriptionId VARCHAR(6) not null primary key,
+	underwritingStatus VARCHAR(3) not null,
+	dateCreated VARCHAR(10),
+	insurancePeriod INT,
+	premium INT,
+	customerId VARCHAR(6) not null,
+	insuranceId VARCHAR(6) not null,
+	insuranceAgentId VARCHAR(6) not null,
+	foreign key(customerId) references customer(customerId),
+	foreign key(insuranceId) references insurance(insuranceId),
+	foreign key(insuranceAgentId) references employee(employeeId)
+);
+
+insert into subscription values ("SC1", "완료", "2022-06-01", 36, 23000, "CU1", "IN1", "EM1");
+insert into subscription values ("SC2", "체결", "2022-04-23", 34, 43400, "CU2", "IN2", "EM3");
+insert into subscription values ("SC3", "체결", "2022-05-15", 24, 26700, "CU3", "IN1", "EM1");
+insert into subscription values ("SC4", "미신청", "2022-05-15", 24, 26700, "CU5", "IN3", "EM1");
+insert into subscription values ("SC5", "신청", "2022-05-15", 24, 26700, "CU6", "IN4", "EM1");
+
+# contract
+
+create table contract(
+	contractId VARCHAR(6) not null primary key,
+	customerId VARCHAR(6) not null,
+	insuranceId VARCHAR(6) not null,
+	joinDate VARCHAR(11) not null,
+	contractPeriod INT,
+	premium INT not null,
+	activityDate VARCHAR(11),
+	insuranceAgentId VARCHAR(6),
+	foreign key(customerId) references customer(customerId) on delete restrict,
+	foreign key(insuranceId) references insurance(insuranceId) on delete restrict,
+	foreign key(insuranceAgentId) references employee(employeeId) on delete set null
+);
+
+
+insert into contract values("CT1", "CU1", "IN1", "2007-05-16", 15, 18000, "2021-09-11", "EM1");
+insert into contract values("CT2", "CU2", "IN1", "2012-06-20", 15, 17200, "2018-08-17", "EM3");
+insert into contract values("CT3", "CU1", "IN2", "2017-07-01", 5, 44000, "2019-12-15", "EM1");
+insert into contract values("CT4", "CU3", "IN3", "2020-09-11", 5, 16800, null, "EM3");
+insert into contract values("CT5", "CU4", "IN4", "2022-05-25", 1, 24700, "2022-05-25", "EM1");
+
+# 3세대 실손보험 IN1, CU1 총보험료 반영, 기간 만료됨, 만기 보험금 신청에 활용
+# 3세대 실손 IN1, 보험금 신청에 활용
+# 화재보험 IN2, CU1 총보험료 반영, 보험금 신청/유지활동에 활용
+# 4세대 실손 IN3, 보험금 신청에 활용
+# 자동차 IN5, 보험금 신청에 활용
+
+# SurveyCompany
+
+create table surveyCompany(
+	surveyCompanyID VARCHAR(6) not null primary key,
+	surveyCompanyName VARCHAR(30) not null,
+	address VARCHAR(30),
+	phoneNum VARCHAR(13),
+	surveyAbility BOOLEAN
+);
+
+insert into surveyCompany values("SC1", "A손해사정", "신촌동", "070-1234-5678", false);
+insert into surveyCompany values("SC2", "B손해사정", "논현동", "070-1357-2468", true);
+insert into surveyCompany values("SC3", "C손해사정", "마곡동", "070-3549-0901", true);
+insert into surveyCompany values("SC4", "D손해사정", "목동", "070-1231-0613", true);
+
+# SC0001은 조사 가능한 상태가 아님 따라서 SC0001이 담당 손해사정업체인 사고는 현장 출동을 하지 않음
+
+# exemptionInfo
+
+create table exemptionInfo(
+	exemptionInfoId VARCHAR(6) not null primary key,
+	responsibility VARCHAR(2) not null,
+	judgementReason VARCHAR(500),
+	paymentRatio double not null
+);
+
+# Accident
+
+create table accident(
+	accidentID VARCHAR(6) not null primary key,
+	customerID VARCHAR(6) not null,
+	accidentType VARCHAR(10) not null,
+	accidentDate VARCHAR(10),
+	accidentLocation VARCHAR(50),
+	accidentScale VARCHAR(5),
+	accidentContent VARCHAR(50),
+	doingHarm BOOLEAN,
+	repSurveyCompanyID VARCHAR(6),
+	exemptionInfoId VARCHAR(6),
+	onSite VARCHAR(5),
+	foreign key(customerId) references customer(customerId) on delete restrict,
+	foreign key(exemptionInfoId) references exemptionInfo(exemptionInfoId) on update cascade,
+	foreign key(repSurveyCompanyID) references surveyCompany(surveyCompanyID) on update cascade
+);
+
+insert into accident values("ACC1", "CS1", "자동차", "2007-09-01", "강남역 교차로", "약", "가벼운 접촉사고", true, "SC3", "EX1", "출동");
+insert into accident values("ACF1", "CS2", "화재", "2012-12-05", "개인사무실", "중", "누전으로 인한 화재", false, "SC1", "EX2", "미출동");
+insert into accident values("ACH1", "CS1", "상해/질병", "2017-08-01", "수영장", "약", "미끄러짐으로 인한 가벼운 타박상", null, "SC1", "EX3", "미출동");
+insert into accident values("ACH2", "CS3", "상해/질병", "2021-01-23", "횡단보도", "중", "접촉사고로 인한 팔 골절", null, "SC2", "EX4", "출동");
+insert into accident values("ACC2", "CS4", "자동차", "2022-05-27", "고속도로", "강", "안전거리 미확보 교통사고", true, "SC4", "EX5", "출동");
+
+# 자동차사고 : ACC00n, 화재사고 : ACF00n, 상해/질병사고 : ACH00n
+
+create table payment(
+	paymentId VARCHAR(6) not null primary key,
+	customerId VARCHAR(6) not null,
+	contractId VARCHAR(6) not null,
+	amount LONG,
+	accidentCircumstance VARCHAR(100),
+	accidentDateTime VARCHAR(20),
+	accidentPlace VARCHAR(50),
+	accidentType VARCHAR(5),
+	claimReason VARCHAR(20),
+	diseaseName VARCHAR(20),
+	cancellationReason VARCHAR(100),
+	dateOfExpiry VARCHAR(10),
+	paymentType VARCHAR(5),
+	examinationResult BOOLEAN,
+	foreign key(customerId) references customer(customerId) on delete cascade,
+	foreign key(contractId) references contract(contractId) on update cascade
+);
