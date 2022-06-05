@@ -1,4 +1,4 @@
-drop database insurance;
+#drop database insurance;
 
 create database insurance;
 use insurance;
@@ -239,10 +239,10 @@ create table surveyCompany(
 	surveyAbility BOOLEAN
 );
 
-insert into surveyCompany values("SC1", "A손해사정", "신촌동", "070-1234-5678", false);
-insert into surveyCompany values("SC2", "B손해사정", "논현동", "070-1357-2468", true);
-insert into surveyCompany values("SC3", "C손해사정", "마곡동", "070-3549-0901", true);
-insert into surveyCompany values("SC4", "D손해사정", "목동", "070-1231-0613", true);
+insert into surveyCompany values("SV1", "A손해사정", "신촌동", "070-1234-5678", false);
+insert into surveyCompany values("SV2", "B손해사정", "논현동", "070-1357-2468", true);
+insert into surveyCompany values("SV3", "C손해사정", "마곡동", "070-3549-0901", true);
+insert into surveyCompany values("SV4", "D손해사정", "목동", "070-1231-0613", true);
 
 # SC0001은 조사 가능한 상태가 아님 따라서 SC0001이 담당 손해사정업체인 사고는 현장 출동을 하지 않음
 
@@ -277,10 +277,9 @@ create table accident(
 	foreign key(repSurveyCompanyID) references surveyCompany(surveyCompanyID) on update cascade
 );
 
-insert into accident values("ACC1", "CU4", "자동차", "2021-11-01", "강남역 교차로", "약", "가벼운 접촉사고", true, "SC3", "EX1", "출동");
-insert into accident values("ACF1", "CU1", "화재", "2012-12-05", "개인사무실", "중", "누전으로 인한 화재", false, "SC1", "EX2", "미출동");
+insert into accident values("AC1", "CU4", "자동차", "2021-11-01", "강남역 교차로", "약", "가벼운 접촉사고", true, "SV3", "EX1", "출동");
+insert into accident values("AC2", "CU1", "화재", "2012-12-05", "개인사무실", "중", "누전으로 인한 화재", false, "SV1", "EX2", "미출동");
 
-# 자동차사고 : ACC00n, 화재사고 : ACF00n, 상해/질병사고 : ACH00n
 
 create table payment(
 	paymentId VARCHAR(6) not null primary key,
@@ -300,3 +299,10 @@ create table payment(
 	foreign key(customerId) references customer(customerId) on delete cascade,
 	foreign key(contractId) references contract(contractId) on update cascade
 );
+
+insert into payment (paymentId, customerId, contractId, dateOfExpiry, paymentType) values ("PM1","CU1","CT1","2022-06-03","만기보험금");
+insert into payment (paymentId, customerId, contractId, dateOfExpiry, paymentType) values ("PM2","CU1","CT3","2022-04-03","만기보험금");
+insert into payment (paymentId, customerId, contractId, cancellationReason, paymentType) values("PM3","CU2","CT2","보장 조건이 더 좋은 다른 보험 가입 권유","해약환급금");
+insert into payment (paymentId, customerId, contractId, accidentCircumstance, accidentDateTime, accidentPlace, accidentType, claimReason, diseaseName, paymentType) values ("PM4","CU4","CT5","뜨거운 물로 씻다가 화상","2022-07-05","서울 서대문구 거북골로 34", "상해","내원","화상","보험금");
+insert into payment (paymentId, customerId, contractId, accidentCircumstance, accidentDateTime, accidentPlace, accidentType, claimReason, diseaseName, paymentType) values ("PM5","CU2","CT2","무단횡단으로 인한 교통사고","2022-02-04","서울 서대문구 거북골로 34", "자동차","입원","골절","보험금");
+insert into payment (paymentId, customerId, contractId, cancellationReason, paymentType) values("PM5","CU1","CT3","보험료 부담","해약환급금");

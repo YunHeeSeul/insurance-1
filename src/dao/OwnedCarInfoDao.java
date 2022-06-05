@@ -46,4 +46,19 @@ public class OwnedCarInfoDao extends Dao {
         return null;
     }
 
+    public int retrieveMaxID() {
+        try {
+            String query = "select max(n.num) as ID from (select convert(substring_index(ownedCarInfoId,'CI',-1),unsigned) as num from ownedCarInfo) n;";
+            ResultSet rs = super.retrieve(query);
+            if(rs.next()) {
+                int id=rs.getInt("ID");
+                if (rs.wasNull()) return 0;
+                return id;
+            }
+            else return 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
