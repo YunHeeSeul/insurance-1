@@ -8,8 +8,9 @@ import Practice.InsuranceCompany.Design.src.model.contract.Contract;
 import Practice.InsuranceCompany.Design.src.model.contract.ContractListImpl;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 
-import Practice.InsuranceCompany.Design.src.model.payment.Payment;
+import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentForm;
+import Practice.InsuranceCompany.Design.src.model.payment.PaymentFormListImpl;
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentType;
 import java.util.Scanner;
 
@@ -29,7 +30,7 @@ public class VPayment {
         while (true) {
 //            VPayment vPayment = new VPayment(scn, customerList, contractList, paymentFormList);
             System.out.println("---------------------지급 관리-----------------------");
-            System.out.println("(1). 지급금 접수받기 (2). 지급금 지급하기 (3). 지급 안내서 전송하기 (4) 뒤로 가기");
+            System.out.println("(1). 지급금 접수받기 (2). 지급금 산정하기 (3). 지급 안내서 전송하기 (4) 뒤로 가기");
             int selectPaymentMenu = scn.nextInt();
 
             switch (selectPaymentMenu) {
@@ -43,9 +44,8 @@ public class VPayment {
 
                 case 2:
                     Long sendPaymentResult = this.sendPayment();
+                    if (sendPaymentResult == -1L) System.out.println("제지급금 산정에 실패하였습니다.");
 
-                    if (sendPaymentResult == -1L) System.out.println("제지급금 지급에 실패하였습니다.");
-                    else System.out.println(sendPaymentResult + "원의 제지급금이 지급되었습니다.");
                     return;
 
                 case 3:
@@ -72,6 +72,11 @@ public class VPayment {
         paymentForm.setPaymentFormId(paymentFormId);
 
         Customer customer;
+
+        System.out.println("=======================고객 정보==============================");
+        CustomerListImpl customerList =  cCustomer.retrieveAll();
+        customerList.printAllCustomerInfo();
+        System.out.println("============================================================");
 
         System.out.print("고객 고유 번호를 입력하세요: ");
         String customerID = scn.next();
@@ -140,47 +145,121 @@ public class VPayment {
         }
     }
 
-    // (2). 지급금 지급하기
-    // 제지급금 지급 실패 : -1 반환
+    // (2). 지급금 산정하기
+    // 제지급금 산정 실패 : -1 반환
     public Long sendPayment() {
-        System.out.println("지급금을 지급할 고객을 선택해주세요");
+        System.out.println("아래 고객 정보를 참고하여 지급금을 지급할 고객을 선택해주세요");
+        System.out.println();
+        System.out.println("=======================고객 정보==============================");
+        CustomerListImpl customerList =  cCustomer.retrieveAll();
+        customerList.printAllCustomerInfo();
+        System.out.println();
+        System.out.println("제지급금 지급 업무를 취소하고 돌아가시려면 고객 고유번호 란에 x를 입력해주세요.");
         System.out.println("=============================================================");
-        System.out.print("고객 ID : ");
+        System.out.print("고객 고유번호 : ");
+
         String customerID = scn.next();
+
+        while (customerID.isEmpty()){
+            customerID = scn.next();
+        }
+
+        if (customerID.equals("x")||customerID.equals("X")){
+            System.out.println("제지급금 지급 업무를 취소하고 돌아갑니다.");
+            System.out.println("y: yes, n: no");
+            String decision = scn.next();
+
+            while(!decision.equals("y") && !decision.equals("Y") && !decision.equals("n") && !decision.equals("N")){
+                System.out.println("잘못 입력하셨습니다. 다시 입력하세요 (y: yes, n: no)");
+                decision = scn.next();
+            }
+
+            if(decision.equals("Y")||decision.equals("y") ){
+                return -1l;
+            }
+            else if(decision.equals("N")||decision.equals("n")){
+                System.out.print("고객 고유번호 : ");
+                customerID = scn.next();
+
+                while (customerID.isEmpty()){
+                    customerID = scn.next();
+                }
+            }
+        }
 
         Customer customer = cCustomer.retrieveById(customerID);
 
         while (customer == null) {
-            System.out.print("해당 고객 ID를 가진 고객이 존재하지 않습니다.");
-            System.out.print("고객 ID를 다시 선택해주세요.");
-            System.out.print("=============================================================");
-            System.out.print("고객 ID : ");
+            System.out.println("해당 고유번호를 가진 고객이 존재하지 않습니다.");
+            System.out.println("고객 고유번호를 다시 선택해주세요.");
+            System.out.println("=============================================================");
+            System.out.print("고객 고유번호 : ");
             customerID = scn.next();
             customer = cCustomer.retrieveById(customerID);
         }
 
-        Contract contract = cContract.getContractById(customerID);
-        if (contract == null) {
-            System.out.println("고객 ID가 " + customerID + "인 고객이 소유하고 있는 보험이 존재하지 않습니다.");
+        ContractListImpl contractList = cContract.getByCustomerId(customerID);
+        if (contractList.getSize() ==0) {
+            System.out.println("고객 고유번호가 " + customerID + "인 고객이 소유하고 있는 보험이 존재하지 않습니다.");
             return -1L;
         }
-
         else {
-            String contractId = contract.getContractID();
-            PaymentForm paymentForm = this.cPayment.getContractById(contractId);
+            contractList.printAllList();
+            System.out.println("------------------------------------------------------------------");
 
-            if (paymentForm == null) {
-                System.out.println("고객 ID가 " + customerID + "인 고객이 계약 ID" + contractId + "에 대해 신청한 지급 신청서가 존재하지 않습니다.");
+            System.out.print("계약 고유번호를 선택해주세요: ");
+            String contractId = scn.next();
+
+            while(contractId.isEmpty()){
+                System.out.print("계약 고유번호를 다시 선택해주세요: ");
+                contractId = scn.next();
+            }
+
+            PaymentFormListImpl paymentFormList = this.cPayment.getByContractIdAndCustomerId(contractId,customerID);
+
+            if (paymentFormList.getSize() == 0) {
+                System.out.println("고객 ID가 " + customerID + "인 고객이 계약 ID " + contractId + "에 대해 신청한 지급 신청서가 존재하지 않습니다.");
                 return -1L;
             }
             else {
-                int amount =  paymentForm.getPaymentType().getPayment().calculatePayment();
+
+                System.out.println();
+                System.out.println("=================================" + customerID +" 고객의 지급 신청서 목록" + "=================================");
+                paymentFormList.printAllPaymentForm();
+                System.out.println("=========================================================================================");
+                System.out.println();
+
+                System.out.println();
+                System.out.println("제지급금을 지급할 제지급금 신청서를 선택하세요.");
+
+                System.out.print("제지급금 신청서 고유번호 입력: ");
+                String paymentFormId = scn.next();
+
+                while(paymentFormId.isEmpty()){
+                    System.out.println("제지급금 신청서 고유번호를 다시 입력하세요.");
+                    paymentFormId = scn.next();
+                }
+
+                PaymentForm paymentForm = cPayment.getByPaymentFormId(paymentFormId);
+
+                while(paymentForm == null){
+                    System.out.println("고유번호가 "+ paymentFormId +"인 제지급금 신청서가 존재하지 않습니다.");
+                    System.out.println("제지급금 신청서 고유번호를 다시 입력하세요.");
+                    paymentFormId = scn.next();
+                    paymentForm = cPayment.getByPaymentFormId(paymentFormId);
+                }
+
+                Contract contract = cContract.getContractById(contractId);
+                int amount =  paymentForm.getPayment().calculatePayment(contract.getPremium());
                 Long result = cPayment.setAmount(amount, paymentForm.getPaymentFormId());
+                System.out.println(customerID +"고객에게 " + result + "원의 제지급금이 산정되었습니다.");
 
                 return result;
             }
         }
     }
+
+
 
     // (3). 지급 안내서 전송하기
     public boolean sendPaymentGuide(){

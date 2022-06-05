@@ -2,6 +2,7 @@ package Practice.InsuranceCompany.Design.src.controller;
 
 import Practice.InsuranceCompany.Design.src.dao.PaymentDao;
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentForm;
+import Practice.InsuranceCompany.Design.src.model.payment.PaymentFormListImpl;
 
 public class CPayment {
     private PaymentDao paymentDao;
@@ -27,5 +28,13 @@ public class CPayment {
 
     public int getMaxID() {
         return this.paymentDao.retrieveMaxID();
+    }
+
+    public PaymentFormListImpl getByContractIdAndCustomerId(String contractId, String customerID) {
+        return this.paymentDao.retrieveByContractIdAndCustomerId(contractId,customerID);
+    }
+
+    public PaymentForm getByPaymentFormId(String paymentFormId) {
+        return this.paymentDao.retrieveByPaymentId(paymentFormId);
     }
 }

@@ -1,5 +1,7 @@
 package Practice.InsuranceCompany.Design.src.model.payment;
 
+import Practice.InsuranceCompany.Design.src.model.contract.Contract;
+
 public class PaymentForm {
 
 	private String paymentFormID;
@@ -70,8 +72,11 @@ public class PaymentForm {
 		return this.paymentFormID;
 	}
 
-	public String getPaymentFormInfo() {
-		return "제지급금 신청서 고유 코드: " + paymentFormID+ " 보험 계약 코드 :"+contractID+ "고객 고유 코드 :  "+ customerId;
+	public String getPaymentFormInfo(Contract contract) {
+		if (paymentType.equals(PaymentType.payout)){
+			return "         "+paymentFormID+ "               " + paymentType.getDetail() + "            "+customerId+ "           " + contract.getInsuranceID() + "       " + contract.getPremium();
+		}
+		return "         "+paymentFormID+ "               " + paymentType.getDetail() + "         "+customerId  + "           " + contract.getInsuranceID() + "       " + contract.getPremium();
 	}
 
 	public void setCustomerId(String customerID) {
@@ -85,4 +90,5 @@ public class PaymentForm {
 	public void setPaymentFormId(String paymentFormId) {
 		this.paymentFormID = paymentFormId;
 	}
+
 }

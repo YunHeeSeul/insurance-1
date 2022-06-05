@@ -118,22 +118,22 @@ public class ClaimsPaid extends Payment {
 
 
 	@Override
-	public int calculatePayment() {
+	public int calculatePayment(int premium) {
 		int condition = (int)(Math.random() * 100) + 1;
-		int basePayment = 10000;
+		int basePayment = premium;
 
 		if(this.accidentType == AccidentType.car){
-			basePayment = 15000;
+			basePayment = (int) (premium * 2.6);
 		}
 		else if(this.accidentType == AccidentType.fire){
-			basePayment = 3000000;
+			basePayment = (int) (premium * 3.2);
 		}
 
 		if(condition < 20){
-			return 0;
+			return (int) (basePayment * condition *28  * 0.492);
 		}
 		else if(20 <= condition  && condition < 60){
-			return (int) (basePayment * condition * 0.8);
+			return  (int)(basePayment * condition * 42 * 0.8);
 		}
 		else{
 			return basePayment * condition;
@@ -142,41 +142,41 @@ public class ClaimsPaid extends Payment {
 
 	@Override
 	public void sendPaymentGuide(Customer customer) {
-		System.out.println("=========== 보험금 지급 안내서 =================");
-
-		System.out.println("--------------------------------------------------");
-		System.out.println("고객 정보");
-		System.out.println("--------------------------------------------------");
-
-		System.out.println("고객 주소: " + customer.getAddress());
-		System.out.println("고객 주민등록번호"+ customer.getResidentRegistrationNumber());
-		System.out.println("고객 전화번호: " + customer.getPhoneNumber());
-		System.out.println("고객 이메일: " + customer.getEmailAddress());
-		System.out.println("고객 생년월일: " + customer.getDateOfBirth());
-		System.out.println("고객 이름: " + customer.getName());
-		System.out.println("고객 성별: " + customer.getGender());
-
-		System.out.println("--------------------------------------------------");
-		System.out.println("지급금(보험금) 신청 정보");
-		System.out.println("--------------------------------------------------");
-		System.out.println("사고 상황: " + this.getAccidentCircumstance());
-		System.out.println("사고 일자: " + this.getAccidentDateTime());
-		System.out.println("사고 장소: "+ this.getAccidentPlace());
-		System.out.println("병명: " + this.getDiseaseName());
-		System.out.println("지급 신청 사유" +this.getClaimReason());
-		System.out.println("사고 타입: " + this.getAccidentType());
-
-		System.out.println("--------------------------------------------------");
-		System.out.println("지급금(보험금) 신청 결과");
-		System.out.println("--------------------------------------------------");
-
-		if(calculatePayment() == 0){
-			System.out.println("보험금이 지급되지 않습니다.");
-		}
-		else{
-			System.out.println(this.calculatePayment() + "원 지급 예정입니다.");
-		}
-		System.out.println("--------------------------------------------------");
+//		System.out.println("=========== 보험금 지급 안내서 =================");
+//
+//		System.out.println("--------------------------------------------------");
+//		System.out.println("고객 정보");
+//		System.out.println("--------------------------------------------------");
+//
+//		System.out.println("고객 주소: " + customer.getAddress());
+//		System.out.println("고객 주민등록번호"+ customer.getResidentRegistrationNumber());
+//		System.out.println("고객 전화번호: " + customer.getPhoneNumber());
+//		System.out.println("고객 이메일: " + customer.getEmailAddress());
+//		System.out.println("고객 생년월일: " + customer.getDateOfBirth());
+//		System.out.println("고객 이름: " + customer.getName());
+//		System.out.println("고객 성별: " + customer.getGender());
+//
+//		System.out.println("--------------------------------------------------");
+//		System.out.println("지급금(보험금) 신청 정보");
+//		System.out.println("--------------------------------------------------");
+//		System.out.println("사고 상황: " + this.getAccidentCircumstance());
+//		System.out.println("사고 일자: " + this.getAccidentDateTime());
+//		System.out.println("사고 장소: "+ this.getAccidentPlace());
+//		System.out.println("병명: " + this.getDiseaseName());
+//		System.out.println("지급 신청 사유" +this.getClaimReason());
+//		System.out.println("사고 타입: " + this.getAccidentType());
+//
+//		System.out.println("--------------------------------------------------");
+//		System.out.println("지급금(보험금) 신청 결과");
+//		System.out.println("--------------------------------------------------");
+//
+//		if(calculatePayment(contract.getPremium()) == 0){
+//			System.out.println("보험금이 지급되지 않습니다.");
+//		}
+//		else{
+//			System.out.println(this.calculatePayment(contract.getPremium()) + "원 지급 예정입니다.");
+//		}
+//		System.out.println("--------------------------------------------------");
 	}
 
 

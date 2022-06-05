@@ -2,10 +2,11 @@ package Practice.InsuranceCompany.Design.src.dao;
 
 import Practice.InsuranceCompany.Design.src.etcEnum.ClaimType;
 import Practice.InsuranceCompany.Design.src.model.accident.AccidentType;
+import Practice.InsuranceCompany.Design.src.model.contract.ContractListImpl;
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentForm;
+import Practice.InsuranceCompany.Design.src.model.payment.PaymentFormListImpl;
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentType;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -65,6 +66,7 @@ public class PaymentDao extends Dao{
             paymentForm.setContractID(rs.getString("contractId"));
             paymentForm.setExaminationResult(rs.getBoolean("examinationResult"));
             paymentForm.setPaymentType(PaymentType.makePaymentType(rs.getString("paymentType")));
+            paymentForm.getPayment().setAmount(rs.getLong("amount"));
 
             // 보험금
             if (rs.getString("paymentType").equals(PaymentType.payout.getDetail())) {
@@ -77,12 +79,12 @@ public class PaymentDao extends Dao{
             }
             
             // 해약환급금
-            else if (rs.getString("paymentType").equals(PaymentType.payout.getDetail())) {
+            else if (rs.getString("paymentType").equals(PaymentType.cancellation.getDetail())) {
                 paymentForm.getPayment().setCancellationReason(rs.getString("cancellationReason"));
             }
             
             // 만기보험금
-            else if (rs.getString("paymentType").equals(PaymentType.payout.getDetail())) {
+            else if (rs.getString("paymentType").equals(PaymentType.maturity.getDetail())) {
                 paymentForm.getPayment().setDateOfExpiry(rs.getString("dateOfExpiry"));
             }
             
@@ -140,6 +142,21 @@ public class PaymentDao extends Dao{
                 return Integer.parseInt(id.substring(2));
             }
             else return 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public PaymentFormListImpl retrieveByContractIdAndCustomerId(String contractId, String customerID) {
+        try {
+            String query = "select * from payment where customerId= \"" +customerID + "\"" + " and contractId= \"" + contractId +"\";";
+            ResultSet rs = super.retrieve(query);
+            PaymentFormListImpl paymentFormList=new PaymentFormListImpl();
+
+            while(rs.next()){
+                paymentFormList.add(getFromResultSet(rs));
+            }
+            return paymentFormList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

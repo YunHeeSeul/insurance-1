@@ -30,7 +30,7 @@ public abstract class Payment {
 
 	abstract public void sendPaymentGuide(Customer customer);
 	public abstract void setPaymentInfo(Scanner scn, Payment payment);
-	public abstract int calculatePayment();
+	public abstract int calculatePayment(int premium);
 
 	public String getAccidentCircumstance() {
 		return accidentCircumstance;
