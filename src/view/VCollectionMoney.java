@@ -40,15 +40,16 @@ public class VCollectionMoney {
     }
 
     private void calculateTotalPremiumOfCustomer() {
-        // 고객의 월 보험료 산출하기 (유스케이스 시나리오 수정 필요)
         System.out.println("--------------------가입자 목록--------------------");
         CustomerListImpl customerList=this.cCustomer.retrieveAll();
         customerList.printAllCustomerInfo();
 
+        System.out.println("(c) 나가기");
         System.out.print("고객 ID : ");
         String cusID = scn.next();
+        if(cusID.equals("c")) return;
+
         if (customerList.checkValidationID(cusID)) {
-            // 가입자의 가입 보험이 여러개인 경우로 가정하여 구현
             ContractListImpl contractList=this.cContract.getValidByCustomerID(cusID);
 
             int totalPremium = 0;
@@ -65,8 +66,6 @@ public class VCollectionMoney {
     }
 
     private void getCollectionOfPremium() {
-        //(유스케이스 시나리오 수정 필요)
-        // 보험료 납부 확인하기
         CustomerListImpl customerList = this.cPolicyholder.retrieveAll();
         if (customerList.getCustomerList().size() == 0) {
             System.out.println("가입자가 없습니다.");
@@ -80,8 +79,11 @@ public class VCollectionMoney {
             System.out.println("   "+p.getCustomerID() + "   " + p.getName() + "   " + p.getTotalPremium() + "   " + state);
         }
 
+        System.out.println("(c) 나가기");
         System.out.print("고객 ID : ");
         String cusID = scn.next();
+        if(cusID.equals("c")) return;
+
         if (customerList.checkValidationID(cusID)) {
             Policyholder policyholder = this.cPolicyholder.retrieveById(cusID);
             if (policyholder.isPaymentState())

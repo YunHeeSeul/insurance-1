@@ -109,11 +109,12 @@ public class ContractDao extends Dao{
 
     public int retrieveMaxID() {
         try {
-            String query = "select max(contractID) as ID from contract;";
+            String query = "select max(n.num) as ID from (select convert(substring_index(contractId,'CT',-1),unsigned) as num from contract) n;";
             ResultSet rs = super.retrieve(query);
             if(rs.next()) {
-                String id=rs.getString("ID");
-                return Integer.parseInt(id.substring(2));
+                int id=rs.getInt("ID");
+                if (rs.wasNull()) return 0;
+                return id;
             }
             else return 0;
         } catch (SQLException e) {

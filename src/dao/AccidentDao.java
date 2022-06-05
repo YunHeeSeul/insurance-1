@@ -93,12 +93,12 @@ public class AccidentDao extends Dao{
 
     public int retrieveMaxID() {
         try {
-            String query = "select max(accidentID) as ID from accident;";
+            String query = "select max(n.num) as ID from (select convert(substring_index(accidentID,'AC',-1),unsigned) as num from accident) n;";
             ResultSet rs = super.retrieve(query);
             if(rs.next()) {
-                String id=rs.getString("ID");
-                if (id == null) return 0;
-                return Integer.parseInt(id.substring(2));
+                int id=rs.getInt("ID");
+                if (rs.wasNull()) return 0;
+                return id;
             }
             else return 0;
         } catch (SQLException e) {
