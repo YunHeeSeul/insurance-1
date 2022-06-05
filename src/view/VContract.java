@@ -105,7 +105,7 @@ public class VContract {
                 System.out.println("계약 체결 완료 처리되었습니다.");
                 break;
             case "2" :
-                if(status==UnderwritingStatus.rejected) { System.out.println("심사 통과된 청약서입니다."); return; }
+                if(status==UnderwritingStatus.concluded) { System.out.println("심사 통과된 청약서입니다."); return; }
                 if(!this.cSubscription.updateUWstatusById(subscription.getSubscriptionID(),UnderwritingStatus.completed)){
                     System.out.println("DB 오류입니다."); return;
                 }
@@ -113,14 +113,17 @@ public class VContract {
                 break;
             case "c" : return;
         }
-        announceContractStatus();
+        announceContractStatus(cusID);
     }
 
-    private void announceContractStatus() {
+    private void announceContractStatus(String cusID) {
         System.out.println("------------계약체결 결과 전송------------");
         System.out.println("계약 체결 결과를 전송하시겠습니까? (y)");
         String send = scn.next();
-        if (send.equals("y")) System.out.println("보험 관심자에게 성공적으로 전송되었습니다.");
+        if (send.equals("y")) {
+            String email=this.cCustomer.retrieveById(cusID).getEmailAddress();
+            System.out.println(email+"로 메일이 성공적으로 전송되었습니다.");
+        }
         else  System.out.println("전송에 실패했습니다.");
     }
 
