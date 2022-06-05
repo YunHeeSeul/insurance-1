@@ -44,8 +44,11 @@ public class VCollectionMoney {
         CustomerListImpl customerList=this.cCustomer.retrieveAll();
         customerList.printAllCustomerInfo();
 
+        System.out.println("(c) 나가기");
         System.out.print("고객 ID : ");
         String cusID = scn.next();
+        if(cusID.equals("c")) return;
+
         if (customerList.checkValidationID(cusID)) {
             ContractListImpl contractList=this.cContract.getValidByCustomerID(cusID);
 
@@ -76,8 +79,11 @@ public class VCollectionMoney {
             System.out.println("   "+p.getCustomerID() + "   " + p.getName() + "   " + p.getTotalPremium() + "   " + state);
         }
 
+        System.out.println("(c) 나가기");
         System.out.print("고객 ID : ");
         String cusID = scn.next();
+        if(cusID.equals("c")) return;
+
         if (customerList.checkValidationID(cusID)) {
             Policyholder policyholder = this.cPolicyholder.retrieveById(cusID);
             if (policyholder.isPaymentState())

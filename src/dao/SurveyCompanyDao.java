@@ -77,11 +77,12 @@ public class SurveyCompanyDao extends Dao{
 
     public int retrieveMaxID() {
         try {
-            String query = "select max(surveyCompanyID) as ID from surveyCompany;";
+            String query = "select max(n.num) as ID from (select convert(substring_index(surveyCompanyID,'SV',-1),unsigned) as num from surveyCompany) n;";
             ResultSet rs = super.retrieve(query);
             if(rs.next()) {
-                String id=rs.getString("ID");
-                return Integer.parseInt(id.substring(2));
+                int id=rs.getInt("ID");
+                if (rs.wasNull()) return 0;
+                return id;
             }
             else return 0;
         } catch (SQLException e) {

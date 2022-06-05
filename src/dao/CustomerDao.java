@@ -75,17 +75,17 @@ public class CustomerDao extends Dao {
 
     public int retrieveMaxID() {
         try {
-            String query = "select max(customerId) as ID from customer;";
-            ResultSet resultSet = super.retrieve(query);
-            if (resultSet.next()) {
-                String id = resultSet.getString("ID");
-                if (id == null) return 0;
-                else return Integer.parseInt(id.substring(2));
+            String query = "select max(n.num) as ID from (select convert(substring_index(customerId,'CU',-1),unsigned) as num from customer) n;";
+            ResultSet rs = super.retrieve(query);
+            if(rs.next()) {
+                int id=rs.getInt("ID");
+                if (rs.wasNull()) return 0;
+                return id;
             }
+            else return 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return 0;
     }
 
 
