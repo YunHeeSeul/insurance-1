@@ -77,13 +77,7 @@ public class SubscriptionDao extends Dao {
             Subscription subscription = new Subscription();
 
             subscription.setSubscriptionID(resultSet.getString("subscriptionId"));
-
-            String uwStatus = resultSet.getString("underwritingStatus");
-            if(uwStatus.equals("신청")) subscription.setUnderwritingStatus(UnderwritingStatus.applied);
-            else if(uwStatus.equals("미신청")) subscription.setUnderwritingStatus(UnderwritingStatus.notApplied);
-            else if(uwStatus.equals("체결")) subscription.setUnderwritingStatus(UnderwritingStatus.concluded);
-            else if(uwStatus.equals("반려")) subscription.setUnderwritingStatus(UnderwritingStatus.rejected);
-
+            subscription.setUnderwritingStatus(UnderwritingStatus.makeUnderwritingStatus(resultSet.getString("underwritingStatus")));
             subscription.setDateCreated(resultSet.getString("dateCreated"));
             subscription.setInsurancePeriod(resultSet.getInt("insurancePeriod"));
             subscription.setPremium(resultSet.getInt("premium"));

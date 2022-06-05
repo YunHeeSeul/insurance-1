@@ -71,8 +71,8 @@ public class VContract {
         String insuranceAgentID=subscription.getInsuranceAgentID();
 
         System.out.println("-----------------"+cusName+"님의 청약서-----------------");
-        System.out.println("(고객명) (보험명) (작성일자)(인수심사상태)(담당설계사ID)");
-        System.out.println(cusName+" "+insuranceName+" "+date+" "+status.name()+" "+insuranceAgentID);
+        System.out.println("(고객명)  (보험명)   (작성일자) (인수심사상태)(담당설계사ID)");
+        System.out.println(cusName+" "+insuranceName+" "+date+"    "+status.getDetail()+"      "+insuranceAgentID);
         if(status==UnderwritingStatus.applied||status==UnderwritingStatus.notApplied){
             System.out.println("아직 인수심사 결과가 없습니다."); return;
         }else if(status==UnderwritingStatus.completed) {
@@ -83,6 +83,7 @@ public class VContract {
         String input = scn.next();
         switch (input) {
             case "1" :
+                if(status==UnderwritingStatus.rejected) { System.out.println("심사 반려된 청약서입니다."); return; }
                 int period=subscription.getInsurancePeriod();
                 int premium=subscription.getPremium();
                 String contractID="CT"+this.cContract.getMaxID()+1;
@@ -104,6 +105,7 @@ public class VContract {
                 System.out.println("계약 체결 완료 처리되었습니다.");
                 break;
             case "2" :
+                if(status==UnderwritingStatus.rejected) { System.out.println("심사 통과된 청약서입니다."); return; }
                 if(!this.cSubscription.updateUWstatusById(subscription.getSubscriptionID(),UnderwritingStatus.completed)){
                     System.out.println("DB 오류입니다."); return;
                 }
