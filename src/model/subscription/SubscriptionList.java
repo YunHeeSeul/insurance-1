@@ -1,6 +1,10 @@
 package Practice.InsuranceCompany.Design.src.model.subscription;
 
+import java.util.ArrayList;
+
 public interface SubscriptionList {
+
+    ArrayList<Subscription> getSubscriptionList();
 
     boolean add(Subscription subscription);
 

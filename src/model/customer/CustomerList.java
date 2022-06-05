@@ -1,6 +1,8 @@
 package Practice.InsuranceCompany.Design.src.model.customer;
 
 
+import java.util.ArrayList;
+
 public interface CustomerList {
 
 	public boolean add(Customer customer);
@@ -9,5 +11,8 @@ public interface CustomerList {
 
 	public Customer getByCustomerId(String customerID);
 
+	public ArrayList<Customer> getCustomerList();
+
+	public boolean checkValidationID(String inputID);
 
 }

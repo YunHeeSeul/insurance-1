@@ -11,11 +11,13 @@ public class ContractListImpl implements ContractList {
 		this.ContractList=new ArrayList<>();
 	}
 
+	@Override
 	public boolean add(Contract contract){
 		this.ContractList.add(contract);
 		return true;
 	}
 
+	@Override
 	public boolean delete(String contractID){
 		for(Contract contract : this.ContractList) {
 			if (contract.getContractID().equals(contractID))
