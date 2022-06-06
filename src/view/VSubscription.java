@@ -155,7 +155,7 @@ public class VSubscription extends View {
         System.out.println("청약서 생성일자 (입력 예시 => 2022.05.23) : ");
         subscription.setDateCreated(scanner.nextLine());
 
-        System.out.println("보험 계약 기간 (단위:개월) : ");
+        System.out.println("보험 계약 기간 (단위:년) : ");
         subscription.setInsurancePeriod(scanner.nextInt());
 
         System.out.println("보험료 : ");
