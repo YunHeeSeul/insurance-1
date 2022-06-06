@@ -28,6 +28,7 @@ public class PaymentFormListImpl implements PaymentFormList {
 		return false;
 	}
 
+	@Override
 	public void printAllPaymentForm() {
 		System.out.println("(제지급금 신청서 고유번호) (제지급금 신청 유형) (고객 고유번호) (보험 고유번호) (보험료)");
 		for(PaymentForm paymentForm: this.paymentFormList){

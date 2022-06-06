@@ -4,5 +4,7 @@ public interface PaymentFormList {
 	public boolean add(PaymentForm paymentForm);
 	public boolean delete(String paymentFormID);
 
+	public void printAllPaymentForm();
+
 
 }
