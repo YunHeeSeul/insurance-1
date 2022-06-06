@@ -1,35 +1,45 @@
 package Practice.InsuranceCompany.Design.src.view;
 
 import Practice.InsuranceCompany.Design.src.controller.CCustomer;
+import Practice.InsuranceCompany.Design.src.controller.CExemptionInfo;
 import Practice.InsuranceCompany.Design.src.controller.CSurveyCompany;
+import Practice.InsuranceCompany.Design.src.etcEnum.Responsibility;
 import Practice.InsuranceCompany.Design.src.model.accident.Accident;
 import Practice.InsuranceCompany.Design.src.model.accident.AccidentListImpl;
 import Practice.InsuranceCompany.Design.src.model.accident.AccidentType;
 import Practice.InsuranceCompany.Design.src.controller.CAccident;
+import Practice.InsuranceCompany.Design.src.model.accident.ExemptionInfo;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
 import Practice.InsuranceCompany.Design.src.etcEnum.Level;
 import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
 import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompanyListImpl;
+import Practice.InsuranceCompany.Design.src.view.View;
 
+
+import java.util.Locale;
 import java.util.Scanner;
 
-public class VAccident {
-    Scanner scn;
+public class VAccident extends View {
+    // Scanner scn;
+    Scanner scn = new Scanner(System.in).useLocale(Locale.US);
     private Accident accident;
     private SurveyCompany surveyCompany;
     private CAccident cAccident;
     private CSurveyCompany cSurveyCompany;
     private CCustomer cCustomer;
+    private CExemptionInfo cExemptionInfo;
 
     private AccidentListImpl accidentList;
     private CustomerListImpl customerList;
+
 
     public VAccident(Scanner scn) {
         this.scn = scn;
         this.cAccident = new CAccident();
         this.cSurveyCompany = new CSurveyCompany();
         this.cCustomer = new CCustomer();
+        this.cExemptionInfo=new CExemptionInfo();
     }
 //    public VAccident(Scanner scn, AccidentListImpl accidentList, CustomerListImpl customerList) {
 //        this.scn=scn;
@@ -55,64 +65,117 @@ public class VAccident {
         }
     }
 
-    private boolean inquireAllAccident() {
+    private void inquireAllAccidentDetails(CAccident cAccident) {
         AccidentListImpl accidentList = this.cAccident.getAllAccidentList();
         if(accidentList.getAllList().size()==0){
-            System.out.println("접수된 사고가 없습니다.");
-            return false;
+            System.out.println("사고 목록이 없습니다.");
         }
-        System.out.println("----------------------------사고 전체 목록----------------------------");
-        //      System.out.println("(사고ID)  (고객ID)  (사고 종류)  (사고 일시)  (사고 장소)  (사고 규모)  (사고 내용)  (가해 여부)  (담당 손해사정업체)  (면부책 여부)  (현장 출동 여부)");
-        accident.printAccidentDetails();
-
-        return true;
+        for(Accident accident : accidentList.getAllList()) {
+            printAccidentDetails(accident);
+            System.out.println("\n");
+        }
     }
 
-    private boolean showSurveyCompany() {
+    private void printAccidentDetails(Accident accident){
+        ExemptionInfo exemptionInfo = new ExemptionInfo();
+        System.out.println("사고 ID : " + accident.getAccidentID());
+        System.out.println("고객 ID : " + accident.getCustomerID());
+        System.out.println("사고 종류 : " + accident.getAccidentType());
+        System.out.println("사고 일시 : " + accident.getAccidentDate());
+        System.out.println("사고 장소 : " + accident.getAccidentLocation());
+        System.out.println("사고 규모 : " + accident.getAccidentScale());
+        System.out.println("사고 내용 : " + accident.getAccidentContent());
+        if(accident.isDoingHarm()==true)
+            System.out.println("가해 여부 : 가해");
+        else
+            System.out.println("가해 여부 : x");
+        System.out.println("담당 손해사정업체 : " + accident.getRepSurveyCompanyID());
+        System.out.println("["+accident.getExemptionInfoID()+"]_면/부책 정보 : ");
+        System.out.println("책임 여부 : " + exemptionInfo.getResponsibility());
+        System.out.println("판단 사유 : " + exemptionInfo.getJudgementReason());
+        System.out.println("보험금 지급 비율 : " + exemptionInfo.getPaymentRatio());
+
+        if(accident.isOnsite()==true)
+            System.out.println("현장 조사 여부 : 조사함");
+        else
+            System.out.println("현장 조사 여부 : 조사하지 않음");
+    }
+    private void inquireAllAccident(CAccident cAccident) {
+        AccidentListImpl accidentList = this.cAccident.getAccidentList();
+        if(accidentList.getAllList().size()==0){
+            System.out.println("사고 목록이 없습니다.");
+        }
+        for(Accident accident : accidentList.getAllList()) {
+            printAccident(accident);
+            System.out.println("\n");
+        }
+    }
+
+    private void printAccident(Accident accident){
+
+        System.out.println("사고 ID : " + accident.getAccidentID());
+        System.out.println("고객 ID : " + accident.getCustomerID());
+        System.out.println("사고 종류 : " + accident.getAccidentType());
+        System.out.println("사고 일시 : " + accident.getAccidentDate());
+        System.out.println("사고 장소 : " + accident.getAccidentLocation());
+        //   System.out.println("사고 규모 : " + accident.getAccidentScale());
+        System.out.println("사고 내용 : " + accident.getAccidentContent());
+
+    }
+
+    private void printAllSurveyCompany(CSurveyCompany cSurveyCompany) {
+
         SurveyCompanyListImpl surveyCompanyList = this.cSurveyCompany.getAllSurveyCompany();
         if(surveyCompanyList.getAllList().size()==0){
-            System.out.println("등록되어 있는 손해사정업체가 존재하지 않습니다.");
-            return false;
+            System.out.println("손해사정업체 목록이 없습니다.");
         }
-        System.out.println("----------------------------손해사정업체 목록----------------------------");
-        System.out.println("(손해사정업체ID)  (손해사정업체명)  (업체 주소)  (업체 번호)  (현장조사 가능 여부)");
-        surveyCompanyList.printAllList();
-
-        return true;
+        for(SurveyCompany surveyCompany : surveyCompanyList.getAllList()) {
+            showSurveyCompany(surveyCompany);
+            System.out.println("\n");
+        }
     }
+
+    private void showSurveyCompany(SurveyCompany surveyCompany) {
+        System.out.println("손해사정업체 ID : " + surveyCompany.getSurveyCompanyID());
+        System.out.println("손해사정업체명 : " + surveyCompany.getSurveyCompanyName());
+        System.out.println("업체 주소 : " + surveyCompany.getAddress());
+        System.out.println("업체 번호 : " + surveyCompany.getPhoneNum());
+        if(surveyCompany.isSurveyAbility())
+            System.out.println("현장 조사 가능 여부 : 가능");
+        else
+            System.out.println("현장 조사 가능 여부 : 불가능");
+    }
+
 
     public void receiveAccident() {
         Accident accident=new Accident();
-        AccidentListImpl accidentList=this.cAccident.getAllAccidentList();
+        //   String accidentID ="AC"+(this.cAccident.getMaxID()+1);
+        //   accident.setAccidentID(accidentID);
+        //   AccidentListImpl accidentList=this.cAccident.getAllAccidentList();
         Customer customer;
 
         System.out.println("----------------------------사고 접수----------------------------");
-        System.out.print("고객 ID : ");
-        String customerID = scn.next();
-        customer= cCustomer.retrieveById(customerID);
+        System.out.println("목록을 참고하여 사고 접수를 할 고객을 선택해주세요");
+        this.printAllCustomer(this.cCustomer);
+        System.out.println("고객 ID : ");
+        accident.setCustomerID(scn.next());
 
         addAccident(accident);
+        //  cAccident.addAccident(accident);
 
-        while(customer==null){
-            System.out.println("정보와 일치하는 고객이 없습니다. 다시 입력해주세요.");
-            customerID = scn.next();
-            customer= cCustomer.retrieveById(customerID);
-        }
-
-        accident.setAccidentID(accident.getAccidentID());
-        accident.setCustomerID(customer.getCustomerID());
     }
+    private String generateID(String keyword){ return keyword + (this.cAccident.getMaxID() + 1); }
 
     public void addAccident(Accident accident){
+        accident.setAccidentID(generateID("AC"));
+
         System.out.println("사고 종류를 선택하세요.");
-        System.out.println("사고 종류 [ 자동차 | 화재 | 건강 ]");
+        System.out.println("사고 종류 [ 자동차 | 화재 ]");
         String accidentType=scn.next();
         if(accidentType.equals("자동차"))
             accident.setAccidentType(AccidentType.car);
         else if(accidentType.equals("화재"))
             accident.setAccidentType(AccidentType.fire);
-        else if(accidentType.equals("건강"))
-            accident.setAccidentType(AccidentType.health);
         else {
             System.out.println("잘못 입력하였습니다.");
             return;
@@ -128,120 +191,114 @@ public class VAccident {
         System.out.println("사고 내용을 입력하세요 : ");
         accident.setAccidentContent(scn.nextLine());
 
+
         System.out.println("사고 접수를 완료하였습니다.");
+        boolean result = this.cAccident.create(accident);
     }
-    public boolean surveyAccident() {
-        Accident accident=new Accident();
-
+    private void surveyAccident() {
+        SurveyCompany surveyCompany = new SurveyCompany();
         System.out.println("----------------------------사고 조사----------------------------");
-        System.out.print("사고 조사를 할 고객을 선택해주세요");
-        System.out.print("고객 ID : ");
-        String customerID = scn.next();
-        Customer customer = cCustomer.retrieveById(customerID);
+        System.out.println("목록을 참고하여 사고 조사 할 사고를 선택해주세요");
+        this.inquireAllAccident(this.cAccident);
+        System.out.println("사고 ID : ");
+        String accidentID = this.scn.next();
+        Accident accident = cAccident.getByAccidentID(accidentID);
 
-        while (customer==null) {
-            System.out.print("정보가 일치하는 고객이 존재하지 않습니다.");
-            System.out.print("고객 ID를 다시 입력해주세요.");
-            System.out.print("=============================================================");
-            System.out.print("고객 ID : ");
-            customerID = scn.next();
-            customer = cCustomer.retrieveById(customerID);
-
-        }
-
-        Accident accident1 = cAccident.getByAccidentID(customerID);
-        if (accident1 == null) {
-            System.out.println("고객 ID가 " + customerID + "인 고객이 소유하고 있는 보험이 존재하지 않습니다.");
-            return false;
+        if (accident==null) {
+            System.out.println("*사고 내역을 불러올 수 없습니다.*");
         }
         else{
-            System.out.println("-----------------고객 ID "+customerID+"님의 사고 접수 내역-----------------");
-            inquireAllAccident();
-            System.out.print("조사할 사고 ID를 입력해주세요");
-            System.out.print("사고 ID : ");
-            String accidentID = scn.next();
-            Accident accident2 = cAccident.getByAccidentID(accidentID);
-
-            if (accident2==null) {
-                System.out.println("고객 ID가 " + customerID + "인 고객의 조사할 사고 접수 내역이 존재하지 않습니다.");
-
-            } else {
-                System.out.println("현장 출동을 지시하시겠습니까?");
-                System.out.println("(y)예 (n)아니오");
-                String response = scn.next();
-                if (response.equals("y")) {
-                    System.out.println("현장 출동을 지시할 손해사정업체ID를 입력하세요.");
-                    showSurveyCompany();
-                    String scID = scn.next();
-                    SurveyCompany surveyCompany1 = cSurveyCompany.getBySurveyCompanyID(scID);
-                    accident.setRepSurveyCompany(surveyCompany1 );
-
-                    System.out.println("가해 여부를 입력해주세요");
-                    System.out.println("(y)예 (n)아니오");
-                    response = scn.next();
-                    if (response.equals("y"))
-                        accident.setDoingHarm(true);
-                    else if (response.equals("n"))
-                        accident.setOnsite(false);
-
-                    System.out.println("사고 규모를 입력해주세요");
-                    System.out.println("(1)High (2)Middle (3)Low");
-                    int level = scn.nextInt();
-                    while (level != 1 && level != 2 && level != 3){
-                        level = scn.nextInt();
-                    }
-
-                    switch (level){
-                        case 1:
-                            accident.setAccidentScale(Level.high); break;
-                        case 2:
-                            accident.setAccidentScale(Level.middle); break;
-                        case 3:
-                            accident.setAccidentScale(Level.low); break;
-                        default:
-                            System.out.println("잘못 입력하셨습니다. 다시 입력해주세요."); break;
-                    }
-                }
-                else if (response.equals("n"))
-                    accident.setOnsite(false);
+            System.out.println("현장 출동을 지시하시겠습니까?");
+            System.out.println("(y)예 (n)아니오");
+            String response = scn.next();
+            if (response.equals("y")){
+                accident.setOnsite(true);
+                System.out.println("목록을 보고 현장 출동을 지시할 손해사정업체ID를 입력하세요.");
+                this.printAllSurveyCompany(cSurveyCompany);
+                System.out.println("손해사정업체 ID : ");
+                accident.setRepSurveyCompanyID(scn.next());
             }
-            return true;
+            else if (response.equals("n")){
+                accident.setOnsite(false);
+                accident.setRepSurveyCompany(null);
+            }
+            System.out.println("가해 여부를 입력해주세요");
+            System.out.println("(y)예 (n)아니오");
+            response = scn.next();
+            if (response.equals("y"))
+                accident.setDoingHarm(true);
+            else if (response.equals("n"))
+                accident.setOnsite(false);
+
+            System.out.println("사고 규모를 입력해주세요");
+            System.out.println("(1)High (2)Middle (3)Low");
+            int level = scn.nextInt();
+            while (level != 1 && level != 2 && level != 3){
+                level = scn.nextInt();
+            }
+
+            switch (level){
+                case 1:
+                    accident.setAccidentScale(Level.high); break;
+                case 2:
+                    accident.setAccidentScale(Level.middle); break;
+                case 3:
+                    accident.setAccidentScale(Level.low); break;
+                default:
+                    System.out.println("잘못 입력하셨습니다. 다시 입력해주세요."); break;
+            }
+            System.out.println("사고 조사를 완료했습니다.");
         }
+        this.cAccident.update(accidentID,accident);
+
     }
 
-    public boolean signUpExemption() {
-        Accident accident = new Accident();
+
+    public void signUpExemption() {
+        ExemptionInfo exemptionInfo = new ExemptionInfo();
+        //   accident.setExemptionInfoID(generateID("EX"));
+        //    String exemptionInfoID ="EX"+(this.cExemptionInfo.getMaxID()+1);
+        //     exemptionInfo.setExemptionInfoID(exemptionInfoID);
+        exemptionInfo.setExemptionInfoID(generateID("EX"));
 
         System.out.println("----------------------------면/부책 등록----------------------------");
-        System.out.print("면/부책을 등록할 고객을 선택해주세요");
-        System.out.print("고객 ID : ");
-        String customerID = scn.next();
-        Customer customer = cCustomer.retrieveById(customerID);
+        System.out.println("목록을 보고 면/부책을 등록할 사고를 선택해주세요");
+        this.inquireAllAccident(this.cAccident);
+        System.out.println("사고 ID : ");
+        //       accident.setAccidentID(scn.next());
+        String accidentID = this.scn.next();
+        accident = cAccident.getByAccidentID(accidentID);
 
-        while (customer == null) {
-            System.out.print("정보가 일치하는 고객이 존재하지 않습니다.");
-            System.out.print("고객 ID를 다시 입력해주세요.");
-            System.out.print("=============================================================");
-            System.out.print("고객 ID : ");
-            customerID = scn.next();
-            customer = cCustomer.retrieveById(customerID);
-        }
-        Accident accident1 = cAccident.getByAccidentID(customerID);
-        if (accident1 == null) {
-            System.out.println("고객 ID가 " + customerID + "인 고객의 면/부책을 등록할 사고 접수 내역이 존재하지 않습니다.");
-            return false;
-        } else {
-            System.out.println("-----------------고객 ID " + customerID + "님의 사고 접수 내역-----------------");
-            inquireAllAccident();
-            System.out.print("등록할 면/부책에 해당하는 사고ID를 입력해주세요");
-            System.out.print("사고 ID : ");
-            String accidentID = scn.next();
 
-            accident.registerExemptionInfo(accidentID);
-            System.out.println("사고 ID " + accidentID + "의 면/부책이 등록되었습니다.");
-        }
 
-        return true;
+        registerExemptionInfo(exemptionInfo);
+        System.out.println("면/부책이 등록되었습니다.");
+        this.cExemptionInfo.create(exemptionInfo);
+        this.cAccident.updateExemptionInfoID(accidentID,accident);
+
+        System.out.println("면/부책이 등록이 완료된 사고 목록입니다.");
+        this.printAccidentDetails(accident);
+
     }
+
+    private void registerExemptionInfo(ExemptionInfo exemptionInfo){
+        System.out.println("책임 여부를 입력하세요.");
+        System.out.println("(y)부책 (n)면책");
+        String response = scn.next();
+        if (response.equals("y"))
+            exemptionInfo.setResponsibility(Responsibility.responsible);
+        else if (response.equals("n"))
+            exemptionInfo.setResponsibility(Responsibility.notResponsible);
+
+        System.out.println("판단 사유를 입력하세요 : ");
+        String judgementReason=scn.next();
+        exemptionInfo.setJudgementReason(judgementReason);
+
+        System.out.println("보험금 지급 비율을 입력하세요 : ");
+        Double paymentRatio=scn.nextDouble();
+        exemptionInfo.setPaymentRatio(paymentRatio);
+
+    }
+
 
 }

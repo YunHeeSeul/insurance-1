@@ -20,7 +20,9 @@ public class Accident {
 	private String accidentContent;
 	private boolean doingHarm;
 	private SurveyCompany repSurveyCompany;
+	private String surveyCompanyID;
 	private String exemptionInfoID;
+	private ExemptionInfo exemptionInfo;
 	private boolean onSite;
 	private boolean permission;
 
@@ -81,6 +83,7 @@ public class Accident {
 	}
 
 	public Level getAccidentScale() {
+
 		return accidentScale;
 	}
 
@@ -99,9 +102,15 @@ public class Accident {
 	public SurveyCompany getRepSurveyCompany() {
 		return repSurveyCompany;
 	}
-
 	public void setRepSurveyCompany(SurveyCompany repSurveyCompany) {
 		this.repSurveyCompany = repSurveyCompany;
+	}
+
+	public String getRepSurveyCompanyID() {
+		return surveyCompanyID;
+	}
+	public void setRepSurveyCompanyID(String surveyCompanyID) {
+		this.surveyCompanyID = surveyCompanyID;
 	}
 	public String getExemptionInfoID() {
 		return exemptionInfoID;
@@ -109,11 +118,19 @@ public class Accident {
 
 	public void setExemptionInfoID(String exemptionInfoID) {
 		this.exemptionInfoID = exemptionInfoID;
-  }
+	}
+	public ExemptionInfo getExemptionInfo() {
+		return exemptionInfo;
+	}
+
+	public void setExemptionInfo(ExemptionInfo exemptionInfo) {
+		this.exemptionInfo = exemptionInfo;
+	}
+
 	public ArrayList<ExemptionInfo> getExemptionContent() {
 		return exemptionContent;
 	}
-  	public void setExemptionContent(ArrayList<ExemptionInfo> exemptionContent) {
+	public void setExemptionContent(ArrayList<ExemptionInfo> exemptionContent) {
 		this.exemptionContent = exemptionContent;
 	}
 	public boolean isOnsite() {
@@ -125,28 +142,7 @@ public class Accident {
 	}
 
 
-	public void printAccidentDetails(){
-		System.out.println("사고 ID : " + this.accidentID);
-		System.out.println("고객 ID : " + this.customerID);
-		System.out.println("사고 종류 : " + this.accidentType);
-		System.out.println("사고 일시 : " + this.accidentDate);
-		System.out.println("사고 장소 : " + this.accidentLocation);
-		System.out.println("사고 규모 : " + this.accidentScale);
-		System.out.println("사고 내용 : " + this.accidentContent);
-		System.out.println("가해 여부 : " + this.doingHarm);
-		System.out.println("담당 손해사정업체 : " + this.repSurveyCompany);
-		System.out.println("["+this.exemptionInfoID+"]_면/부책 정보 : ");
-		for(int i=0; i<this.exemptionContent.size(); i++){
-			System.out.println("항목" + (i+1));
-			System.out.println("책임 여부 : " + this.exemptionContent.get(i).getResponsibility());
-			System.out.println("판단 사유 : " + this.exemptionContent.get(i).getJudgementReason());
-			System.out.println("보험금 지급 비율 : " + this.exemptionContent.get(i).getPaymentRatio());
-		}
-		if(this.onSite==true)
-			System.out.println("현장 조사 여부 : 조사함");
-		else
-			System.out.println("현장 조사 여부 : 조사하지 않음");
-	}
+
 
 	public boolean dispatchOnsite(boolean permission){
 		if(repSurveyCompany.isSurveyAbility()) {
@@ -155,39 +151,13 @@ public class Accident {
 		}else
 			return false;
 	}
-	//VAccident에 사고 정보를 보여주는 기능이 있어서 없어도 될 것 같은 기능
-/*	public Accident getAccidentReception(){
-		return null;
-	}
-*/
 
-	public void registerExemptionInfo(String accidentID){
-		ExemptionInfo exemptionInfo=new ExemptionInfo();
 
-		exemptionInfo.setExemptionInfoID(exemptionInfoID);
-
-		System.out.println("책임 여부를 입력하세요.");
-		System.out.println("(y)부책 (n)면책");
-		String response = scn.next();
-		if (response.equals("y"))
-			exemptionInfo.setResponsibility(Responsibility.responsible);
-		else if (response.equals("n"))
-			exemptionInfo.setResponsibility(Responsibility.notResponsible);
-
-		System.out.println("판단 사유를 입력하세요 : ");
-		String judgementReason=scn.next();
-		exemptionInfo.setJudgementReason(judgementReason);
-
-		System.out.println("보험금 지급 비율을 입력하세요 : ");
-		Double paymentRatio=scn.nextDouble();
-		exemptionInfo.setPaymentRatio(paymentRatio);
-
-	}
 
 	public String getAccidentInfo(){
 		return accidentID+" "+customerID+" "+accidentType+" "+accidentDate+" "+accidentLocation+" "+ accidentScale +" "+ accidentContent +" "+ doingHarm +" "+ repSurveyCompany +" "+ exemptionContent +" "+ onSite;
 	}
 
-	
+
 
 }//end Accident

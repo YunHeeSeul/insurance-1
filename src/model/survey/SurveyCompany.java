@@ -21,6 +21,10 @@ public class SurveyCompany {
 
 	}
 
+
+	//	public String getRepSurveyCompanyID(String repSurveyCompanyID) {
+//	return surveyCompanyID;
+//	}
 	public String getSurveyCompanyID() {
 		return surveyCompanyID;
 	}
