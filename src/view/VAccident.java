@@ -77,7 +77,7 @@ public class VAccident extends View {
     }
 
     private void printAccidentDetails(Accident accident){
-        ExemptionInfo exemptionInfo = new ExemptionInfo();
+        ExemptionInfo exemptionInfo = this.cExemptionInfo.getByID(accident.getExemptionInfoID());
         System.out.println("사고 ID : " + accident.getAccidentID());
         System.out.println("고객 ID : " + accident.getCustomerID());
         System.out.println("사고 종류 : " + accident.getAccidentType());
@@ -91,7 +91,7 @@ public class VAccident extends View {
             System.out.println("가해 여부 : x");
         System.out.println("담당 손해사정업체 : " + accident.getRepSurveyCompanyID());
         System.out.println("["+accident.getExemptionInfoID()+"]_면/부책 정보 : ");
-        System.out.println("책임 여부 : " + exemptionInfo.getResponsibility());
+        System.out.println("책임 여부 : " + exemptionInfo.getResponsibility().getDetail());
         System.out.println("판단 사유 : " + exemptionInfo.getJudgementReason());
         System.out.println("보험금 지급 비율 : " + exemptionInfo.getPaymentRatio());
 
@@ -164,7 +164,11 @@ public class VAccident extends View {
         //  cAccident.addAccident(accident);
 
     }
-    private String generateID(String keyword){ return keyword + (this.cAccident.getMaxID() + 1); }
+    private String generateID(String keyword){
+        if(keyword.equals("EX")) return keyword + (this.cExemptionInfo.getMaxID() + 1);
+        else if(keyword.equals("AC")) return keyword + (this.cAccident.getMaxID() + 1);
+        else return null;
+    }
 
     public void addAccident(Accident accident){
         accident.setAccidentID(generateID("AC"));
@@ -256,27 +260,21 @@ public class VAccident extends View {
 
     public void signUpExemption() {
         ExemptionInfo exemptionInfo = new ExemptionInfo();
-        //   accident.setExemptionInfoID(generateID("EX"));
-        //    String exemptionInfoID ="EX"+(this.cExemptionInfo.getMaxID()+1);
-        //     exemptionInfo.setExemptionInfoID(exemptionInfoID);
         exemptionInfo.setExemptionInfoID(generateID("EX"));
 
         System.out.println("----------------------------면/부책 등록----------------------------");
         System.out.println("목록을 보고 면/부책을 등록할 사고를 선택해주세요");
         this.inquireAllAccident(this.cAccident);
         System.out.println("사고 ID : ");
-        //       accident.setAccidentID(scn.next());
         String accidentID = this.scn.next();
-        accident = cAccident.getByAccidentID(accidentID);
-
-
 
         registerExemptionInfo(exemptionInfo);
         System.out.println("면/부책이 등록되었습니다.");
         this.cExemptionInfo.create(exemptionInfo);
-        this.cAccident.updateExemptionInfoID(accidentID,accident);
+        this.cAccident.updateExemptionInfoID(accidentID,exemptionInfo.getExemptionInfoID());
 
         System.out.println("면/부책이 등록이 완료된 사고 목록입니다.");
+        accident = cAccident.getByAccidentID(accidentID);
         this.printAccidentDetails(accident);
 
     }
