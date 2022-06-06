@@ -30,7 +30,6 @@ public class AccidentDao extends Dao{
                 + null + ", "
                 + null + ", "
                 + null + ");";
-        System.out.println("Execute Query - " + query);
         return super.create(query);
 
       /*  String query = "insert into accident values ('"
@@ -58,26 +57,34 @@ public class AccidentDao extends Dao{
 
     public boolean update(String accidentID, Accident accident){
         String query = "update accident set ";
-        query += "onSite = " + dq + accident.isOnsite() + dq + ", "
-                + "doingHarm = " + accident.isDoingHarm() + ", "
-                + "accidentScale = " + accident.getAccidentScale().getDetail() + ", "
-                + "repSurveyCompanyID = " + dq + accident.getRepSurveyCompanyID() + dq + ", "
-                + " where accidentID = " + dq + accidentID + dq + ", "
-                + "customerId = " + accident.getCustomerID() + "; ";
-        //  String query = "update accident set doingHarm="+accident.isDoingHarm()+", "+"accidentScale='"+accident.getAccidentScale().getDetail()+"', "+"repSurveyCompanyID='"+accident.getRepSurveyCompany().getSurveyCompanyID()+"', "+"onSite='"+accident.isOnsite()+"' where accidentID='"+accidentID+"';";
-        //                + "accidentType = " + accident.getAccidentType() + ", "
-        //                + "accidentDate = " + accident.getAccidentDate()+ ", "
-        //                + "accidentLocation = " + accident.getAccidentLocation() + ", "
-        //                + "exemptionInfoId = " + accident.getExemptionInfoID() + ", "
-        //                + "accidentContent = " + accident.getAccidentContent() + ", "
+        query += "accidentID = " + dq + accident.getAccidentID() + dq + ", "
+                + "customerID = " + dq + accident.getCustomerID() + dq + ", "
+                + "accidentType = " + dq + accident.getAccidentType() + dq + ", "
+                + "accidentDate = " + dq + accident.getAccidentDate() + dq + ", "
+                + "accidentLocation = " + dq + accident.getAccidentLocation() + dq + ", "
+                + "accidentScale = " + dq + accident.getAccidentScale().getDetail() + dq + ", "
+                + "accidentContent = " + dq + accident.getAccidentContent() + dq + ", "
+                + "doingHarm = " + accident.isDoingHarm() + ", ";
+
+        if(accident.getRepSurveyCompanyID() == null){
+            query += "repSurveyCompanyID = " + null + ", ";
+        } else query += "repSurveyCompanyID = " + dq + accident.getRepSurveyCompanyID() + dq + ", " ;
+
+        if(accident.getExemptionInfo() == null){
+            query += "exemptionInfoId = " + null + ", ";
+        } else query += "exemptionInfoId = " + accident.getExemptionInfo().getExemptionInfoID();
+
+        query += "onSite = " + accident.isOnsite()
+                + " where accidentID = " + dq + accidentID + dq;
         return super.update(query);
     }
     public boolean updateSurvey(String accidentID, boolean doingHarm, String accidentScale, String surveyCompanyID){
         String query = "update accident set doingHarm="+doingHarm+", "+"accidentScale='"+accidentScale+"', "+"repSurveyCompanyID='"+surveyCompanyID+"' where accidentID='"+accidentID+"';";
         return super.update(query);
     }
-    public boolean updateExemptionInfo(String accidentID, Accident accident){
-        String query = "update accident set exemptionInfoId='"+accident.getExemptionInfoID()+"' where accidentID='"+accidentID+"';";
+    public boolean updateExemptionInfo(String accidentID, String exemptionInfoID){
+        String query = "update accident set exemptionInfoId='"+exemptionInfoID+"' where accidentID='"+accidentID+"';";
+        System.out.println(query);
         return super.update(query);
     }
 

@@ -278,7 +278,7 @@ create table accident(
 );
 
 insert into accident values("AC1", "CU4", "자동차", "2021-11-01", "강남역 교차로", "약", "가벼운 접촉사고", true, "SV3", "EX1", true);
-insert into accident values("AC2", "CU1", "화재", "2012-12-05", "개인사무실", "중", "누전으로 인한 화재", false, "SV1", "EX2", false);
+insert into accident values("AC2", "CU1", "화재", "2012-12-05", "개인사무실", "중", "누전으로 인한 화재", false, "SV1", null, false);
 
 
 create table payment(
