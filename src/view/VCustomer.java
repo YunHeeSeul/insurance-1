@@ -1,17 +1,8 @@
 package Practice.InsuranceCompany.Design.src.view;
 
 import Practice.InsuranceCompany.Design.src.controller.CCustomer;
-import Practice.InsuranceCompany.Design.src.controller.CDiseaseHistory;
-import Practice.InsuranceCompany.Design.src.controller.COwnedBuildingInfo;
-import Practice.InsuranceCompany.Design.src.controller.COwnedCarInfo;
-import Practice.InsuranceCompany.Design.src.etcEnum.CarPurpose;
-import Practice.InsuranceCompany.Design.src.etcEnum.CarType;
 import Practice.InsuranceCompany.Design.src.etcEnum.Gender;
-import Practice.InsuranceCompany.Design.src.etcEnum.Level;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
-import Practice.InsuranceCompany.Design.src.model.policyholder.DiseaseHistory;
-import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedBuildingInfo;
-import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedCarInfo;
 
 import java.util.Scanner;
 
@@ -19,17 +10,9 @@ public class VCustomer extends View {
     private Scanner scanner;
     private CCustomer cCustomer;
 
-    private CDiseaseHistory cDiseaseHistory;
-    private COwnedCarInfo cOwnedCarInfo;
-    private COwnedBuildingInfo cOwnedBuildingInfo;
-
     public VCustomer(Scanner scanner) {
         this.scanner = scanner;
         this.cCustomer = new CCustomer();
-
-        this.cDiseaseHistory = new CDiseaseHistory();
-        this.cOwnedBuildingInfo = new COwnedBuildingInfo();
-        this.cOwnedCarInfo = new COwnedCarInfo();
     }
 
     public void run() {
@@ -58,7 +41,7 @@ public class VCustomer extends View {
     }
 
 
-    private String generateID(String keyword){ return keyword + Integer.toString(this.cCustomer.getMaxID() + 1); }
+    private String generateID(String keyword){ return keyword + (this.cCustomer.getMaxID() + 1); }
 
     private void addCustomer() {
         System.out.println("<---- 신규 고객 등록 ---->");
@@ -85,7 +68,7 @@ public class VCustomer extends View {
             String input = "y";
             while(!input.equals("n")) {
                 System.out.println("수정하실 고객 정보의 세부 항목의 번호를 입력해주세요.");
-                System.out.println("1. 성함 | 2. 주민등록번호 | 3. 성별 | 4. 생년월일 | 5. 전화번호 | 6. 이메일 | 7. 자택/회사 주소 | 8. 질환 이력 | 9. 고객 소유 건물 정보 | 10. 고객 소유 차량 정보");
+                System.out.println("1. 성함 | 2. 주민등록번호 | 3. 성별 | 4. 생년월일 | 5. 전화번호 | 6. 이메일 | 7. 자택/회사 주소 ");
                 customer = inputNewCustomerInfo(scanner.nextInt(), customer);
 
                 if (cCustomer.updateById(inputID, customer)) {
@@ -138,67 +121,6 @@ public class VCustomer extends View {
                 System.out.println("새로운 고객 자택/회사 주소 : ");
                 input = scanner.nextLine();
                 customer.setAddress(input);
-                break;
-            case 8:
-                System.out.println("새로운 질환 이력 정보 : ");
-                DiseaseHistory diseaseHistory = new DiseaseHistory();
-                System.out.println("-- 질환명 : ");
-                input = scanner.next();
-                diseaseHistory.setName(input);
-
-                System.out.println("-- 질환의 중증도(고/중/저) : ");
-                input = scanner.next();
-                if(input.equals(Level.high.getDetail())) diseaseHistory.setSeverity(Level.high);
-                else if(input.equals(Level.middle.getDetail())) diseaseHistory.setSeverity(Level.middle);
-                else if(input.equals(Level.low.getDetail())) diseaseHistory.setSeverity(Level.low);
-
-                System.out.println("-- 투병기간(단위:개월) : ");
-                input = scanner.next();
-                diseaseHistory.setStrugglePeriod(Integer.parseInt(input));
-
-                this.cDiseaseHistory.addDiseaseHistory(diseaseHistory);
-                customer.setDiseaseHistory(diseaseHistory);
-                break;
-            case 9:
-                System.out.println("새로운 소유 건물 정보 : ");
-                OwnedBuildingInfo ownedBuildingInfo = new OwnedBuildingInfo();
-                System.out.println("-- 건물 층 수 : ");
-                input = scanner.next();
-                ownedBuildingInfo.setFloorNumber(Integer.parseInt(input));
-
-                System.out.println("-- 특수건물 여부(y/n) : ");
-                input = scanner.next();
-                ownedBuildingInfo.setSpecializedBuilding(input.equals("y")?true:false);
-
-                this.cOwnedBuildingInfo.addBuildingInfo(ownedBuildingInfo);
-                customer.setOwnedBuildingInfo(ownedBuildingInfo);
-                break;
-            case 10:
-                System.out.println("새로운 소유 차량 정보 : ");
-
-                OwnedCarInfo ownedCarInfo = new OwnedCarInfo();
-                System.out.println("-- 차량 사고 횟수 : ");
-                input = scanner.next();
-                ownedCarInfo.setAccidentNumber(Integer.parseInt(input));
-
-                System.out.println("-- 차량 종류(승용차/회물차/승합차) : ");
-                input = scanner.next();
-                if(input.equals(CarType.passenger.getDetail())) ownedCarInfo.setCarType(CarType.passenger);
-                else if(input.equals(CarType.lorry.getDetail())) ownedCarInfo.setCarType(CarType.lorry);
-                else if(input.equals(CarType.van.getDetail())) ownedCarInfo.setCarType(CarType.van);
-
-                System.out.println("-- 차량 용도(사업용/비사업용) : ");
-                input = scanner.next();
-                if(input.equals(CarPurpose.business.getDetail())) ownedCarInfo.setCarPurpose(CarPurpose.business);
-                else if(input.equals(CarPurpose.notBusiness.getDetail())) ownedCarInfo.setCarPurpose(CarPurpose.notBusiness);
-
-                System.out.println("-- 배기량(단위:cc) : ");
-                input = scanner.next();
-                ownedCarInfo.setDisplacement(Integer.parseInt(input));
-
-                this.cOwnedCarInfo.addCarInfo(ownedCarInfo);
-
-                customer.setOwnedCarInfo(ownedCarInfo);
                 break;
             default:
                 System.out.println("잘못 입력하였습니다.");
