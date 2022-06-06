@@ -1,6 +1,6 @@
 package Practice.InsuranceCompany.Design.src.dao;
 
-import Practice.InsuranceCompany.Design.src.etcEnum.UnderwritingStatus;
+import Practice.InsuranceCompany.Design.src.enums.UnderwritingStatus;
 import Practice.InsuranceCompany.Design.src.model.subscription.Subscription;
 import Practice.InsuranceCompany.Design.src.model.subscription.SubscriptionListImpl;
 

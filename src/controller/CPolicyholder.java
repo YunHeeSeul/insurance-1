@@ -2,9 +2,7 @@ package Practice.InsuranceCompany.Design.src.controller;
 
 import Practice.InsuranceCompany.Design.src.dao.PolicyholderDao;
 import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
-import Practice.InsuranceCompany.Design.src.model.policyholder.Policyholder;
-
-import java.util.ArrayList;
+import Practice.InsuranceCompany.Design.src.model.customer.Policyholder;
 
 public class CPolicyholder {
     private PolicyholderDao policyholderDao;

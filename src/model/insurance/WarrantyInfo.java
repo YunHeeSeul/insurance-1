@@ -1,6 +1,6 @@
 package Practice.InsuranceCompany.Design.src.model.insurance;
 
-import Practice.InsuranceCompany.Design.src.model.contract.ContractType;
+import Practice.InsuranceCompany.Design.src.enums.ContractType;
 
 public class WarrantyInfo {
 

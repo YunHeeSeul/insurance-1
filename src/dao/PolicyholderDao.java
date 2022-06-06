@@ -1,8 +1,8 @@
 package Practice.InsuranceCompany.Design.src.dao;
 
-import Practice.InsuranceCompany.Design.src.etcEnum.Gender;
+import Practice.InsuranceCompany.Design.src.enums.Gender;
 import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
-import Practice.InsuranceCompany.Design.src.model.policyholder.Policyholder;
+import Practice.InsuranceCompany.Design.src.model.customer.Policyholder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

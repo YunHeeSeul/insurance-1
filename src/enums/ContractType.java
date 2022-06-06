@@ -1,4 +1,4 @@
-package Practice.InsuranceCompany.Design.src.model.contract;
+package Practice.InsuranceCompany.Design.src.enums;
 
 public enum ContractType {
 	mainContract("주계약"),

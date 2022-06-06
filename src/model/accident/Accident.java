@@ -1,7 +1,8 @@
 package Practice.InsuranceCompany.Design.src.model.accident;
 
 
-import Practice.InsuranceCompany.Design.src.etcEnum.Level;
+import Practice.InsuranceCompany.Design.src.enums.AccidentType;
+import Practice.InsuranceCompany.Design.src.enums.Level;
 
 import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
 

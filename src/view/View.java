@@ -3,12 +3,12 @@ package Practice.InsuranceCompany.Design.src.view;
 import Practice.InsuranceCompany.Design.src.controller.CCustomer;
 import Practice.InsuranceCompany.Design.src.controller.CInsurance;
 import Practice.InsuranceCompany.Design.src.controller.CSubscription;
-import Practice.InsuranceCompany.Design.src.etcEnum.Gender;
+import Practice.InsuranceCompany.Design.src.enums.Gender;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
 import Practice.InsuranceCompany.Design.src.model.insurance.Insurance;
 import Practice.InsuranceCompany.Design.src.model.insurance.InsuranceListImpl;
-import Practice.InsuranceCompany.Design.src.model.insurance.InsuranceType;
+import Practice.InsuranceCompany.Design.src.enums.InsuranceType;
 import Practice.InsuranceCompany.Design.src.model.subscription.Subscription;
 import Practice.InsuranceCompany.Design.src.model.subscription.SubscriptionListImpl;
 

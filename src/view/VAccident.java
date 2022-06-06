@@ -3,19 +3,16 @@ package Practice.InsuranceCompany.Design.src.view;
 import Practice.InsuranceCompany.Design.src.controller.CCustomer;
 import Practice.InsuranceCompany.Design.src.controller.CExemptionInfo;
 import Practice.InsuranceCompany.Design.src.controller.CSurveyCompany;
-import Practice.InsuranceCompany.Design.src.etcEnum.Responsibility;
+import Practice.InsuranceCompany.Design.src.enums.Responsibility;
 import Practice.InsuranceCompany.Design.src.model.accident.Accident;
 import Practice.InsuranceCompany.Design.src.model.accident.AccidentListImpl;
-import Practice.InsuranceCompany.Design.src.model.accident.AccidentType;
+import Practice.InsuranceCompany.Design.src.enums.AccidentType;
 import Practice.InsuranceCompany.Design.src.controller.CAccident;
 import Practice.InsuranceCompany.Design.src.model.accident.ExemptionInfo;
-import Practice.InsuranceCompany.Design.src.model.customer.Customer;
-import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
-import Practice.InsuranceCompany.Design.src.etcEnum.Level;
+import Practice.InsuranceCompany.Design.src.enums.Level;
 import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
 import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompanyListImpl;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class VAccident extends View {

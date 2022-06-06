@@ -1,8 +1,8 @@
-package Practice.InsuranceCompany.Design.src.model.policyholder;
+package Practice.InsuranceCompany.Design.src.model.customer;
 
 
-import Practice.InsuranceCompany.Design.src.etcEnum.CarPurpose;
-import Practice.InsuranceCompany.Design.src.etcEnum.CarType;
+import Practice.InsuranceCompany.Design.src.enums.CarPurpose;
+import Practice.InsuranceCompany.Design.src.enums.CarType;
 
 import java.util.ArrayList;
 import java.util.Scanner;

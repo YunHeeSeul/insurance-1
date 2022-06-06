@@ -1,4 +1,4 @@
-package Practice.InsuranceCompany.Design.src.etcEnum;
+package Practice.InsuranceCompany.Design.src.enums;
 
 public enum Gender {
 	male("남성"),

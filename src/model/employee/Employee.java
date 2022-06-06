@@ -1,7 +1,7 @@
 package Practice.InsuranceCompany.Design.src.model.employee;
 
 
-import Practice.InsuranceCompany.Design.src.etcEnum.Department;
+import Practice.InsuranceCompany.Design.src.enums.Department;
 
 public class Employee {
 

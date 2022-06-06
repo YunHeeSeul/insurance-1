@@ -7,7 +7,7 @@ import Practice.InsuranceCompany.Design.src.model.contract.Contract;
 import Practice.InsuranceCompany.Design.src.model.contract.ContractListImpl;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
-import Practice.InsuranceCompany.Design.src.model.policyholder.Policyholder;
+import Practice.InsuranceCompany.Design.src.model.customer.Policyholder;
 
 import java.util.Scanner;
 

@@ -2,7 +2,7 @@ package Practice.InsuranceCompany.Design.src.dao;
 
 import Practice.InsuranceCompany.Design.src.model.insurance.Insurance;
 import Practice.InsuranceCompany.Design.src.model.insurance.InsuranceListImpl;
-import Practice.InsuranceCompany.Design.src.model.insurance.InsuranceType;
+import Practice.InsuranceCompany.Design.src.enums.InsuranceType;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,6 +1,6 @@
 package Practice.InsuranceCompany.Design.src.model.accident;
 
-import Practice.InsuranceCompany.Design.src.etcEnum.Responsibility;
+import Practice.InsuranceCompany.Design.src.enums.Responsibility;
 
 import java.util.ArrayList;
 

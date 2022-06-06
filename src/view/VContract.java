@@ -4,8 +4,8 @@ import Practice.InsuranceCompany.Design.src.controller.*;
 import Practice.InsuranceCompany.Design.src.model.contract.Contract;
 import Practice.InsuranceCompany.Design.src.model.contract.ContractListImpl;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
-import Practice.InsuranceCompany.Design.src.etcEnum.UnderwritingStatus;
-import Practice.InsuranceCompany.Design.src.model.policyholder.Policyholder;
+import Practice.InsuranceCompany.Design.src.enums.UnderwritingStatus;
+import Practice.InsuranceCompany.Design.src.model.customer.Policyholder;
 import Practice.InsuranceCompany.Design.src.model.subscription.Subscription;
 
 import java.util.Scanner;

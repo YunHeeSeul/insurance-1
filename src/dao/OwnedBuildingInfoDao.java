@@ -1,6 +1,6 @@
 package Practice.InsuranceCompany.Design.src.dao;
 
-import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedBuildingInfo;
+import Practice.InsuranceCompany.Design.src.model.customer.OwnedBuildingInfo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

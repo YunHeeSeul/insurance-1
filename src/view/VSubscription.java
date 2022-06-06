@@ -4,7 +4,7 @@ import Practice.InsuranceCompany.Design.src.controller.CCustomer;
 import Practice.InsuranceCompany.Design.src.controller.CEmployee;
 import Practice.InsuranceCompany.Design.src.controller.CInsurance;
 import Practice.InsuranceCompany.Design.src.controller.CSubscription;
-import Practice.InsuranceCompany.Design.src.etcEnum.UnderwritingStatus;
+import Practice.InsuranceCompany.Design.src.enums.UnderwritingStatus;
 import Practice.InsuranceCompany.Design.src.model.employee.Employee;
 import Practice.InsuranceCompany.Design.src.model.employee.EmployeeListImpl;
 import Practice.InsuranceCompany.Design.src.model.subscription.Subscription;

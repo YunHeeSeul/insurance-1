@@ -1,6 +1,6 @@
 package Practice.InsuranceCompany.Design.src.dao;
 
-import Practice.InsuranceCompany.Design.src.etcEnum.Gender;
+import Practice.InsuranceCompany.Design.src.enums.Gender;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
 

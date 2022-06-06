@@ -1,9 +1,9 @@
-package Practice.InsuranceCompany.Design.src.etcEnum;
+package Practice.InsuranceCompany.Design.src.enums;
 
 public enum Level {
-	high("상",2),
+	high("고",2),
 	middle("중",1),
-	low("하",0);
+	low("저",0);
 
 	private int severity;
 	private String detail;

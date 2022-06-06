@@ -1,8 +1,8 @@
 package Practice.InsuranceCompany.Design.src.dao;
 
-import Practice.InsuranceCompany.Design.src.etcEnum.CarPurpose;
-import Practice.InsuranceCompany.Design.src.etcEnum.CarType;
-import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedCarInfo;
+import Practice.InsuranceCompany.Design.src.enums.CarPurpose;
+import Practice.InsuranceCompany.Design.src.enums.CarType;
+import Practice.InsuranceCompany.Design.src.model.customer.OwnedCarInfo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

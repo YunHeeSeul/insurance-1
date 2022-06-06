@@ -1,4 +1,4 @@
-package Practice.InsuranceCompany.Design.src.etcEnum;
+package Practice.InsuranceCompany.Design.src.enums;
 
 public enum UnderwritingStatus {
 	applied("신청"),
