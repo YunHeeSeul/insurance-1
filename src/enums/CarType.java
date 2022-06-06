@@ -1,4 +1,4 @@
-package Practice.InsuranceCompany.Design.src.etcEnum;
+package Practice.InsuranceCompany.Design.src.enums;
 
 public enum CarType {
 	passenger("승용차"),

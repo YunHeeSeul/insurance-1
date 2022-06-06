@@ -1,4 +1,4 @@
-package Practice.InsuranceCompany.Design.src.model.policyholder;
+package Practice.InsuranceCompany.Design.src.model.customer;
 
 public class violationInfo {
 

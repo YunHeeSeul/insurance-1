@@ -11,7 +11,7 @@ import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentForm;
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentFormListImpl;
-import Practice.InsuranceCompany.Design.src.model.payment.PaymentType;
+import Practice.InsuranceCompany.Design.src.enums.PaymentType;
 import java.util.Scanner;
 
 public class VPayment {
@@ -28,7 +28,6 @@ public class VPayment {
 
     public void run(){
         while (true) {
-//            VPayment vPayment = new VPayment(scn, customerList, contractList, paymentFormList);
             System.out.println("---------------------지급 관리-----------------------");
             System.out.println("(1). 지급금 접수받기 (2). 지급금 산정하기 (3). 지급 안내서 전송하기 (4) 뒤로 가기");
             int selectPaymentMenu = scn.nextInt();
@@ -258,8 +257,6 @@ public class VPayment {
             }
         }
     }
-
-
 
     // (3). 지급 안내서 전송하기
     public boolean sendPaymentGuide(){

@@ -4,7 +4,8 @@ package Practice.InsuranceCompany.Design.src.view;
 import Practice.InsuranceCompany.Design.src.controller.CAcquisitionPolicy;
 import Practice.InsuranceCompany.Design.src.controller.CInsurance;
 import Practice.InsuranceCompany.Design.src.controller.CWarrantyInfo;
-import Practice.InsuranceCompany.Design.src.model.contract.ContractType;
+import Practice.InsuranceCompany.Design.src.enums.InsuranceType;
+import Practice.InsuranceCompany.Design.src.enums.ContractType;
 import Practice.InsuranceCompany.Design.src.model.insurance.*;
 
 import java.util.Scanner;

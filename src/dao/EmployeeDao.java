@@ -1,6 +1,6 @@
 package Practice.InsuranceCompany.Design.src.dao;
 
-import Practice.InsuranceCompany.Design.src.etcEnum.Department;
+import Practice.InsuranceCompany.Design.src.enums.Department;
 import Practice.InsuranceCompany.Design.src.model.employee.Employee;
 import Practice.InsuranceCompany.Design.src.model.employee.EmployeeListImpl;
 

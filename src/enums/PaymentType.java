@@ -1,4 +1,9 @@
-package Practice.InsuranceCompany.Design.src.model.payment;
+package Practice.InsuranceCompany.Design.src.enums;
+
+import Practice.InsuranceCompany.Design.src.model.payment.CancellationReturn;
+import Practice.InsuranceCompany.Design.src.model.payment.ClaimsPaid;
+import Practice.InsuranceCompany.Design.src.model.payment.MaturityDividend;
+import Practice.InsuranceCompany.Design.src.model.payment.Payment;
 
 public enum PaymentType {
 	payout("보험금",new ClaimsPaid()),

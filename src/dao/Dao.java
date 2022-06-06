@@ -12,7 +12,7 @@ public class Dao {
     public void connect(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect= DriverManager.getConnection("jdbc:mysql://localhost:3306/insurance?useSSL=false", "root", "0730");
+            connect= DriverManager.getConnection("jdbc:mysql://localhost:3306/insurance?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "seoyeon001!");
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

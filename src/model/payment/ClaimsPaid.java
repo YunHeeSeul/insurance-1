@@ -1,7 +1,7 @@
 package Practice.InsuranceCompany.Design.src.model.payment;
 
-import Practice.InsuranceCompany.Design.src.etcEnum.ClaimType;
-import Practice.InsuranceCompany.Design.src.model.accident.AccidentType;
+import Practice.InsuranceCompany.Design.src.enums.ClaimType;
+import Practice.InsuranceCompany.Design.src.enums.AccidentType;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 
 import java.util.Scanner;

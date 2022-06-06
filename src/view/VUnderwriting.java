@@ -4,7 +4,7 @@ import Practice.InsuranceCompany.Design.src.controller.CAcquisitionPolicy;
 import Practice.InsuranceCompany.Design.src.controller.CCustomer;
 import Practice.InsuranceCompany.Design.src.controller.CInsurance;
 import Practice.InsuranceCompany.Design.src.controller.CSubscription;
-import Practice.InsuranceCompany.Design.src.etcEnum.UnderwritingStatus;
+import Practice.InsuranceCompany.Design.src.enums.UnderwritingStatus;
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.model.insurance.AcquisitionPolicy;
 import Practice.InsuranceCompany.Design.src.model.insurance.Insurance;
@@ -110,7 +110,7 @@ public class VUnderwriting extends View {
                 subscription.setUnderwritingStatus(UnderwritingStatus.applied);
                 if (this.cSubscription.updateById(input, subscription)) {
                     System.out.println("입력하신 ID의 청약서 인수심사 신청이 완료되었습니다. 청약서의 정보는 아래와 같습니다.");
-                    this.cSubscription.retrieveById(input).printInfo();
+                    this.printSubscriptionDetails(this.cSubscription.retrieveById(input));
                 } else System.out.println("인수심사 신청에 실패하였습니다.");
             }
         }

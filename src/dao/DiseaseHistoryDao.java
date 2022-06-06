@@ -1,7 +1,7 @@
 package Practice.InsuranceCompany.Design.src.dao;
 
-import Practice.InsuranceCompany.Design.src.etcEnum.Level;
-import Practice.InsuranceCompany.Design.src.model.policyholder.DiseaseHistory;
+import Practice.InsuranceCompany.Design.src.enums.Level;
+import Practice.InsuranceCompany.Design.src.model.customer.DiseaseHistory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

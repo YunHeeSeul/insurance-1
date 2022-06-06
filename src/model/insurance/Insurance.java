@@ -1,5 +1,7 @@
 package Practice.InsuranceCompany.Design.src.model.insurance;
 
+import Practice.InsuranceCompany.Design.src.enums.InsuranceType;
+
 import java.util.ArrayList;
 
 public class Insurance {

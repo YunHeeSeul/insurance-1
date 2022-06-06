@@ -2,7 +2,7 @@ package Practice.InsuranceCompany.Design.src.controller;
 
 import Practice.InsuranceCompany.Design.src.dao.AcquisitionPolicyDao;
 import Practice.InsuranceCompany.Design.src.model.insurance.AcquisitionPolicy;
-import Practice.InsuranceCompany.Design.src.model.insurance.InsuranceType;
+import Practice.InsuranceCompany.Design.src.enums.InsuranceType;
 
 public class CAcquisitionPolicy {
 

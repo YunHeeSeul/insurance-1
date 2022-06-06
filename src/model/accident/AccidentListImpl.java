@@ -1,7 +1,7 @@
 package Practice.InsuranceCompany.Design.src.model.accident;
 
 
-import Practice.InsuranceCompany.Design.src.etcEnum.Level;
+import Practice.InsuranceCompany.Design.src.enums.Level;
 
 import java.util.ArrayList;
 

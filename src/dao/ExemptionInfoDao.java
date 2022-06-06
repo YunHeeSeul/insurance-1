@@ -1,9 +1,8 @@
 package Practice.InsuranceCompany.Design.src.dao;
 
-import Practice.InsuranceCompany.Design.src.etcEnum.Responsibility;
+import Practice.InsuranceCompany.Design.src.enums.Responsibility;
 import Practice.InsuranceCompany.Design.src.model.accident.ExemptionInfo;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

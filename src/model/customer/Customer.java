@@ -1,10 +1,7 @@
 package Practice.InsuranceCompany.Design.src.model.customer;
 
 
-import Practice.InsuranceCompany.Design.src.etcEnum.Gender;
-import Practice.InsuranceCompany.Design.src.model.policyholder.DiseaseHistory;
-import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedBuildingInfo;
-import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedCarInfo;
+import Practice.InsuranceCompany.Design.src.enums.Gender;
 
 public class Customer {
 	private String address;

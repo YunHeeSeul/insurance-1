@@ -1,4 +1,4 @@
-package Practice.InsuranceCompany.Design.src.model.insurance;
+package Practice.InsuranceCompany.Design.src.enums;
 
 public enum InsuranceType {
 	car("자동차"),

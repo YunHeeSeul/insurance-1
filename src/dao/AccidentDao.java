@@ -1,12 +1,10 @@
 package Practice.InsuranceCompany.Design.src.dao;
 
-import Practice.InsuranceCompany.Design.src.etcEnum.Level;
+import Practice.InsuranceCompany.Design.src.enums.Level;
 import Practice.InsuranceCompany.Design.src.model.accident.Accident;
 import Practice.InsuranceCompany.Design.src.model.accident.AccidentListImpl;
-import Practice.InsuranceCompany.Design.src.model.accident.AccidentType;
-import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
+import Practice.InsuranceCompany.Design.src.enums.AccidentType;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

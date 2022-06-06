@@ -1,7 +1,7 @@
 package Practice.InsuranceCompany.Design.src.controller;
 
 import Practice.InsuranceCompany.Design.src.dao.OwnedBuildingInfoDao;
-import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedBuildingInfo;
+import Practice.InsuranceCompany.Design.src.model.customer.OwnedBuildingInfo;
 
 public class COwnedBuildingInfo {
     private OwnedBuildingInfoDao ownedBuildingInfoDao;
@@ -14,4 +14,7 @@ public class COwnedBuildingInfo {
     public boolean addBuildingInfo(OwnedBuildingInfo ownedBuildingInfo) {
         return this.ownedBuildingInfoDao.create(ownedBuildingInfo);
     }
+
+    public int getMaxID() { return this.ownedBuildingInfoDao.retrieveMaxID(); }
+
 }

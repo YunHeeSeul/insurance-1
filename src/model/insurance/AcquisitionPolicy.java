@@ -1,8 +1,9 @@
 package Practice.InsuranceCompany.Design.src.model.insurance;
 
-import Practice.InsuranceCompany.Design.src.model.policyholder.DiseaseHistory;
-import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedBuildingInfo;
-import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedCarInfo;
+import Practice.InsuranceCompany.Design.src.enums.InsuranceType;
+import Practice.InsuranceCompany.Design.src.model.customer.DiseaseHistory;
+import Practice.InsuranceCompany.Design.src.model.customer.OwnedBuildingInfo;
+import Practice.InsuranceCompany.Design.src.model.customer.OwnedCarInfo;
 
 import java.util.Scanner;
 

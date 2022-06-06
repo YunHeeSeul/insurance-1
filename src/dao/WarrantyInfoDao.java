@@ -1,6 +1,6 @@
 package Practice.InsuranceCompany.Design.src.dao;
 
-import Practice.InsuranceCompany.Design.src.model.contract.ContractType;
+import Practice.InsuranceCompany.Design.src.enums.ContractType;
 import Practice.InsuranceCompany.Design.src.model.insurance.WarrantyInfo;
 
 import java.sql.ResultSet;

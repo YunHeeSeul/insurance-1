@@ -1,6 +1,6 @@
-package Practice.InsuranceCompany.Design.src.model.policyholder;
+package Practice.InsuranceCompany.Design.src.model.customer;
 
-import Practice.InsuranceCompany.Design.src.etcEnum.Level;
+import Practice.InsuranceCompany.Design.src.enums.Level;
 
 import java.util.Scanner;
 

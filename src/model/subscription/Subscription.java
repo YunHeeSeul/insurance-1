@@ -2,14 +2,12 @@ package Practice.InsuranceCompany.Design.src.model.subscription;
 
 
 import Practice.InsuranceCompany.Design.src.model.customer.Customer;
-import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
-import Practice.InsuranceCompany.Design.src.etcEnum.UnderwritingStatus;
+import Practice.InsuranceCompany.Design.src.enums.UnderwritingStatus;
 import Practice.InsuranceCompany.Design.src.model.insurance.Insurance;
-import Practice.InsuranceCompany.Design.src.model.insurance.InsuranceListImpl;
-import Practice.InsuranceCompany.Design.src.model.insurance.InsuranceType;
-import Practice.InsuranceCompany.Design.src.model.policyholder.DiseaseHistory;
-import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedBuildingInfo;
-import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedCarInfo;
+import Practice.InsuranceCompany.Design.src.enums.InsuranceType;
+import Practice.InsuranceCompany.Design.src.model.customer.DiseaseHistory;
+import Practice.InsuranceCompany.Design.src.model.customer.OwnedBuildingInfo;
+import Practice.InsuranceCompany.Design.src.model.customer.OwnedCarInfo;
 
 public class Subscription {
 

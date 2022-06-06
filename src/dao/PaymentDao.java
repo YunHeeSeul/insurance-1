@@ -1,10 +1,10 @@
 package Practice.InsuranceCompany.Design.src.dao;
 
-import Practice.InsuranceCompany.Design.src.etcEnum.ClaimType;
-import Practice.InsuranceCompany.Design.src.model.accident.AccidentType;
+import Practice.InsuranceCompany.Design.src.enums.ClaimType;
+import Practice.InsuranceCompany.Design.src.enums.AccidentType;
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentForm;
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentFormListImpl;
-import Practice.InsuranceCompany.Design.src.model.payment.PaymentType;
+import Practice.InsuranceCompany.Design.src.enums.PaymentType;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
