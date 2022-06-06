@@ -2,6 +2,9 @@ package Practice.InsuranceCompany.Design.src.model.payment;
 
 import Practice.InsuranceCompany.Design.src.model.contract.Contract;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class PaymentForm {
 
 	private String paymentFormID;

@@ -131,20 +131,6 @@ public class PaymentDao extends Dao{
         return -1L;
     }
 
-    public int retrieveMaxID() {
-        try {
-            String query = "select max(paymentId) as ID from payment;";
-            ResultSet rs = super.retrieve(query);
-            if(rs.next()) {
-                String id=rs.getString("ID");
-                return Integer.parseInt(id.substring(2));
-            }
-            else return 0;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public PaymentFormListImpl retrieveByContractIdAndCustomerId(String contractId, String customerID) {
         try {
             String query = "select * from payment where customerId= \"" +customerID + "\"" + " and contractId= \"" + contractId +"\";";
@@ -170,6 +156,21 @@ public class PaymentDao extends Dao{
                 paymentFormList.add(getFromResultSet(rs));
             }
             return paymentFormList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int retrieveMaxID() {
+        try {
+            String query = "select max(n.num) as ID from (select convert(substring_index(paymentId,'PM',-1),unsigned) as num from payment) n;";
+            ResultSet rs = super.retrieve(query);
+            if(rs.next()) {
+                int id=rs.getInt("ID");
+                if (rs.wasNull()) return 0;
+                return id;
+            }
+            else return 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
