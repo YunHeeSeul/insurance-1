@@ -137,7 +137,7 @@ public class View {
         System.out.println("- ID : " + subscription.getSubscriptionID());
         System.out.println("- 인수심사 신청 상태 : " + subscription.getUnderwritingStatus().getDetail());
         System.out.println("- 청약서 생성일자 : " + subscription.getDateCreated());
-        System.out.println("- 보험 계약 기간 : " + subscription.getInsurancePeriod() + "개월");
+        System.out.println("- 보험 계약 기간 : " + subscription.getInsurancePeriod() + "년");
         System.out.println("- 보험료 : " + subscription.getPremium() + "원");
         System.out.println("- 가입 고객 ID : " + subscription.getCustomerID());
         System.out.println("- 가입 보험 ID : " + subscription.getInsuranceID());
