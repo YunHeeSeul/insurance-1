@@ -10,7 +10,7 @@ public class ExemptionInfo {
 	//	private static int IDnum=0;
 	private String exemptionInfoID;
 	private String judgementReason;
-	private double paymentRatio;
+	private Double paymentRatio;
 	private Responsibility responsibility;
 	private String exemptionContent;
 
@@ -25,25 +25,25 @@ public class ExemptionInfo {
 		return exemptionInfoID;
 	}
 	public void setExemptionInfoID(String exemptionInfoID){
-		this.exemptionInfoID= this.exemptionInfoID;
+		this.exemptionInfoID= exemptionInfoID;
 	}
 	public String getJudgementReason(){
 		return judgementReason;
 	}
 	public void setJudgementReason(String judgementReason){
-		this.judgementReason= this.judgementReason;
+		this.judgementReason= judgementReason;
 	}
-	public double getPaymentRatio(){
+	public Double getPaymentRatio(){
 		return paymentRatio;
 	}
-	public void setPaymentRatio(double paymentRatio){
-		this.paymentRatio= this.paymentRatio;
+	public void setPaymentRatio(Double paymentRatio){
+		this.paymentRatio= paymentRatio;
 	}
 	public Responsibility getResponsibility(){
 		return responsibility;
 	}
 	public void setResponsibility(Responsibility responsibility){
-		this.responsibility= this.responsibility;
+		this.responsibility= responsibility;
 	}
 	public String getExemptionContent() {
 		return exemptionContent;

@@ -14,10 +14,11 @@ public class ExemptionInfoDao extends Dao{
 
     public boolean create(ExemptionInfo exemptionInfo) {
         String query = "insert into exemptionInfo values ('"
-                + exemptionInfo.getExemptionInfoID() + "','"
-                + exemptionInfo.getResponsibility().getDetail() + "','"
-                + exemptionInfo.getJudgementReason() + "',"
-                + exemptionInfo.getPaymentRatio() + ");";
+                + dq + exemptionInfo.getExemptionInfoID() + dq + ", "
+                + dq + exemptionInfo.getResponsibility().getDetail() + dq + ", "
+                + dq + exemptionInfo.getJudgementReason() + dq + ", "
+                + dq + exemptionInfo.getPaymentRatio() + dq + ");";
+
         return super.create(query);
     }
 
