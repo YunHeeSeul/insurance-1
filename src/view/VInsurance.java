@@ -27,7 +27,6 @@ public class VInsurance extends View {
 
     public void run(){
         while(true) {
-//            super.run("상품 관리", "(1). 상품 조회 (2). 상품 등록 (3). 상품 수정 (4). 상품 삭제 (0) 뒤로가기");
             System.out.println("----------------------------- 상품 관리 ----------------------------");
             System.out.println("(1). 상품 조회 (2). 상품 등록 (3). 상품 수정 (4). 상품 삭제 (0) 뒤로가기");
             String selectedMenu = scanner.next();
@@ -107,7 +106,7 @@ public class VInsurance extends View {
         this.cInsurance.deleteById(inputID);
     }
 
-    private String generateID(String keyword){ return keyword + Integer.toString(this.cInsurance.getMaxID() + 1); }
+    private String generateID(String keyword){ return keyword + (this.cInsurance.getMaxID() + 1); }
 
     private void setInsuranceAttr(Insurance insurance) {
 

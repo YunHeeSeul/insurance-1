@@ -9,8 +9,6 @@ import java.util.Scanner;
 
 public class OwnedCarInfo {
 
-	private static int IDNum = 1;
-
 	private String id;
 	private int accidentNumber;
 	private CarType carType;
@@ -20,9 +18,7 @@ public class OwnedCarInfo {
 	private int availableNumOfViolation;	// 허용 가능한 법규 위반 횟수
 	public violationInfo m_violationInfo;
 
-	public OwnedCarInfo(){
-		this.id = "CI" + Integer.toString(IDNum++);
-	}
+	public OwnedCarInfo(){}
 
 	public String getId() { return this.id; }
 	public int getAccidentNumber(){ return this.accidentNumber; }
@@ -62,19 +58,19 @@ public class OwnedCarInfo {
 	public ArrayList<violationInfo> getViolationHistory(){ return this.violationHistory; }
 
 	public void inputCarInfo(Scanner scanner){
-		System.out.println("허용 가능한 최대 사고 발생 횟수 : ");
+		System.out.println("사고 발생 횟수 : ");
 		this.accidentNumber = scanner.nextInt();
 
-		System.out.println("허용 가능한 차종(승용차/화물차/승합차) : ");
+		System.out.println("차종(승용차/화물차/승합차) : ");
 		this.inputAvailableCarType(scanner.next());
 
-		System.out.println("허용 가능한 차량 용도(사업용/비사업용) : ");
+		System.out.println("차량 용도(사업용/비사업용) : ");
 		this.inputAvailableCarUse(scanner.next());
 
-		System.out.println("적정 배기량(단위:CC) : ");
+		System.out.println("배기량(단위:CC) : ");
 		this.displacement = scanner.nextInt();
 
-		System.out.println("허용 가능한 법규 위반 횟수 : ");
+		System.out.println("법규 위반 횟수 : ");
 		this.availableNumOfViolation = scanner.nextInt();
 
 	}

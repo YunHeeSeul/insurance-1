@@ -3,7 +3,6 @@ package Practice.InsuranceCompany.Design.src.dao;
 import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
 import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompanyListImpl;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

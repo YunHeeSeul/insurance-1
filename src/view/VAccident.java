@@ -14,25 +14,17 @@ import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
 import Practice.InsuranceCompany.Design.src.etcEnum.Level;
 import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
 import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompanyListImpl;
-import Practice.InsuranceCompany.Design.src.view.View;
-
 
 import java.util.Locale;
 import java.util.Scanner;
 
 public class VAccident extends View {
-    // Scanner scn;
-    Scanner scn = new Scanner(System.in).useLocale(Locale.US);
+    private Scanner scn;
     private Accident accident;
-    private SurveyCompany surveyCompany;
     private CAccident cAccident;
     private CSurveyCompany cSurveyCompany;
     private CCustomer cCustomer;
     private CExemptionInfo cExemptionInfo;
-
-    private AccidentListImpl accidentList;
-    private CustomerListImpl customerList;
-
 
     public VAccident(Scanner scn) {
         this.scn = scn;
@@ -41,13 +33,6 @@ public class VAccident extends View {
         this.cCustomer = new CCustomer();
         this.cExemptionInfo=new CExemptionInfo();
     }
-//    public VAccident(Scanner scn, AccidentListImpl accidentList, CustomerListImpl customerList) {
-//        this.scn=scn;
-//        this.cAccident=new cAccident();
-//        this.cCustomer=new cCustomer();
-//        this.accidentList=accidentList;
-//        this.customerList=customerList;
-//}
 
     public void run() {
         while (true) {
@@ -123,7 +108,7 @@ public class VAccident extends View {
 
     }
 
-    private void printAllSurveyCompany(CSurveyCompany cSurveyCompany) {
+    private void printAllSurveyCompany() {
 
         SurveyCompanyListImpl surveyCompanyList = this.cSurveyCompany.getAllSurveyCompany();
         if(surveyCompanyList.getAllList().size()==0){
@@ -149,10 +134,6 @@ public class VAccident extends View {
 
     public void receiveAccident() {
         Accident accident=new Accident();
-        //   String accidentID ="AC"+(this.cAccident.getMaxID()+1);
-        //   accident.setAccidentID(accidentID);
-        //   AccidentListImpl accidentList=this.cAccident.getAllAccidentList();
-        Customer customer;
 
         System.out.println("----------------------------사고 접수----------------------------");
         System.out.println("목록을 참고하여 사고 접수를 할 고객을 선택해주세요");
@@ -161,8 +142,6 @@ public class VAccident extends View {
         accident.setCustomerID(scn.next());
 
         addAccident(accident);
-        //  cAccident.addAccident(accident);
-
     }
     private String generateID(String keyword){
         if(keyword.equals("EX")) return keyword + (this.cExemptionInfo.getMaxID() + 1);
@@ -218,7 +197,7 @@ public class VAccident extends View {
             if (response.equals("y")){
                 accident.setOnsite(true);
                 System.out.println("목록을 보고 현장 출동을 지시할 손해사정업체ID를 입력하세요.");
-                this.printAllSurveyCompany(cSurveyCompany);
+                this.printAllSurveyCompany();
                 System.out.println("손해사정업체 ID : ");
                 accident.setRepSurveyCompanyID(scn.next());
             }

@@ -7,8 +7,6 @@ import Practice.InsuranceCompany.Design.src.controller.CSubscription;
 import Practice.InsuranceCompany.Design.src.etcEnum.UnderwritingStatus;
 import Practice.InsuranceCompany.Design.src.model.employee.Employee;
 import Practice.InsuranceCompany.Design.src.model.employee.EmployeeListImpl;
-import Practice.InsuranceCompany.Design.src.model.insurance.Insurance;
-import Practice.InsuranceCompany.Design.src.model.insurance.InsuranceListImpl;
 import Practice.InsuranceCompany.Design.src.model.subscription.Subscription;
 
 import java.util.Scanner;
@@ -120,7 +118,7 @@ public class VSubscription extends View {
             String input = "y";
             while(!input.equals("n")) {
                 System.out.println("수정하실 청약서의 세부 항목의 번호를 입력해주세요.");
-                System.out.println("1. 청약서 생성일자 | 2. 보험 계약 기간 | 3. 보험료 | 4. 가입 고객 ID | 5. 가입 보험 ID | 6. 담당 설계사 ID");
+                System.out.println("1. 청약서 생성일자 | 2. 보험 계약 기간 | 3. 보험료");
 
                 subscription = inputNewSubscriptionInfo(scanner.nextInt(), subscription);
 
@@ -147,7 +145,7 @@ public class VSubscription extends View {
         else System.out.println("청약서 삭제에 실패하였습니다.");
     }
 
-    private String generateID(String keyword){ return keyword + this.cSubscription.getMaxID() + 1; }
+    private String generateID(String keyword){ return keyword + (this.cSubscription.getMaxID() + 1); }
 
     private void setSubscriptionAttr(Subscription subscription) {
         subscription.setSubscriptionID(generateID("SC"));
@@ -181,21 +179,6 @@ public class VSubscription extends View {
                 System.out.println("새로운 보험료 : ");
                 input = scanner.next();
                 subscription.setPremium(Integer.parseInt(input));
-                break;
-            case 4:
-                System.out.println("새로운 가입 고객 ID : ");
-                input = scanner.nextLine();
-                subscription.setCustomerID(input);
-                break;
-            case 5:
-                System.out.println("새로운 가입 보험 ID :");
-                input = scanner.nextLine();
-                subscription.setInsuranceID(input);
-                break;
-            case 6:
-                System.out.println("새로운 담당 설계사 ID :");
-                input = scanner.nextLine();
-                subscription.setInsuranceAgentID(input);
                 break;
         }
         return subscription;

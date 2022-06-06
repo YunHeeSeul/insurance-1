@@ -1,22 +1,17 @@
 package Practice.InsuranceCompany.Design.src.model.policyholder;
 
-
 import Practice.InsuranceCompany.Design.src.etcEnum.Level;
 
 import java.util.Scanner;
 
 public class DiseaseHistory {
 
-	private static int IDNum = 0;
-
 	private String id;
 	private String name;
 	private Level severity;
 	private int strugglePeriod;
 
-	public DiseaseHistory(){
-		this.id = "DH" + Integer.toString(IDNum++);
-	}
+	public DiseaseHistory(){}
 
 	public String getId(){ return this.id; }
 	public String getName() { return this.name;}
@@ -52,10 +47,6 @@ public class DiseaseHistory {
 
 		System.out.println("투병 기간(단위:개월) : ");
 		this.strugglePeriod = scanner.nextInt();
-	}
-
-	public void finalize() throws Throwable {
-
 	}
 
 }//end DeseaseHistory

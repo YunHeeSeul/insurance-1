@@ -15,9 +15,6 @@ public class Customer {
 	private String name;
 	private String phoneNumber;
 	private String residentRegistrationNumber;
-
-
-	/*** 아래 정보는 잠재 고객 및 가입자 모두에게 필요 ***/
 	public DiseaseHistory m_DiseaseHistory;
 	public OwnedBuildingInfo m_OwnedBuildingInfo;
 	public OwnedCarInfo m_OwnedCarInfo;
@@ -78,7 +75,6 @@ public class Customer {
 	public void setDiseaseHistory(DiseaseHistory m_DiseaseHistory) { this.m_DiseaseHistory = m_DiseaseHistory; }
 	public void setOwnedBuildingInfo(OwnedBuildingInfo m_OwnedBuildingInfo) { this.m_OwnedBuildingInfo = m_OwnedBuildingInfo; }
 	public void setOwnedCarInfo(OwnedCarInfo m_OwnedCarInfo) { this.m_OwnedCarInfo = m_OwnedCarInfo; }
-
 
 	// view
 	public void printInsuranceDetails(){

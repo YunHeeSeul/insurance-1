@@ -1,7 +1,5 @@
 package Practice.InsuranceCompany.Design.src.etcEnum;
 
-import Practice.InsuranceCompany.Design.src.model.accident.AccidentType;
-
 public enum ClaimType {
 	visitHospital("내원"),
 	dead("사망"),

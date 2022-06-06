@@ -1,7 +1,5 @@
 package Practice.InsuranceCompany.Design.src.model.payment;
 
-import Practice.InsuranceCompany.Design.src.etcEnum.Responsibility;
-
 public enum PaymentType {
 	payout("보험금",new ClaimsPaid()),
 	maturity("만기보험금",new MaturityDividend()),

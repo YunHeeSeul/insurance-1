@@ -1,22 +1,13 @@
 package Practice.InsuranceCompany.Design.src.model.insurance;
 
-
-import Practice.InsuranceCompany.Design.src.model.policyholder.DiseaseHistory;
-import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedBuildingInfo;
-import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedCarInfo;
-
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Insurance {
-
 	private AcquisitionPolicy acquisitionPolicy;
-
 	private String insuranceEx;
 	private String insuranceID;
 	private String insuranceName;
 	private InsuranceType insuranceType;
-
 	private int joinAge;
 	private double peril;
 	private boolean permission;
@@ -106,8 +97,4 @@ public class Insurance {
 		} else
 			return false;
 	}
-
-	/*** methods for VInsurance  ***/
-
-
 }

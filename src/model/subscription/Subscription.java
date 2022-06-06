@@ -90,10 +90,6 @@ public class Subscription {
 		return insuranceID;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-
 	public void updateUnderwritingStatus(UnderwritingStatus underwritingStatus){
 		this.underwritingStatus = underwritingStatus;
 	}
@@ -105,15 +101,6 @@ public class Subscription {
 		System.out.println("가입 신청한 고객 ID : " + this.customerID);
 		System.out.println("인수심사 신청 여부 : " + this.underwritingStatus.getDetail());
 	}
-
-
-	public boolean signUpUnderwriting(CustomerListImpl customerList, InsuranceListImpl insuranceList){
-//		Customer customer = customerList.getByCustomerId(this.customerID);
-//		Insurance insurance = insuranceList.get(this.insuranceID);
-//		this.checkAvailabilityOfUW(customer, insurance);
-		return false;
-	}
-
 
 	/*** methods for Signup UW ***/
 	private boolean checkAvailabilityOfUW(Customer customer, Insurance insurance) {

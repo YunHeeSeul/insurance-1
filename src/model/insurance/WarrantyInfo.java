@@ -1,8 +1,5 @@
 package Practice.InsuranceCompany.Design.src.model.insurance;
 
-
-//import Practice.InsuranceCompany.Design.src.model.contract.ContractType;
-
 import Practice.InsuranceCompany.Design.src.model.contract.ContractType;
 
 public class WarrantyInfo {

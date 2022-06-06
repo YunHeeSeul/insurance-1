@@ -1,7 +1,5 @@
 package Practice.InsuranceCompany.Design.src.etcEnum;
 
-import Practice.InsuranceCompany.Design.src.model.contract.ContractType;
-
 public enum UnderwritingStatus {
 	applied("신청"),
 	notApplied("미신청"),

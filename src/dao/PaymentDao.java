@@ -2,7 +2,6 @@ package Practice.InsuranceCompany.Design.src.dao;
 
 import Practice.InsuranceCompany.Design.src.etcEnum.ClaimType;
 import Practice.InsuranceCompany.Design.src.model.accident.AccidentType;
-import Practice.InsuranceCompany.Design.src.model.contract.ContractListImpl;
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentForm;
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentFormListImpl;
 import Practice.InsuranceCompany.Design.src.model.payment.PaymentType;
