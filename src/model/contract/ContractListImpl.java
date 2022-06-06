@@ -1,10 +1,8 @@
 package Practice.InsuranceCompany.Design.src.model.contract;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class ContractListImpl implements ContractList {
-
 	private ArrayList<Contract> ContractList;
 
 	public ContractListImpl(){
@@ -72,9 +70,5 @@ public class ContractListImpl implements ContractList {
 
 	public int getSize(){
 		return this.ContractList.size();
-	}
-
-	public ArrayList<Contract> getContractList(){
-		return this.ContractList;
 	}
 }//end ContractListImpl

@@ -12,8 +12,8 @@ public class OwnedBuildingInfoDao extends Dao {
     public boolean create(OwnedBuildingInfo ownedBuildingInfo) {
         String query = "insert into ownedBuildingInfo value(";
         query += dq + ownedBuildingInfo.getId() + dq + ", "
-                        + dq + ownedBuildingInfo.getFloorNumber() + dq + ", "
-                        + dq + ownedBuildingInfo.getSpecializedBuilding() + dq + ");";
+                        + ownedBuildingInfo.getFloorNumber() + ", "
+                        + ownedBuildingInfo.getSpecializedBuilding() + ");";
         return super.create(query);
     }
 

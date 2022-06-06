@@ -1,10 +1,6 @@
 package Practice.InsuranceCompany.Design.src.model.customer;
 
-
-import Practice.InsuranceCompany.Design.src.model.insurance.Insurance;
-
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class CustomerListImpl implements CustomerList {
 

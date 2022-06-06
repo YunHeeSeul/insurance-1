@@ -14,10 +14,10 @@ public class OwnedCarInfoDao extends Dao {
     public boolean create(OwnedCarInfo ownedCarInfo) {
         String query = "insert into ownedCarInfo value(";
         query += dq + ownedCarInfo.getId() + dq + ", "
-                + dq + ownedCarInfo.getAccidentNumber() + dq + ", "
+                + ownedCarInfo.getAccidentNumber() + ", "
                 + dq + ownedCarInfo.getCarType().getDetail() + dq + ", "
                 + dq + ownedCarInfo.getCarPurpose().getDetail() + dq + ", "
-                + dq + ownedCarInfo.getDisplacement() + dq + ");";
+                + ownedCarInfo.getDisplacement() + ");";
         return super.create(query);
     }
 

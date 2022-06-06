@@ -1,8 +1,6 @@
 package Practice.InsuranceCompany.Design.src.controller;
 
-import Practice.InsuranceCompany.Design.src.dao.CustomerDao;
 import Practice.InsuranceCompany.Design.src.dao.PolicyholderDao;
-import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 import Practice.InsuranceCompany.Design.src.model.customer.CustomerListImpl;
 import Practice.InsuranceCompany.Design.src.model.policyholder.Policyholder;
 

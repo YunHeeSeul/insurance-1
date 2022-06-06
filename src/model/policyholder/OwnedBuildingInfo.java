@@ -7,8 +7,6 @@ import java.util.Scanner;
 
 public class OwnedBuildingInfo {
 
-	private static int IDNum = 0;
-
 	private COwnedBuildingInfo cOwnedBuildingInfo;
 
 	private String id;
@@ -29,7 +27,6 @@ public class OwnedBuildingInfo {
 
 	public OwnedBuildingInfo(){
 		this.cOwnedBuildingInfo = new COwnedBuildingInfo();
-		this.id = "BI" + Integer.toString(IDNum++);
 		this.floorNumber = -1;
 		this.specializedBuilding = false;
 	}
@@ -56,9 +53,5 @@ public class OwnedBuildingInfo {
 			}
 		}
 		this.cOwnedBuildingInfo.addBuildingInfo(this);
-	}
-
-	public void finalize() throws Throwable {
-
 	}
 }//end OwnedBuildingInfo

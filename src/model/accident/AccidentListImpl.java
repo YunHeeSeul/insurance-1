@@ -4,7 +4,6 @@ package Practice.InsuranceCompany.Design.src.model.accident;
 import Practice.InsuranceCompany.Design.src.etcEnum.Level;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class AccidentListImpl implements AccidentList {
 

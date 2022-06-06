@@ -12,8 +12,6 @@ import Practice.InsuranceCompany.Design.src.model.insurance.InsuranceType;
 import Practice.InsuranceCompany.Design.src.model.subscription.Subscription;
 import Practice.InsuranceCompany.Design.src.model.subscription.SubscriptionListImpl;
 
-import java.util.ArrayList;
-
 public class View {
 
     public void run(String menuStr, String subMenuList) {}

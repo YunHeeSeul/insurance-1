@@ -38,9 +38,9 @@ public class AcquisitionPolicyDao extends Dao {
 
         String query = "insert into acquisitionPolicy value(";
         query += dq + acquisitionPolicy.getID() + dq + ", "
-                        + buildingInfoID + ", "
-                        + carInfoID + ", "
-                        + diseaseHistoryID + ");";
+                + buildingInfoID + ", "
+                + carInfoID + ", "
+                + diseaseHistoryID + ");";
 
         return super.create(query);
     }
@@ -53,7 +53,7 @@ public class AcquisitionPolicyDao extends Dao {
 
     public AcquisitionPolicy retrieveById(String inputID) {
         try {
-            if(inputID.equals("null")) return null;
+            if(inputID == null) return null;
 
             String query = "select * from acquisitionPolicy where acquisitionPolicyId = " + dq +inputID + dq + ";";
             ResultSet resultSet = super.retrieve(query);

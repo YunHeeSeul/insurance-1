@@ -6,7 +6,6 @@ import Practice.InsuranceCompany.Design.src.model.customer.Customer;
 
 import java.util.Scanner;
 
-// 보험금
 public class ClaimsPaid extends Payment {
 
 	@Override

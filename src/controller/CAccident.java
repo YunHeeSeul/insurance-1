@@ -3,8 +3,6 @@ package Practice.InsuranceCompany.Design.src.controller;
 import Practice.InsuranceCompany.Design.src.dao.AccidentDao;
 import Practice.InsuranceCompany.Design.src.model.accident.Accident;
 import Practice.InsuranceCompany.Design.src.model.accident.AccidentListImpl;
-import Practice.InsuranceCompany.Design.src.model.accident.ExemptionInfo;
-import Practice.InsuranceCompany.Design.src.model.insurance.WarrantyInfo;
 
 public class CAccident {
     private AccidentDao accidentDao;
@@ -39,9 +37,6 @@ public class CAccident {
     public boolean update(String accidentID, Accident accident) {
         return this.accidentDao.update(accidentID,accident);
     }
-//  public boolean deleteAccidentById(String accidentID) {
-    //       return this.accidentDao.delete(accidentID);
-    //   }
 
     public int getMaxID() { return this.accidentDao.retrieveMaxID(); }
 

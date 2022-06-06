@@ -3,14 +3,11 @@ package Practice.InsuranceCompany.Design.src.model.accident;
 
 import Practice.InsuranceCompany.Design.src.etcEnum.Level;
 
-import Practice.InsuranceCompany.Design.src.etcEnum.Responsibility;
 import Practice.InsuranceCompany.Design.src.model.survey.SurveyCompany;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Accident {
-	private Scanner scn;
 	private String accidentID;
 	private String customerID;
 	private AccidentType accidentType;
@@ -24,17 +21,10 @@ public class Accident {
 	private String exemptionInfoID;
 	private ExemptionInfo exemptionInfo;
 	private boolean onSite;
-	private boolean permission;
 
 	public Accident(){
-		this.permission = true;
 	}
 	private ArrayList<ExemptionInfo> exemptionContent;
-
-	public Accident(Scanner scn, String accidentID, String customerID, AccidentType accidentType, String accidentDate, String accidentLocation, Level accidentScale, String accidentContent, boolean doingHarm, SurveyCompany repSurveyCompany, String exemptionInfoID, boolean onSite) {
-		this.scn = scn;
-		this.accidentID = accidentID;
-	}
 
 	public String getAccidentID() {
 		return accidentID;
@@ -140,24 +130,5 @@ public class Accident {
 	public void setOnsite(boolean onsite) {
 		this.onSite = onsite;
 	}
-
-
-
-
-	public boolean dispatchOnsite(boolean permission){
-		if(repSurveyCompany.isSurveyAbility()) {
-			this.permission = permission;
-			return true;
-		}else
-			return false;
-	}
-
-
-
-	public String getAccidentInfo(){
-		return accidentID+" "+customerID+" "+accidentType+" "+accidentDate+" "+accidentLocation+" "+ accidentScale +" "+ accidentContent +" "+ doingHarm +" "+ repSurveyCompany +" "+ exemptionContent +" "+ onSite;
-	}
-
-
 
 }//end Accident

@@ -3,11 +3,9 @@ package Practice.InsuranceCompany.Design.src.dao;
 import Practice.InsuranceCompany.Design.src.model.insurance.Insurance;
 import Practice.InsuranceCompany.Design.src.model.insurance.InsuranceListImpl;
 import Practice.InsuranceCompany.Design.src.model.insurance.InsuranceType;
-import Practice.InsuranceCompany.Design.src.model.insurance.WarrantyInfo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class InsuranceDao extends Dao{
 
@@ -28,10 +26,10 @@ public class InsuranceDao extends Dao{
                 + dq + insurance.getJoinAge() + dq + ", "
                 + dq + insurance.getPeril() + dq + ", "
                 + dq + insurance.getRate() + dq + ", "
-                + dq + insurance.isPermission() + dq + ", "
+                + insurance.isPermission() + ", "
                 + dq + insurance.getPremium() + dq + ", ";
 
-        if(insurance.getAcquisitionPolicy() == null) queryForInsurance += dq + null + dq + ");";
+        if(insurance.getAcquisitionPolicy() == null) queryForInsurance += null + ");";
         else queryForInsurance += dq + insurance.getAcquisitionPolicy().getID() + dq + ");";
 
         return super.create(queryForInsurance);
@@ -70,10 +68,13 @@ public class InsuranceDao extends Dao{
                 + "join_age = " + insurance.getJoinAge() + ", "
                 + "peril = " + insurance.getPeril() + ", "
                 + "rate = " + insurance.getRate() + ", "
-                + "permission = " + dq + insurance.isPermission() + dq + ", "
-                + "premium = " + insurance.getPremium() + ", "
-                + "acquisitionPolicyId = " + dq + insurance.getAcquisitionPolicy().getID() + dq
-                + " where insuranceId = " + dq + inputID + dq + ";";
+                + "permission = " + insurance.isPermission() + ", "
+                + "premium = " + insurance.getPremium() + ", ";
+
+        if(insurance.getAcquisitionPolicy() == null)
+            query += "acquisitionPolicyId = " + null;
+        else query += "acquisitionPolicyId = " + dq + insurance.getAcquisitionPolicy().getID() + dq ;
+        query += " where insuranceId = " + dq + inputID + dq + ";";
 
         return super.update(query);
     }
@@ -96,13 +97,15 @@ public class InsuranceDao extends Dao{
             return super.delete(deleteQuery);
         }
 
+        deleteQuery = "delete from insurance where insuranceId = " + dq +inputID + dq + ";";
+        super.delete(deleteQuery);
+
         deleteQuery = "delete from acquisitionPolicy where acquisitionPolicyId = " + dq + insurance.getAcquisitionPolicy().getID() + dq + ";";
         super.delete(deleteQuery);
 
         deleteQuery = "delete from ownedCarInfo where ownedCarInfoId = " + dq +insurance.getAcquisitionPolicy().getCarInfoPolicy().getId() + dq + ";";
         super.delete(deleteQuery);
 
-        deleteQuery = "delete from insurance where insuranceId = " + dq +inputID + dq + ";";
         return super.delete(deleteQuery);
     }
 

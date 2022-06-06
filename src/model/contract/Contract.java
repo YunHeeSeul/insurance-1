@@ -1,12 +1,10 @@
 package Practice.InsuranceCompany.Design.src.model.contract;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Contract {
-
 	private String contractID;
 	private String customerID;
 	private String insuranceID;

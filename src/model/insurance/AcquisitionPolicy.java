@@ -1,9 +1,5 @@
 package Practice.InsuranceCompany.Design.src.model.insurance;
 
-
-import Practice.InsuranceCompany.Design.src.controller.CDiseaseHistory;
-import Practice.InsuranceCompany.Design.src.controller.COwnedBuildingInfo;
-import Practice.InsuranceCompany.Design.src.controller.COwnedCarInfo;
 import Practice.InsuranceCompany.Design.src.model.policyholder.DiseaseHistory;
 import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedBuildingInfo;
 import Practice.InsuranceCompany.Design.src.model.policyholder.OwnedCarInfo;

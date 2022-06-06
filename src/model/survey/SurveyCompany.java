@@ -21,10 +21,6 @@ public class SurveyCompany {
 
 	}
 
-
-	//	public String getRepSurveyCompanyID(String repSurveyCompanyID) {
-//	return surveyCompanyID;
-//	}
 	public String getSurveyCompanyID() {
 		return surveyCompanyID;
 	}
@@ -67,18 +63,5 @@ public class SurveyCompany {
 	public String getSurveyCompanyInfo(){
 		return surveyCompanyID+" "+surveyCompanyName+" "+address+" "+phoneNum+" "+surveyAbility;
 	}
-	/*
-		System.out.println("손해사정업체 ID : " + this.surveyCompanyID);
-		System.out.println("손해사정업체명 : " + this.surveyCompanyName);
-		System.out.println("업체 주소 : " + this.address);
-		System.out.println("업체 번호 : " + this.phoneNum);
-		System.out.println("현장 조사 가능 여부 : " + this.surveyAbility);
-
-		if(this.surveyAbility==true)
-			System.out.println("현장 조사 여부 : 조사함");
-		else
-			System.out.println("현장 조사 여부 : 조사하지 않음");
-
-		 */
 
 }//end SurveyCompany
